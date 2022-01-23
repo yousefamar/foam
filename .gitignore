@@ -1,1 +1,4 @@
 *.md
+_site/
+assets/*
+!assets/styles/
