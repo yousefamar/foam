@@ -1,11 +1,14 @@
 // https://github.com/juanfrank77/foam-eleventy-template/blob/master/.eleventy.js
 
+const pathPrefix = "/memo/";
+
 module.exports = (eleventyConfig) => {
-  eleventyConfig.addPassthroughCopy(".htaccess");
+  //eleventyConfig.addPassthroughCopy(".htaccess");
   eleventyConfig.addTransform("wiki-links", function (content, outputPath) {
     if (outputPath && outputPath.endsWith(".html")) {
       // We remove outer brackets from links
-      let output = content.replace(/(\[+(\<a(.*?)\<\/a\>)\]+)/g, "$2");
+      let output = content.replace(/\[+\<a href="\/(.*)" title="(.*)"\>.*\|(.*)\<\/a\>\]+/g, `<a href="${pathPrefix}$1" title="$2">$3</a>`);
+      output = output.replace(/\[+\<a href="\/(.*)" title="(.*)"\>(.*)\<\/a\>\]+/g, `<a href="${pathPrefix}$1" title="$2">$3</a>`);
       return output;
     }
     return content;
@@ -53,5 +56,6 @@ module.exports = (eleventyConfig) => {
       "liquid",
     ],
     passthroughFileCopy: true,
+    pathPrefix,
   };
 };
