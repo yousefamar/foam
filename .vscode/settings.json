@@ -33,4 +33,5 @@
     "latex",
     "plaintext"
   ],
+  "search.useIgnoreFiles": false,
 }
