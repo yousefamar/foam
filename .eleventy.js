@@ -41,6 +41,25 @@ module.exports = (eleventyConfig) => {
 
   eleventyConfig.addPassthroughCopy("assets");
 
+  const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
+  eleventyConfig.addPlugin(eleventyNavigationPlugin);
+
+  // https://nodejs.org/api/util.html#util_util_inspect_object_options
+  const inspect = require("util").inspect;
+  eleventyConfig.addFilter("debug", (content) => `<pre>${inspect(content)}</pre>`);
+
+  const searchTree = (root, key) => {
+    for (const b of root) {
+      if (b.key === key)
+        return b;
+      if (key.startsWith(b.key))
+        return searchTree(b.children, key);
+    }
+  };
+  eleventyConfig.addFilter("extractChildren", (tree, key) => {
+    return searchTree(tree, key)?.children;
+  });
+
   return {
     dir: {
       input: ".",
