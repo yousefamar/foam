@@ -57,7 +57,7 @@ module.exports = (eleventyConfig) => {
     }
   };
   eleventyConfig.addFilter("extractChildren", (tree, key) => {
-    return searchTree(tree, key)?.children;
+    return searchTree(tree, key)?.children.filter(c => c.public);
   });
 
   return {
