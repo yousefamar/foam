@@ -52,7 +52,7 @@ module.exports = (eleventyConfig) => {
     for (const b of root) {
       if (b.key === key)
         return b;
-      if (key.startsWith(b.key))
+      if (b.key && key.startsWith(b.key))
         return searchTree(b.children, key);
     }
   };
@@ -62,7 +62,7 @@ module.exports = (eleventyConfig) => {
 
   return {
     dir: {
-      input: ".",
+      input: "root",
       output: "_site",
       includes: "_includes",
       layouts: "_layouts",
