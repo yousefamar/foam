@@ -23,6 +23,8 @@ module.exports = (eleventyConfig) => {
       const lastSegmentPattern = /[^\/]+(?=\/$|$)/i;
       const isRelative = isRelativePattern.test(link);
 
+      if (link.startsWith('/'))
+        return pathPrefix + link.slice(1);
       if (isRelative) {
         const hasLastSegment = lastSegmentPattern.exec(env.page.url);
         // If it's nested, replace the last segment
