@@ -38,6 +38,7 @@ title: Amar Memoranda
   </head>
   <body>
     {% if breadcrumbs and eleventyNavigation.key %}
+      <a class="crumb" href="{{ '/' | url }}">Root</a> &gt;
       {% set crumbs = collections.all | eleventyNavigationBreadcrumb(eleventyNavigation.key, { includeSelf: false }) %}
       {% for crumb in crumbs %}
         <a class="crumb" href="{{ crumb.url | url }}">{{ crumb.title }}</a> &gt;
