@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "@11ty/eleventy-navigation": "^0.3.2",
+    "eleventy-plugin-reading-time": "^0.0.1",
+    "markdown-it": "^12.3.2",
+    "markdown-it-anchor": "^8.4.1",
+    "markdown-it-replace-link": "^1.1.0"
+  }
+}
