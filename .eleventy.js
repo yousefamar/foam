@@ -38,7 +38,7 @@ module.exports = (eleventyConfig) => {
       return link;
     },
   };
-  let markdownLib = markdownIt(markdownItOptions).use(markdownItReplaceLink);
+  let markdownLib = markdownIt(markdownItOptions).use(markdownItReplaceLink).use(require('markdown-it-anchor'));
   eleventyConfig.setLibrary("md", markdownLib);
 
   eleventyConfig.addPassthroughCopy("assets");
