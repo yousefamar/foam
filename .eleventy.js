@@ -62,6 +62,14 @@ module.exports = (eleventyConfig) => {
     return searchTree(tree, key)?.children.filter(c => c.public);
   });
 
+  const readingTime = require('eleventy-plugin-reading-time');
+  eleventyConfig.addPlugin(readingTime);
+
+  const { DateTime } = require("luxon");
+  eleventyConfig.addFilter("formatDate", (date) => {
+    return DateTime.fromJSDate(date).toLocaleString(DateTime.DATE_MED);
+  });
+
   return {
     dir: {
       input: "root",

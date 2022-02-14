@@ -32,6 +32,10 @@ title: Amar Memoranda
         color: var(--text-main);
         border-radius: 0;
       }
+      .article-details {
+        font-size: small;
+        opacity: 0.5;
+      }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/prism.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/plugins/autoloader/prism-autoloader.min.js"></script>
@@ -45,6 +49,12 @@ title: Amar Memoranda
       {% endfor %}
     {% endif %}
     <div class="markdown-body">
+      <h1>{{ title }}</h1>
+      {% if article %}
+        <div class="article-details">
+          {{ date | formatDate }} &bull; <a href="{{ authorUrl | url }}">{{ author }}</a> &bull; {{ content | readingTime }} read
+        </div>
+      {% endif %}
       {{ content | safe }}
       {% if index %}
         {% set children = collections.all | eleventyNavigation | extractChildren(eleventyNavigation.key) %}
