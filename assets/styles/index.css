@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
+
 .markdown-body {
   max-width: 800px;
   font-size: 16px;
@@ -24,6 +26,30 @@ h3,
 h4,
 h5,
 blockquote {
-  font-family: Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida,
-    "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif;
+  font-family: 'Roboto', sans-serif;
+}
+
+:root {
+  --background-body: #030c22;
+  --background: #030c22;
+  --background-alt: #20293f;
+  --text-main: #a9b0b3;
+  --text-bright: #fff;
+  --text-muted: #a9b0b3;
+  --scrollbar-thumb: #a9b0b3;
+  --scrollbar-thumb-hover: #fff;
+  --links: #e0d498;
+  --focus: #e0d498;
+  --border: #e0d498;
+  --code: #000;
+  --button-hover: #a9b0b3;
+}
+:not(pre) > code {
+  background: #2d2d2d;
+  color: var(--text-main);
+  border-radius: 0;
+}
+.article-details {
+  font-size: small;
+  opacity: 0.5;
 }
