@@ -23,6 +23,9 @@ module.exports = (eleventyConfig) => {
       const lastSegmentPattern = /[^\/]+(?=\/$|$)/i;
       const isRelative = isRelativePattern.test(link);
 
+      // If it's an anchor, return as-is
+      if (link.startsWith('#'))
+        return link;
       if (link.startsWith('/'))
         return pathPrefix + link.slice(1);
       if (isRelative) {
