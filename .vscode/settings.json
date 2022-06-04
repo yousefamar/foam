@@ -57,5 +57,8 @@
   "jest.rootPath": "packages/foam-vscode",
   "jest.jestCommandLine": "yarn jest",
   "gitdoc.enabled": false,
-  "search.mode": "reuseEditor"
+  "search.mode": "reuseEditor",
+  "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  }
 }

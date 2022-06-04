@@ -23,8 +23,8 @@ module.exports = (eleventyConfig) => {
       const lastSegmentPattern = /[^\/]+(?=\/$|$)/i;
       const isRelative = isRelativePattern.test(link);
 
-      // If it's an anchor, return as-is
-      if (link.startsWith('#'))
+      // If it's an anchor, or mailto, return as-is
+      if (link.startsWith('#') || link.startsWith('mailto:'))
         return link;
       if (link.startsWith('/'))
         return pathPrefix + link.slice(1);
@@ -53,6 +53,22 @@ module.exports = (eleventyConfig) => {
   const inspect = require("util").inspect;
   eleventyConfig.addFilter("debug", (content) => `<pre>${inspect(content)}</pre>`);
 
+  eleventyConfig.addFilter("count", (content, prop) => {
+    if (!prop)
+      return content.length;
+    return content.filter(t => t.data[prop]).length;
+  });
+
+  eleventyConfig.addFilter("tree", (content, showAll = false) => {
+    const public = content.filter(t => t.data.listed || showAll);
+    // Using filepathStem instead of url for showing the non-public ones
+    const prefix = pathPrefix.slice(0, pathPrefix.length - 1);
+    return JSON.stringify(public.map(t => ({
+      title: t.data.title,
+      url: prefix + t.data.page.filePathStem.replace('/index', '') + '/',
+    })));
+  });
+
   const searchTree = (root, key) => {
     for (const b of root) {
       if (b.key === key)
@@ -80,13 +96,6 @@ module.exports = (eleventyConfig) => {
       includes: "_includes",
       layouts: "_layouts",
     },
-    templateFormats: [
-      //
-      "js",
-      "md",
-      "html",
-      "liquid",
-    ],
     passthroughFileCopy: true,
     pathPrefix,
   };

@@ -1,0 +1,168 @@
+<style type="text/css">
+  #graph-wrapper {
+    width: 100%;
+    overflow-x: scroll;
+  }
+  svg {
+    margin: 2rem 1rem;
+  }
+  svg text {
+    font-family: system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,Segoe UI Emoji,Apple Color Emoji,Noto Color Emoji,sans-serif;
+    font-size: 1rem;
+    stroke: var(--background-body);
+    stroke-width: 8px;
+  }
+
+  .spinner-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+  }
+  .lds-ellipsis {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  .lds-ellipsis div {
+    position: absolute;
+    top: 33px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: var(--text-main);
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+  }
+  .lds-ellipsis div:nth-child(1) {
+    left: 8px;
+    animation: lds-ellipsis1 0.6s infinite;
+  }
+  .lds-ellipsis div:nth-child(2) {
+    left: 8px;
+    animation: lds-ellipsis2 0.6s infinite;
+  }
+  .lds-ellipsis div:nth-child(3) {
+    left: 32px;
+    animation: lds-ellipsis2 0.6s infinite;
+  }
+  .lds-ellipsis div:nth-child(4) {
+    left: 56px;
+    animation: lds-ellipsis3 0.6s infinite;
+  }
+  @keyframes lds-ellipsis1 {
+    0% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  @keyframes lds-ellipsis3 {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0);
+    }
+  }
+  @keyframes lds-ellipsis2 {
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(24px, 0);
+    }
+  }
+</style>
+
+<div id="graph-wrapper"><div class="spinner-wrapper"><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></div></div>
+
+<script type="module">
+  import * as d3 from "https://cdn.skypack.dev/d3@7";
+
+  const data = {{ collections.all | tree | safe }};
+
+  // Modified under ISC from https://observablehq.com/@d3/tree
+  const getLabel = (d, n) => d?.title || n.id.split('/').pop().replace(/-/g, ' ').replace(/./, c => c.toUpperCase());
+
+  const getLink = (d, n) => d?.url;
+
+  //const root = d3.hierarchy(data, children);
+  const root = d3.stratify().path(d => d.url)(data);
+
+  // Sort the nodes.
+  //sort, // how to sort nodes prior to layout (e.g., (a, b) => d3.descending(a.height, b.height))
+  //if (sort != null) root.sort(sort);
+
+  // Compute the layout.
+  // TODO: compute width based on sum of max title char length of each level
+  const width = 1500;
+  const dx = 20;
+  const dy = width / (root.height);
+  d3.tree().nodeSize([dx, dy])(root);
+
+  // Center the tree.
+  let x0 = Infinity;
+  let x1 = -x0;
+  root.each(d => {
+    if (d.x > x1) x1 = d.x;
+    if (d.x < x0) x0 = d.x;
+  });
+
+  // Compute the default height.
+  const height = x1 - x0 + dx * 2;
+
+  const svg = d3.create("svg")
+      .attr("viewBox", [-dy + 220, x0 - dx, width + 550, height])
+      .attr("width", width)
+      .attr("height", height)
+      .attr("font-family", "sans-serif")
+      .attr("font-size", 10);
+
+  svg.append("g")
+      .attr("fill", "none")
+      .attr("stroke", 'var(--text-main)')
+      .attr("stroke-opacity", 0.4)
+      //.attr("stroke-linecap", strokeLinecap)
+      //.attr("stroke-linejoin", strokeLinejoin)
+      .attr("stroke-width", 1.5)
+    .selectAll("path")
+      .data(root.links())
+      .join("path")
+        .attr("d", d3.linkHorizontal()
+            .x(d => d.y)
+            .y(d => d.x));
+
+  const node = svg.append("g")
+    .selectAll("a")
+    .data(root.descendants())
+    .join("a")
+      .attr("xlink:href", d => getLink(d.data, d))
+      .attr("target", "_blank")
+      .attr("transform", d => `translate(${d.y},${d.x})`);
+
+  node.append("circle")
+      .attr("fill", d => d.data ? 'var(--links)' : 'var(--text-main)')
+      //.attr("opacity", d => d.data ? 1 : 0);
+      .attr("r", 3)
+
+  //if (title != null) node.append("title")
+  //    .text(d => title(d.data, d));
+
+  // Compute labels and titles.
+  const descendants = root.descendants();
+  const L = descendants.map(d => getLabel(d.data, d));
+
+  node.append("text")
+      .attr("dy", "0.32em")
+      .attr("x", d => d.children ? -6 : 6)
+      .attr("text-anchor", d => d.children ? "end" : "start")
+      .attr("paint-order", "stroke")
+      .attr("fill", d => d.data ? 'var(--links)' : 'var(--text-main)')
+      .text((d, i) => L[i]);
+
+  const graphWrapper = document.getElementById('graph-wrapper');
+  graphWrapper.removeChild(graphWrapper.firstChild);
+  graphWrapper.appendChild(svg.node());
+</script>
