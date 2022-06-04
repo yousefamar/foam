@@ -65,6 +65,7 @@ module.exports = (eleventyConfig) => {
     const prefix = pathPrefix.slice(0, pathPrefix.length - 1);
     return JSON.stringify(public.map(t => ({
       title: t.data.title,
+      label: t.data.label,
       url: prefix + t.data.page.filePathStem.replace('/index', '') + '/',
     })));
   });

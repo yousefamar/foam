@@ -3,3 +3,4 @@ _site/
 assets/*
 !assets/styles/
 node_modules/
+protected/
