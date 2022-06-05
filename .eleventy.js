@@ -24,6 +24,9 @@ module.exports = (eleventyConfig) => {
       const lastSegmentPattern = /[^\/]+(?=\/$|$)/i;
       const isRelative = isRelativePattern.test(link);
 
+      // Remove any trailing /index
+      link = link.replace(/\/index$/, '/');
+
       // If it's an anchor, or mailto, return as-is
       if (link.startsWith('#') || link.startsWith('mailto:'))
         return link;
