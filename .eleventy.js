@@ -7,7 +7,7 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addTransform("wiki-links", function (content, outputPath) {
     if (outputPath && outputPath.endsWith(".html")) {
       // Transform [[]] to <a> or note embed iframe
-      let output = content.replace(/!\[+\<a href="\/(.*)" title="(.*)"\>(.*)\<\/a\>\]+/g, `<iframe src="${pathPrefix}$1" title="$2"></iframe>`);
+      let output = content.replace(/!\[+\<a href="\/(.*)" title="(.*)"\>(.*)\<\/a\>\]+/g, `<iframe class="embedded-note" src="${pathPrefix}$1" title="$2"></iframe>`);
       output = output.replace(/\[+\<a href="\/(.*)" title="(.*)"\>.*\|(.*)\<\/a\>\]+/g, `<a href="${pathPrefix}$1" title="$2">$3</a>`);
       output = output.replace(/\[+\<a href="\/(.*)" title="(.*)"\>(.*)\<\/a\>\]+/g, `<a href="${pathPrefix}$1" title="$2">$3</a>`);
       return output;
