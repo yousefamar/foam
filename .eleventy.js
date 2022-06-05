@@ -6,13 +6,8 @@ module.exports = (eleventyConfig) => {
   //eleventyConfig.addPassthroughCopy(".htaccess");
   eleventyConfig.addTransform("wiki-links", function (content, outputPath) {
     if (outputPath && outputPath.endsWith(".html")) {
-      // We remove outer brackets from links
-      // Hack to get the path right
-      const path = outputPath
-        .replace("_site/", "")
-        .replace("/index.html", "")
-        .replace(".html", "");
-      let output = content.replace(/!\[+\<a href="\/(.*)" title="(.*)"\>(.*)\<\/a\>\]+/g, `<iframe src="${pathPrefix + path}/$1" title="$2"></iframe>`);
+      // Transform [[]] to <a> or note embed iframe
+      let output = content.replace(/!\[+\<a href="\/(.*)" title="(.*)"\>(.*)\<\/a\>\]+/g, `<iframe src="${pathPrefix}$1" title="$2"></iframe>`);
       output = output.replace(/\[+\<a href="\/(.*)" title="(.*)"\>.*\|(.*)\<\/a\>\]+/g, `<a href="${pathPrefix}$1" title="$2">$3</a>`);
       output = output.replace(/\[+\<a href="\/(.*)" title="(.*)"\>(.*)\<\/a\>\]+/g, `<a href="${pathPrefix}$1" title="$2">$3</a>`);
       return output;
@@ -34,16 +29,8 @@ module.exports = (eleventyConfig) => {
         return link;
       if (link.startsWith('/'))
         return pathPrefix + link.slice(1);
-      if (isRelative) {
-        const hasLastSegment = lastSegmentPattern.exec(env.page.url);
-        // If it's nested, replace the last segment
-        if (hasLastSegment && env.page.url) {
-          return env.page.url.replace(lastSegmentPattern, link);
-        }
-        // If it's at root, just add the beginning slash
-        return env.page.url + link;
-      }
-
+      if (isRelative)
+        return env.page.filePathStem.replace(lastSegmentPattern, link);
       return link;
     },
   };
