@@ -7,7 +7,13 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addTransform("wiki-links", function (content, outputPath) {
     if (outputPath && outputPath.endsWith(".html")) {
       // We remove outer brackets from links
-      let output = content.replace(/\[+\<a href="\/(.*)" title="(.*)"\>.*\|(.*)\<\/a\>\]+/g, `<a href="${pathPrefix}$1" title="$2">$3</a>`);
+      // Hack to get the path right
+      const path = outputPath
+        .replace("_site/", "")
+        .replace("/index.html", "")
+        .replace(".html", "");
+      let output = content.replace(/!\[+\<a href="\/(.*)" title="(.*)"\>(.*)\<\/a\>\]+/g, `<iframe src="${pathPrefix + path}/$1" title="$2"></iframe>`);
+      output = output.replace(/\[+\<a href="\/(.*)" title="(.*)"\>.*\|(.*)\<\/a\>\]+/g, `<a href="${pathPrefix}$1" title="$2">$3</a>`);
       output = output.replace(/\[+\<a href="\/(.*)" title="(.*)"\>(.*)\<\/a\>\]+/g, `<a href="${pathPrefix}$1" title="$2">$3</a>`);
       return output;
     }

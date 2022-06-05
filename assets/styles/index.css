@@ -29,6 +29,19 @@ blockquote {
   font-family: 'Roboto', sans-serif;
 }
 
+.iframe #crumbs {
+  display: none;
+}
+
+.title-link {
+  display: none;
+  margin-left: 1rem;
+}
+
+.iframe .title-link {
+  display: inline;
+}
+
 :root {
   --background-body: #030c22;
   --background: #030c22;
@@ -44,12 +57,22 @@ blockquote {
   --code: #000;
   --button-hover: #a9b0b3;
 }
-:not(pre) > code {
+
+:not(pre)>code {
   background: #2d2d2d;
   color: var(--text-main);
   border-radius: 0;
 }
+
 .article-details {
   font-size: small;
   opacity: 0.5;
+}
+
+iframe {
+  border: 1px solid var(--background-alt);
+  box-shadow: 0px 0px 10px 0px #000;
+  width: 100%;
+  height: 20rem;
+  padding-left: 1rem;
 }
