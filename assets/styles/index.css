@@ -16,6 +16,12 @@
   line-height: 1.9em;
 }
 
+.markdown-body img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
 input.task-list-item-checkbox {
   margin-right: 4px;
 }
