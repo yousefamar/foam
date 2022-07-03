@@ -1,4 +1,5 @@
 *.md
+!readme.md
 _site/
 assets/*
 !assets/styles/
