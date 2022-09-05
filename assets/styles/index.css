@@ -83,6 +83,10 @@ blockquote {
   text-align: center;
 }
 
+.iframe .footer {
+  display: none;
+}
+
 .embedded-note {
   border: 1px solid var(--background-alt);
   box-shadow: 0px 0px 10px 0px #000;
