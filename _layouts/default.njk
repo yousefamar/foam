@@ -40,3 +40,9 @@ layout: base
     {% endfor %}
   {% endif %}
 </div>
+<div class="footer">
+  {% if showLastModified and date %}
+    Last modified on {{ page.date | formatDate }}<br/>
+  {% endif %}
+  Copyright &copy; <script>document.write(new Date().getFullYear())</script> Yousef Amar
+</div>
