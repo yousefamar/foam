@@ -48,6 +48,10 @@ const mdItWikiLinksObsidian = mdItRegex(
     if (match[0].startsWith('!') && /\.(png|jpg|jpeg|gif|bmp|svg)$/.test(label))
       return `<img src="${pathPrefix + assetsDir + '/images/' + path}"></img>`;
 
+    // Image
+    if (match[0].startsWith('!') && /\.(mp4|webm)$/.test(label))
+      return `<video autoplay playsinline muted loop src="${pathPrefix + assetsDir + '/videos/' + path}"></video>`;
+
     if (path) {
       let foundPath;
       if (!match[2].startsWith(rootDir + '/')) {
