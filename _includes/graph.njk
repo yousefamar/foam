@@ -84,7 +84,7 @@
   const data = {{ collections.all | tree(protected) | safe }};
 
   // Modified under ISC from https://observablehq.com/@d3/tree
-  const getLabel = (d, n) => /* d?.label || */ d?.title || n.id.split('/').pop().replace(/-/g, ' ').replace(/./, c => c.toUpperCase());
+  const getLabel = (d, n) => d?.label || d?.title || n.id.split('/').pop().replace(/-/g, ' ').replace(/./, c => c.toUpperCase());
 
   const getLink = (d, n) => d?.url;
 
