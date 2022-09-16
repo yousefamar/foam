@@ -12,6 +12,7 @@ const mdItReplaceLink = require("markdown-it-replace-link");
 const mdItAnchor = require('markdown-it-anchor');
 const mdItRegex = require('markdown-it-regexp');
 const mdItLinkAttributes = require("markdown-it-link-attributes");
+const mdItFootnote = require("markdown-it-footnote");
 
 const eleventyNavigation = require("@11ty/eleventy-navigation");
 const eleventyReadingTime = require('eleventy-plugin-reading-time');
@@ -110,7 +111,8 @@ module.exports = (eleventyConfig) => {
   }).use(mdItWikiLinksObsidian)
     .use(mdItReplaceLink)
     .use(mdItLinkAttributes, { attrs: { target: '_blank' } })
-    .use(mdItAnchor, { slugify: s => slugify(s, { strict: true, lower: true }) }));
+    .use(mdItAnchor, { slugify: s => slugify(s, { strict: true, lower: true }) })
+    .use(mdItFootnote));
 
   eleventyConfig.addPassthroughCopy(assetsDir);
 
