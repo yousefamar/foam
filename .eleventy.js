@@ -134,6 +134,7 @@ module.exports = (eleventyConfig) => {
       title: t.data.title,
       label: t.data.label,
       url: prefix + t.data.page.filePathStem.replace('/index', '') + '/',
+      characterCount: t.template.inputContent.length,
     })));
   });
 
