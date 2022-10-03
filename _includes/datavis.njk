@@ -1,0 +1,102 @@
+<style type="text/css">
+  #graph-wrapper {
+    display: flex;
+    max-width: 99vw;
+    width: 99vw;
+    margin-top: 20px;
+  }
+  #graph-wrapper.tree {
+    display: block;
+    overflow-x: scroll;
+  }
+  .spinner-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+  }
+  .lds-ellipsis {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  .lds-ellipsis div {
+    position: absolute;
+    top: 33px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: var(--text-main);
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+  }
+  .lds-ellipsis div:nth-child(1) {
+    left: 8px;
+    animation: lds-ellipsis1 0.6s infinite;
+  }
+  .lds-ellipsis div:nth-child(2) {
+    left: 8px;
+    animation: lds-ellipsis2 0.6s infinite;
+  }
+  .lds-ellipsis div:nth-child(3) {
+    left: 32px;
+    animation: lds-ellipsis2 0.6s infinite;
+  }
+  .lds-ellipsis div:nth-child(4) {
+    left: 56px;
+    animation: lds-ellipsis3 0.6s infinite;
+  }
+  @keyframes lds-ellipsis1 {
+    0% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  @keyframes lds-ellipsis3 {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0);
+    }
+  }
+  @keyframes lds-ellipsis2 {
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(24px, 0);
+    }
+  }
+</style>
+
+<div id="graph-wrapper"><div class="spinner-wrapper"><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></div></div>
+
+<script type="module">
+  import { createTree, createCircles } from '/memo/assets/scripts/datavis.js';
+
+  const data = {{ collections.all | tree(protected) | safe }};
+
+  const tree    = createTree(data);
+  const circles = createCircles(data);
+
+  const graphWrapper = document.getElementById('graph-wrapper');
+  graphWrapper.classList.add('circles');
+  graphWrapper.removeChild(graphWrapper.firstChild);
+  graphWrapper.appendChild(circles);
+
+  const layoutToggle = document.getElementById('layoutToggle');
+  layoutToggle.addEventListener('change', () => {
+    if (layoutToggle.checked) {
+      graphWrapper.classList.add('tree');
+      graphWrapper.removeChild(graphWrapper.firstChild);
+      graphWrapper.appendChild(tree);
+    } else {
+      graphWrapper.classList.remove('tree');
+      graphWrapper.removeChild(graphWrapper.firstChild);
+      graphWrapper.appendChild(circles);
+    }
+  });
+</script>

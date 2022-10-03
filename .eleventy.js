@@ -165,5 +165,6 @@ module.exports = (eleventyConfig) => {
     },
     passthroughFileCopy: true,
     pathPrefix,
+    markdownTemplateEngine: "njk"
   };
 };
