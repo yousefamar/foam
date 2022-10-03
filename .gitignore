@@ -2,6 +2,10 @@
 !readme.md
 _site/
 assets/*
+!assets/images/
+assets/images/*
+!assets/images/circles.svg
+!assets/images/tree.svg
 !assets/styles/
 node_modules/
 protected/
