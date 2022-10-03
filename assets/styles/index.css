@@ -1,5 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
 
+:root {
+  --background-body: #030c22;
+  --background: #20293f;
+  --background-alt: #20293f;
+  --text-main: #a9b0b3;
+  --text-bright: #fff;
+  --text-muted: #a9b0b3;
+  --scrollbar-thumb: #a9b0b3;
+  --scrollbar-thumb-hover: #fff;
+  --links: #e0d498;
+  --focus: #a9b0b3;
+  --border: #a9b0b3;
+  --code: #000;
+  --button-hover: #a9b0b3;
+  --content-width: min(calc(100vw - 2rem), 800px);
+}
+
 html {
   min-height: 100%;
   max-width: 100%;
@@ -25,14 +42,14 @@ body.iframe {
 
 .markdown-body>* {
   box-sizing: border-box;
-  max-width: 800px;
+  max-width: var(--content-width);
   margin-right: auto;
   margin-left: auto;
 }
 
 #crumbs {
-  width: 800px;
-  max-width: 800px;
+  width: var(--content-width);
+  max-width: var(--content-width);
   margin-right: auto;
   margin-left: auto;
   margin-top: 20px;
@@ -92,22 +109,6 @@ blockquote {
 
 .iframe .title-link {
   display: inline;
-}
-
-:root {
-  --background-body: #030c22;
-  --background: #20293f;
-  --background-alt: #20293f;
-  --text-main: #a9b0b3;
-  --text-bright: #fff;
-  --text-muted: #a9b0b3;
-  --scrollbar-thumb: #a9b0b3;
-  --scrollbar-thumb-hover: #fff;
-  --links: #e0d498;
-  --focus: #a9b0b3;
-  --border: #a9b0b3;
-  --code: #000;
-  --button-hover: #a9b0b3;
 }
 
 :not(pre)>code {
