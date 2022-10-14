@@ -115,7 +115,8 @@ blockquote {
   margin-left: 1rem;
 }
 
-.iframe .title-link {
+.iframe .title-link,
+.h-entry .title-link {
   display: inline;
 }
 
@@ -150,4 +151,14 @@ blockquote {
   height: 20rem;
   padding-left: 1rem;
   box-sizing: border-box;
+}
+
+.h-feed .h-entry {
+  background: var(--background);
+  padding: 1em;
+  margin: 2em 0;
+}
+
+.h-feed .h-entry h2 {
+  margin: 0;
 }
