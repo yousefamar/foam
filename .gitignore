@@ -8,6 +8,7 @@ assets/images/*
 !assets/images/tree.svg
 !assets/styles/
 !assets/scripts/
+!templates/*
 node_modules/
 protected/
 .obsidian/

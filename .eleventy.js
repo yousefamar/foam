@@ -150,6 +150,10 @@ module.exports = (eleventyConfig) => {
     return searchTree(tree, key)?.children.filter(c => c.public);
   });
 
+  eleventyConfig.addFilter("children", (collection, parentUrl) => {
+    return collection.filter(p => p.url && p.url.startsWith(parentUrl) && p.url !== parentUrl);
+  });
+
   eleventyConfig.addPlugin(eleventyReadingTime);
 
   eleventyConfig.addFilter("formatDate", (date) => {

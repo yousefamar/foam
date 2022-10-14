@@ -31,6 +31,10 @@ body {
   margin: 0;
 }
 
+.hidden {
+  display: none;
+}
+
 body.iframe {
   padding: 0 10px;
 }
@@ -83,6 +87,10 @@ body.iframe {
   display: block;
   margin: 0 auto;
   max-width: 100%;
+}
+
+.markdown-body img.hidden {
+  display: none;
 }
 
 input.task-list-item-checkbox {

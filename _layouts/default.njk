@@ -24,7 +24,29 @@ layout: base
     </div>
   {% endif %}
   {{ content | safe }}
-  {% if index %}
+  {% if feed %}
+    <section class="h-feed">
+      <h1 class="hidden p-name">Amar Memoranda > {{ title }}</h1>
+      <noscript class="img">
+        <img class="hidden u-photo" src="/memo/assets/images/me.png" alt="Yousef Amar" />
+      </noscript>
+      <a class="hidden p-author h-card" href="{{ authorUrl | url }}">{{ author }}</a>
+      {% set children = collections.all | children(page.url) %}
+      {% for child in children %}
+        <div class="h-entry">
+          <h2 class="p-name">
+            <a class="u-url" href="{{ child.url | url }}">{{ child.data.title }}</a> 
+          </h2>
+          <time class="hidden dt-published" datetime="{{child.data.date}}">{{child.data.date}}</time>
+          {% if child.data.content %}
+            <div style="margin-left: 1em;" class="e-content">
+              {{ child.templateContent | safe }}
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+  </section>
+  {% elif index %}
     {% set children = collections.all | eleventyNavigation | extractChildren(eleventyNavigation.key) %}
     {% for child in children %}
       <div>
