@@ -17,7 +17,7 @@ layout: base
   </script>
 {% endif %}
 <div class="markdown-body">
-  <h1>{{ title }}{% if collection %} <span style="opacity: 0.5">#{{collection}}</span>{% endif %}<a class="title-link" href="" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a><a class="header-link" href="https://granary.io/url?input=html&output=atom&url=https://amar.io{{ page.url | url }}" target="_blank"><i class="fa-solid fa-rss"></i></a></h1>
+  <h1>{{ title }}{% if collection %} <span style="opacity: 0.5">#{{collection}}</span>{% endif %}<a class="title-link" href="" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>{% if feed %}<a class="header-link" href="https://granary.io/url?input=html&output=atom&url=https://amar.io{{ page.url | url }}" target="_blank"><i class="fa-solid fa-rss"></i></a>{% endif %}</h1>
   {% if article or post %}
     <div class="article-details">
       {{ date | formatDate }} &bull; <a href="{{ authorUrl | url }}">{{ author }}</a> &bull; {{ content | readingTime }} read
