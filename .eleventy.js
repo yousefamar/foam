@@ -120,6 +120,8 @@ module.exports = (eleventyConfig) => {
 
   eleventyConfig.addFilter("debug", (content) => `<pre>${inspect(content)}</pre>`);
 
+  eleventyConfig.addFilter("keys", (object) => Object.keys(object));
+
   eleventyConfig.addFilter("count", (content, prop) => {
     if (!prop)
       return content.length;

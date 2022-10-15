@@ -115,9 +115,13 @@ blockquote {
   margin-left: 1rem;
 }
 
-.iframe .title-link,
-.h-entry .title-link {
+.iframe .title-link {
   display: inline;
+}
+
+.header-link {
+  display: inline;
+  margin-left: 1rem;
 }
 
 :not(pre)>code {
