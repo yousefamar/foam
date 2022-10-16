@@ -1,0 +1,59 @@
+<section class="h-feed">
+<style>
+.responsive-stack {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+.experience-header {
+  text-align: center;
+}
+.experience-organisation {
+  font-weight: bold;
+  color: var(--text-muted);
+  text-align: center;
+}
+p.experience-description {
+  margin-bottom: 0;
+}
+@media (min-width: 768px) {
+.responsive-stack {
+  flex-direction: row;
+}
+.experience-header {
+  text-align: initial;
+  align-items: flex-start;
+}
+.experience-organisation {
+  text-align: initial;
+}
+p.experience-description {
+  margin-top: 0;
+}
+}
+</style>
+
+<h1 class="hidden p-name">Yousef Amar's Experience</h1>
+<noscript class="img">
+<img class="hidden u-photo" src="/memo/assets/images/me.png" alt="Yousef Amar" />
+</noscript>
+<a class="hidden p-author h-card" href="{{ authorUrl | url }}">{{ author }}</a>
+{% for experience in my.experience %}
+<div class="h-entry">
+
+<div class="experience-header responsive-stack">
+<h2 class="p-name">{{ experience.role }}</h2>
+<div class="article-details">{{ experience.period }}</div>
+<time class="hidden dt-published" datetime="{{experience.period}}">{{experience.period}}</time>
+</div>
+
+<p class="experience-organisation">{{ experience.organisation }}</p>
+
+<p class="e-content experience-description">
+{{ experience.description | safe }}
+</p>
+</div>
+{% endfor %}
+</section>

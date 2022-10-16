@@ -6,7 +6,7 @@
   --background-alt: #20293f;
   --text-main: #a9b0b3;
   --text-bright: #fff;
-  --text-muted: #a9b0b3;
+  --text-muted: #77779a;
   --scrollbar-thumb: #a9b0b3;
   --scrollbar-thumb-hover: #fff;
   --links: #e0d498;
@@ -106,6 +106,10 @@ blockquote {
   font-family: 'Roboto', sans-serif;
 }
 
+.text-muted {
+  color: var(--text-muted);
+}
+
 .iframe #crumbs {
   display: none;
 }
@@ -160,7 +164,7 @@ blockquote {
 .h-feed .h-entry {
   background: var(--background);
   padding: 1em;
-  margin: 2em 0;
+  margin: 1em 0;
 }
 
 .h-feed .h-entry h2 {

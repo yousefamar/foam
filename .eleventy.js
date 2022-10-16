@@ -118,7 +118,9 @@ module.exports = (eleventyConfig) => {
 
   eleventyConfig.addPlugin(eleventyNavigation);
 
-  eleventyConfig.addFilter("debug", (content) => `<pre>${inspect(content)}</pre>`);
+  eleventyConfig.addFilter("inspect", (content) => `<pre>${inspect(content)}</pre>`);
+
+  eleventyConfig.addFilter("log", (content) => console.dir(content) || '');
 
   eleventyConfig.addFilter("keys", (object) => Object.keys(object));
 
@@ -128,6 +130,10 @@ module.exports = (eleventyConfig) => {
     return content.filter(t => t.data[prop]).length;
   });
 
+  eleventyConfig.addFilter("dataCharCount", data => data.reduce((acc, cur) => (
+    acc + cur.description.replace(/(<([^>]+)>)/gi, '').length
+  ), 0))
+
   eleventyConfig.addFilter("tree", (content, showAll = false) => {
     const public = content.filter(t => t.data.listed || showAll);
     // Using filepathStem instead of url for showing the non-public ones
@@ -136,7 +142,7 @@ module.exports = (eleventyConfig) => {
       title: t.data.title,
       label: t.data.label,
       url: prefix + t.data.page.filePathStem.replace('/index', '') + '/',
-      characterCount: t.template.inputContent.length,
+      characterCount: t.template.frontMatter.content.length + (+t.data.charCount || 0),
     })));
   });
 

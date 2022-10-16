@@ -1,0 +1,88 @@
+<section class="h-feed">
+
+<style>
+.responsive-stack {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+.article-details {
+  white-space: nowrap;
+}
+.award-header {
+  margin-bottom: 1em;
+  text-align: center;
+}
+.award-thumb {
+  display: inline-block;
+}
+.award-thumb img {
+  height: 100%;
+  width: 100%;
+  max-height: 100px;
+  object-fit: contain;
+}
+p.award-description {
+  width: 100%;
+  margin-bottom: 0;
+}
+@media (min-width: 768px) {
+.responsive-stack {
+  flex-direction: row;
+}
+.award-header {
+  text-align: initial;
+  align-items: flex-start;
+}
+.award-body {
+  align-items: flex-start;
+}
+p.award-description {
+  width: calc(100% - 1em - 120px);
+  margin-top: 0;
+}
+.award-thumb {
+  height: auto;
+  width: 120px;
+}
+.award-thumb img {
+  max-height: initial;
+}
+}
+</style>
+
+<h1 class="hidden p-name">Yousef Amar's Awards</h1>
+<noscript class="img">
+<img class="hidden u-photo" src="/memo/assets/images/me.png" alt="Yousef Amar" />
+</noscript>
+<a class="hidden p-author h-card" href="{{ authorUrl | url }}">{{ author }}</a>
+{% for award in my.awards %}
+
+<div class="h-entry">
+
+<div class="award-header responsive-stack">
+<h2 class="p-name">{{ award.name }}</h2>
+<div class="article-details">{{ award.year }}</div>
+<time class="hidden dt-published" datetime="{{award.year}}">{{award.year}}</time>
+</div>
+
+  <div class="award-body responsive-stack">
+  <div class="award-thumb">
+  {% if award.image.href %}
+  <a href="{{award.image.href | url}}" target="_blank">
+  {% endif %}
+  <img class="u-featured" src="{{award.image.thumb | url}}" alt="{{award.image.alt}}"/>
+  {% if award.image.href %}
+  </a>
+  {% endif %}
+  </div>
+  <p class="e-content award-description">
+  {{ award.description | safe }}
+  </p>
+  </div>
+
+</div>
+{% endfor %}
+</section>

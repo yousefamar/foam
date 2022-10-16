@@ -1,0 +1,17 @@
+<section class="h-feed">
+<h1 class="hidden p-name">Yousef Amar's Volunteering</h1>
+<noscript class="img">
+<img class="hidden u-photo" src="/memo/assets/images/me.png" alt="Yousef Amar" />
+</noscript>
+<a class="hidden p-author h-card" href="{{ authorUrl | url }}">{{ author }}</a>
+{% for volunteering in my.volunteering %}
+<div class="h-entry">
+<h2 class="p-name">{{ volunteering.role }}</h2>
+<div class="e-content">
+<p>
+{{ volunteering.description | safe }}
+</p>
+</div>
+</div>
+{% endfor %}
+</section>

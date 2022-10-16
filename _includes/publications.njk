@@ -1,0 +1,21 @@
+<section class="h-feed">
+<h1 class="hidden p-name">Yousef Amar's Publications</h1>
+<noscript class="img">
+<img class="hidden u-photo" src="/memo/assets/images/me.png" alt="Yousef Amar" />
+</noscript>
+<a class="hidden p-author h-card" href="{{ authorUrl | url }}">{{ author }}</a>
+{% for publication in my.publications %}
+<div class="h-entry">
+<h2><span class="p-name">{{ publication.title }}</span><a class="header-link u-url" href="{{ publication.slug }}" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a><a class="header-link" href="{{ publication.link.href | url }}" target="_blank"><i class="fa-solid fa-file-pdf"></i></a></h2>
+<time class="hidden dt-published" datetime="{{publication.year}}">{{publication.year}}</time>
+<div class="e-content">
+<p>
+{{ publication.description | safe }}
+</p>
+</div>
+<div class="article-details">
+{{ publication.year }} &bull; {{ publication.publisherFull }}
+</div>
+</div>
+{% endfor %}
+</section>

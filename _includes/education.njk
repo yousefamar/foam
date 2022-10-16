@@ -1,0 +1,62 @@
+<section class="h-feed">
+<style>
+.responsive-stack {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+.article-details {
+  white-space: nowrap;
+}
+.education-header {
+  text-align: center;
+}
+.education-institution {
+  font-weight: bold;
+  color: var(--text-muted);
+  text-align: center;
+}
+p.education-description {
+  margin-bottom: 0;
+}
+@media (min-width: 768px) {
+.responsive-stack {
+  flex-direction: row;
+}
+.education-header {
+  text-align: initial;
+  align-items: flex-start;
+}
+.education-institution {
+  text-align: initial;
+}
+p.education-description {
+  margin-top: 0;
+}
+}
+</style>
+
+<h1 class="hidden p-name">Yousef Amar's Education</h1>
+<noscript class="img">
+<img class="hidden u-photo" src="/memo/assets/images/me.png" alt="Yousef Amar" />
+</noscript>
+<a class="hidden p-author h-card" href="{{ authorUrl | url }}">{{ author }}</a>
+{% for education in my.education %}
+<div class="h-entry">
+
+<div class="education-header responsive-stack">
+<h2 class="p-name">{{ education.qualification }}</h2>
+<div class="article-details">{{ education.period }}</div>
+<time class="hidden dt-published" datetime="{{education.period}}">{{education.period}}</time>
+</div>
+
+<p class="education-institution">{{ education.institution | safe }}</p>
+
+<p class="e-content education-description">
+{{ education.description | safe }}
+</p>
+</div>
+{% endfor %}
+</section>
