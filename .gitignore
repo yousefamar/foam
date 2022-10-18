@@ -6,8 +6,11 @@ assets/*
 assets/images/*
 !assets/images/circles.svg
 !assets/images/tree.svg
+!assets/images/me-nobg.png
+!assets/images/me-depth.png
 !assets/styles/
 !assets/scripts/
+!assets/vendor/
 !templates/*
 node_modules/
 protected/
