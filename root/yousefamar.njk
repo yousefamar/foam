@@ -1,207 +1,284 @@
 ---
 title: Yousef Amar
-layout: base
+layout: ""
 public: true
 ---
 
-<style>
-  html, body {
-    height: 100%;
-  }
-  #scene {
-    overflow: hidden;
-  }
-  .fullscreen {
-    width: 100%;
-    height: 100%;
-  }
-  .center {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  .title {
-    color: var(--text-bright);
-    font-size: 2.5em;
-    margin: 0;
-    font-weight: bold;
-    font-variant: small-caps;
-    text-align: center;
-    white-space: nowrap;
-  }
-  .subtitle {
-    color: var(--text-muted);
-    font-size: 1em;
-    text-align: center;
-    white-space: nowrap;
-  }
-  .icon-links {
-    margin-top: 13rem;
-    pointer-events: all;
-    font-size: 2.5em;
-    text-align: center;
-  }
-  a[href^=mailto\:]:before {
-    content: "";
-  }
-  .vignette {
-    position: absolute;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-    background: radial-gradient(transparent 50%, rgba(0, 0, 0, 0.6));
-  }
-  @media (min-width: 550px) {
-    .title {
-      font-size: 4em;
-    }
-    .subtitle {
-      font-size: 1.5em;
-    }
-    .icon-links {
-      margin-top: 18rem;
-      font-size: 3em;
-    }
-  }
-</style>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Personal webpage of Dr Yousef Amar &ndash; CTO / Co-founder Krew.">
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "Person",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "London",
+          "addressRegion": "UK",
+          "postalCode": "NW2",
+          "streetAddress": "West Kensington"
+        },
+        "colleague": [
+          "http://www.eecs.qmul.ac.uk/~tysong/",
+          "https://gianniantichi.github.io/",
+          "https://www.ruichuan.org/",
+          "https://iakkus.github.io/",
+          "https://people.mpi-sws.org/~paditya/",
+          "https://www.linkedin.com/in/josemartinquesada/"
+        ],
+        "email": "mailto:yousef@amar.io",
+        "image": "res/image/headshot.jpg",
+        "jobTitle": "CTO / Co-founder Krew",
+        "name": "Yousef Amar",
+        "alumniOf": "University of Birmingham",
+        "birthPlace": "Cairo, Egypt",
+        "birthDate": "1993-03-05",
+        "height": "180cm",
+        "gender": "male",
+        "memberOf": "Automatocrats",
+        "nationality": "German",
+        "telephone": "+44 7845 443890",
+        "url": "http://yousefamar.com",
+        "sameAs": [
+          "https://github.com/yousefamar",
+          "https://linkedin.com/in/yousefamar",
+          "https://twitter.com/yousefamar",
+          "https://facebook.com/yousefamar",
+          "https://google.com/+YousefAmar"
+        ]
+      }
+    </script>
+    <title>{{ title }}</title>
 
-<script src="/memo/assets/vendor/parallax.min.js"></script>
-<div id="scene" class="fullscreen">
-  <div class="fullscreen" data-depth="-0.01">
-    <div class="fullscreen center">
-      <div id="my-head" style="margin-bottom: 15em; pointer-events: all;"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.min.css"/>
+    <link rel="stylesheet" href="/memo/assets/styles/index.css"/>
+
+    <link rel="authorization_endpoint" href="https://indieauth.com/auth">
+    <link rel="token_endpoint" href="https://tokens.indieauth.com/token">
+    <link rel="webmention" href="https://webmention.io/yousefamar.com/webmention" />
+    <link rel="pingback" href="https://webmention.io/yousefamar.com/xmlrpc" />
+    <link rel="microsub" href="https://aperture.p3k.io/microsub/790">
+
+    <style>
+      html, body {
+        height: 100%;
+      }
+      #scene {
+        overflow: hidden;
+      }
+      .fullscreen {
+        width: 100%;
+        height: 100%;
+      }
+      .center {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .title {
+        color: var(--text-bright);
+        font-size: 2.5em;
+        margin: 0;
+        font-weight: bold;
+        font-variant: small-caps;
+        text-align: center;
+        white-space: nowrap;
+      }
+      .subtitle {
+        color: var(--text-muted);
+        font-size: 1em;
+        text-align: center;
+        white-space: nowrap;
+      }
+      .icon-links {
+        margin-top: 13rem;
+        pointer-events: all;
+        font-size: 2.5em;
+        text-align: center;
+      }
+      a[href^=mailto\:]:before {
+        content: "";
+      }
+      .vignette {
+        position: absolute;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        background: radial-gradient(transparent 50%, rgba(0, 0, 0, 0.6));
+      }
+      @media (min-width: 550px) {
+        .title {
+          font-size: 4em;
+        }
+        .subtitle {
+          font-size: 1.5em;
+        }
+        .icon-links {
+          margin-top: 18rem;
+          font-size: 3em;
+        }
+      }
+    </style>
+    <script src="https://kit.fontawesome.com/a1b5a2aa60.js" crossorigin="anonymous"></script>
+    <script src="/memo/assets/vendor/parallax.min.js"></script>
+    <script async src="/memo/assets/vendor/es-module-shims.js"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "/memo/assets/vendor/three.module.js"
+        }
+      }
+    </script>
+  </head>
+
+  <body>
+    <div class="h-card hcard vcard" style="display: none">
+      <img class="u-photo" src="/headshot-square.jpg" alt="A headshot of Yousef Amar" width="451" height="451" rel="me">
+      <span class="p-name">
+        <span class="p-given-name">Yousef</span>
+        <span class="p-family-name">Amar</span>
+      </span>
+      <span class="p-note">CTO and co-founder of Krew, PhD in networked systems</span>
+      <a class="u-url u-uid url uid url fn n" href="https://yousefamar.com" rel="me"></a>
+      <a class="u-email" href="mailto:yousef@amar.io">yousef@amar.io</a><br>
+      <a class="p-tel" href="tel:+447845443890" rel="me">+44 7845 443890</a>
+      <span class="p-job-title p-role">CTO</span>
+      <a class="p-org" href="http://krew.live/" target="blank">Krew Live Ltd</a>
     </div>
-  </div>
-  <div class="fullscreen" data-depth="-0.01">
-    <div class="fullscreen center">
-      <div class="title">Dr Yousef Amar</div>
-    </div>
-  </div>
-  <div class="fullscreen" data-depth="0">
-    <div class="fullscreen center">
-      <div class="subtitle" style="margin-top: 5em;">CTO / Co-founder <a style="pointer-events: all;" href="https://krew.live" target="_top">Krew</a></div>
-    </div>
-  </div>
-  <div class="fullscreen" data-depth="0">
-    <div class="fullscreen center">
-      <div class="icon-links">
-        <a href="https://yousefamar.github.io/" target="_blank"><i class="fa-solid fa-address-card"></i></a>
-        <a href="mailto:yousef@amar.io?Subject=Hello%2C%20Yousef!" target="_blank"><i class="fa-solid fa-envelope"></i></a>
-        <a href="https://amar.io/meet/" target="_blank"><i class="fa-solid fa-calendar"></i></a>
-        <a href="/memo/" target="_blank"><i class="fa-solid fa-database"></i></a>
-        <a href="/memo/log/" target="_blank"><i class="fa-solid fa-rss"></i></a>
+
+    <div id="scene" class="fullscreen">
+      <div class="fullscreen" data-depth="-0.01">
+        <div class="fullscreen center">
+          <div id="my-head" style="margin-bottom: 15em; pointer-events: all;"></div>
+        </div>
+      </div>
+      <div class="fullscreen" data-depth="-0.01">
+        <div class="fullscreen center">
+          <div class="title">Dr Yousef Amar</div>
+        </div>
+      </div>
+      <div class="fullscreen" data-depth="0">
+        <div class="fullscreen center">
+          <div class="subtitle" style="margin-top: 5em;">CTO / Co-founder <a style="pointer-events: all;" href="https://krew.live" target="_top">Krew</a></div>
+        </div>
+      </div>
+      <div class="fullscreen" data-depth="0">
+        <div class="fullscreen center">
+          <div class="icon-links">
+            <a href="https://yousefamar.github.io/" target="_blank"><i class="fa-solid fa-address-card"></i></a>
+            <a href="mailto:yousef@amar.io?Subject=Hello%2C%20Yousef!" target="_blank"><i class="fa-solid fa-envelope"></i></a>
+            <a href="https://amar.io/meet/" target="_blank"><i class="fa-solid fa-calendar"></i></a>
+            <a href="/memo/" target="_blank"><i class="fa-solid fa-database"></i></a>
+            <a href="/memo/log/" target="_blank"><i class="fa-solid fa-rss"></i></a>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-<div class="vignette fullscreen" style="height: 100vh;"></div>
-<script>
-  const generateDots = (depth) => {
-    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    svg.setAttribute('width', '100%');
-    svg.setAttribute('height', '100%');
-    svg.setAttribute('viewBox', '0 0 10000 10000');
-    svg.setAttribute('preserveAspectRatio', 'xMidYMid slice');
-    for (let i = 0; i < 100; ++i) {
-      const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-      const normalDist = (mean, std) => {
-        let u = 0, v = 0;
-        while (u === 0) u = Math.random();
-        while (v === 0) v = Math.random();
-        return mean + std * Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+    <div class="vignette fullscreen" style="height: 100vh;"></div>
+
+    <script>
+      const generateDots = (depth) => {
+        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.setAttribute('width', '100%');
+        svg.setAttribute('height', '100%');
+        svg.setAttribute('viewBox', '0 0 10000 10000');
+        svg.setAttribute('preserveAspectRatio', 'xMidYMid slice');
+        for (let i = 0; i < 100; ++i) {
+          const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+          const normalDist = (mean, std) => {
+            let u = 0, v = 0;
+            while (u === 0) u = Math.random();
+            while (v === 0) v = Math.random();
+            return mean + std * Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+          };
+
+          const theta = Math.random() * 2 * Math.PI;
+          const x = (normalDist(0.9, 0.3) * Math.cos(theta) + 1) * 0.5 * 100;
+          const y = (normalDist(0.9, 0.3) * Math.sin(theta) + 1) * 0.5 * 100;
+
+
+          circle.setAttribute('cx', x + '%');
+          circle.setAttribute('cy', y + '%');
+          circle.setAttribute('r', (1 + depth * 4) + 'px');
+          circle.setAttribute('fill', '#fff');
+          // set opacity
+          circle.setAttribute('opacity', depth * 0.1);
+          svg.appendChild(circle);
+        }
+        return svg;
       };
 
-      const theta = Math.random() * 2 * Math.PI;
-      const x = (normalDist(0.9, 0.3) * Math.cos(theta) + 1) * 0.5 * 100;
-      const y = (normalDist(0.9, 0.3) * Math.sin(theta) + 1) * 0.5 * 100;
+      for (let i = 0; i < 5; ++i) {
+        const outerDiv = document.createElement('div');
+        outerDiv.setAttribute('class', 'fullscreen');
+        outerDiv.setAttribute('data-depth', 0.1 + i * 0.1);
 
-
-      circle.setAttribute('cx', x + '%');
-      circle.setAttribute('cy', y + '%');
-      circle.setAttribute('r', (1 + depth * 4) + 'px');
-      circle.setAttribute('fill', '#fff');
-      // set opacity
-      circle.setAttribute('opacity', depth * 0.1);
-      svg.appendChild(circle);
-    }
-    return svg;
-  };
-
-  for (let i = 0; i < 5; ++i) {
-    const outerDiv = document.createElement('div');
-    outerDiv.setAttribute('class', 'fullscreen');
-    outerDiv.setAttribute('data-depth', 0.1 + i * 0.1);
-
-    const innerDiv = document.createElement('div');
-    innerDiv.setAttribute('class', 'fullscreen center');
-    const dots = generateDots(i + 1);
-    innerDiv.appendChild(dots);
-    outerDiv.appendChild(innerDiv);
-    document.getElementById('scene').insertBefore(outerDiv, document.getElementById('scene').firstChild);
-  }
-
-  window.parallax = new Parallax(document.getElementById('scene'));
-</script>
-
-<script async src="/memo/assets/vendor/es-module-shims.js"></script>
-
-<script type="importmap">
-  {
-    "imports": {
-      "three": "/memo/assets/vendor/three.module.js"
-    }
-  }
-</script>
-
-<script type="module">
-  import * as THREE from 'three';
-
-  const camera = new THREE.PerspectiveCamera( 70, 1, 0.01, 10 );
-  camera.position.z = 1;
-
-  const scene = new THREE.Scene();
-
-  const geometry = new THREE.PlaneGeometry(0.4, 0.4, 451, 451);
-  const material = new THREE.MeshStandardMaterial({
-    side: THREE.DoubleSide,
-    transparent: true,
-    map: new THREE.TextureLoader().load('/memo/assets/images/me-nobg.png'),
-    displacementMap: new THREE.TextureLoader().load('/memo/assets/images/me-depth.png'),
-  });
-
-  const mesh = new THREE.Mesh(geometry, material);
-  mesh.scale.set(1, 1, 0.1);
-  scene.add(mesh);
-
-  const light = new THREE.PointLight(0xffffff, 1, 100);
-  light.position.set(0, 0, 1);
-  scene.add(light);
-
-  function animation(time) {
-    if (window.parallax.orientationSupport) {
-      mesh.rotation.x = -Math.PI * 0.125 + window.parallax.inputX * 0.5;
-      mesh.rotation.y = window.parallax.inputY * 0.5;
-    } else {
-      mesh.rotation.x = window.parallax.inputY * 0.5;
-      mesh.rotation.y = window.parallax.inputX * 0.5;
-    }
-    renderer.render(scene, camera);
-  }
-
-  const renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
-  renderer.setSize(500, 500);
-  renderer.setAnimationLoop(animation);
-
-  renderer.domElement.addEventListener('click', async () => {
-    if (DeviceOrientationEvent?.requestPermission) {
-      const permissionState = await window.DeviceOrientationEvent.requestPermission();
-      if (permissionState === "granted") {
-        window.parallax.destroy();
-        window.parallax = new Parallax(document.getElementById('scene'));
+        const innerDiv = document.createElement('div');
+        innerDiv.setAttribute('class', 'fullscreen center');
+        const dots = generateDots(i + 1);
+        innerDiv.appendChild(dots);
+        outerDiv.appendChild(innerDiv);
+        document.getElementById('scene').insertBefore(outerDiv, document.getElementById('scene').firstChild);
       }
-    }
-  });
 
-  document.getElementById('my-head').appendChild(renderer.domElement);
-</script>
+      window.parallax = new Parallax(document.getElementById('scene'));
+    </script>
+
+    <script type="module">
+      import * as THREE from 'three';
+
+      const camera = new THREE.PerspectiveCamera( 70, 1, 0.01, 10 );
+      camera.position.z = 1;
+
+      const scene = new THREE.Scene();
+
+      const geometry = new THREE.PlaneGeometry(0.4, 0.4, 451, 451);
+      const material = new THREE.MeshStandardMaterial({
+        side: THREE.DoubleSide,
+        transparent: true,
+        map: new THREE.TextureLoader().load('/memo/assets/images/me-nobg.png'),
+        displacementMap: new THREE.TextureLoader().load('/memo/assets/images/me-depth.png'),
+      });
+
+      const mesh = new THREE.Mesh(geometry, material);
+      mesh.scale.set(1, 1, 0.1);
+      scene.add(mesh);
+
+      const light = new THREE.PointLight(0xffffff, 1, 100);
+      light.position.set(0, 0, 1);
+      scene.add(light);
+
+      function animation(time) {
+        if (window.parallax.orientationSupport) {
+          mesh.rotation.x = -Math.PI * 0.125 + window.parallax.inputX * 0.5;
+          mesh.rotation.y = window.parallax.inputY * 0.5;
+        } else {
+          mesh.rotation.x = window.parallax.inputY * 0.5;
+          mesh.rotation.y = window.parallax.inputX * 0.5;
+        }
+        renderer.render(scene, camera);
+      }
+
+      const renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
+      renderer.setSize(500, 500);
+      renderer.setAnimationLoop(animation);
+
+      renderer.domElement.addEventListener('click', async () => {
+        if (DeviceOrientationEvent?.requestPermission) {
+          const permissionState = await window.DeviceOrientationEvent.requestPermission();
+          if (permissionState === "granted") {
+            window.parallax.destroy();
+            window.parallax = new Parallax(document.getElementById('scene'));
+          }
+        }
+      });
+
+      document.getElementById('my-head').appendChild(renderer.domElement);
+    </script>
+
+  </body>
+</html>
