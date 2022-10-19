@@ -70,7 +70,7 @@ public: true
 <div id="scene" class="fullscreen">
   <div class="fullscreen" data-depth="-0.01">
     <div class="fullscreen center">
-      <div id="my-head" style="margin-bottom: 15em;"></div>
+      <div id="my-head" style="margin-bottom: 15em; pointer-events: all;"></div>
     </div>
   </div>
   <div class="fullscreen" data-depth="-0.01">
@@ -192,5 +192,16 @@ public: true
   const renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
   renderer.setSize(500, 500);
   renderer.setAnimationLoop(animation);
+
+  renderer.domElement.addEventListener('click', async () => {
+    if (DeviceOrientationEvent?.requestPermission) {
+      const permissionState = await window.DeviceOrientationEvent.requestPermission();
+      if (permissionState === "granted") {
+        window.parallax.destroy();
+        window.parallax = new Parallax(document.getElementById('scene'));
+      }
+    }
+  });
+
   document.getElementById('my-head').appendChild(renderer.domElement);
 </script>
