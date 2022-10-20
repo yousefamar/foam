@@ -115,7 +115,7 @@ module.exports = (eleventyConfig) => {
     .use(mdItFootnote));
 
   eleventyConfig.addPassthroughCopy(assetsDir);
-  eleventyConfig.addPassthroughCopy("**/*.txt");
+  eleventyConfig.addPassthroughCopy("root/*.txt");
 
   eleventyConfig.addPlugin(eleventyNavigation);
 
