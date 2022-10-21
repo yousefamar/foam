@@ -252,10 +252,16 @@ public: true
       light.position.set(0, 0, 1);
       scene.add(light);
 
+      let startRotationX = null;
+      let startRotationY = null;
       function animation(time) {
         if (window.parallax.orientationSupport) {
-          mesh.rotation.x = -Math.PI * 0.125 + window.parallax.inputX * 0.5;
-          mesh.rotation.y = window.parallax.inputY * 0.5;
+          if (startRotationX === null)
+            startRotationX = window.parallax.inputX;
+          if (startRotationY === null)
+            startRotationY = window.parallax.inputY;
+          mesh.rotation.x = -(window.parallax.inputX - startRotationX) * 0.25;
+          mesh.rotation.y = -(window.parallax.inputY - startRotationY) * 0.25;
         } else {
           mesh.rotation.x = window.parallax.inputY * 0.5;
           mesh.rotation.y = window.parallax.inputX * 0.5;
