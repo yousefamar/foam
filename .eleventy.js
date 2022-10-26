@@ -169,6 +169,10 @@ module.exports = (eleventyConfig) => {
     return DateTime.fromJSDate(date).toLocaleString(DateTime.DATE_MED);
   });
 
+  eleventyConfig.addFilter("isoDate", (date) => {
+    return new Date(date).toISOString();
+  });
+
   return {
     dir: {
       input: rootDir,

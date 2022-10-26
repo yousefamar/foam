@@ -52,7 +52,7 @@ layout: base
       {% for child in children %}
         <div class="h-entry">
           <h2><span class="p-name">{{ child.data.title }}</span><a class="header-link u-url" href="{{ child.url | url }}" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></h2>
-          <time class="hidden dt-published" datetime="{{child.data.date}}">{{child.data.date}}</time>
+          <time class="hidden dt-published" datetime="{{child.data.date | isoDate}}">{{child.data.date | isoDate}}</time>
           {% if child.data.content %}
             <div class="e-content">
               {{ child.templateContent | safe }}
