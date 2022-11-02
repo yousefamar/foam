@@ -20,7 +20,7 @@ layout: base
   <h1>{{ title }}{% if collection %} <span style="opacity: 0.5">#{{collection}}</span>{% endif %}<a class="title-link" href="" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>{% if feed %}<a class="header-link" href="https://granary.io/url?input=html&output=atom&url=https://yousefamar.com{{ page.url | url }}" target="_blank"><i class="fa-solid fa-rss"></i></a>{% endif %}</h1>
   {% if article or post %}
     <div class="article-details">
-      {{ date | formatDate }} &bull; <a href="{{ authorUrl | url }}">{{ author }}</a> &bull; {{ content | readingTime }} read
+      {{ date | formatDate }} &bull; <a href="{{ authorUrl | url }}">{{ author }}</a> &bull; {{ content | readingTime }} read{% if project %} &bull; <a href="/memo/projects/{{project}}/">Parent project</a>{% endif %}
     </div>
   {% endif %}
   {% if feed %}
@@ -59,11 +59,37 @@ layout: base
             </div>
           {% endif %}
           <div class="article-details">
+            {{ child.data.date | formatDate }} &bull; {% for tag in child.data.tags %}<a href="/memo/log/{{tag}}/">#{{tag}}</a> {% endfor %}{% if child.data.project %} &bull; <a href="/memo/projects/{{child.data.project}}/">Parent project</a>{% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </section>
+  {% elif log %}
+    <section class="h-feed">
+      <h1 class="hidden p-name">Amar Memoranda > {{ title }}</h1>
+      <noscript class="img">
+        <img class="hidden u-photo" src="/memo/assets/images/me.png" alt="Yousef Amar" />
+      </noscript>
+      <a class="hidden p-author h-card" href="{{ authorUrl | url }}">{{ author }}</a>
+      {% set children = collections.projects | project(page.fileSlug) | reverse %}
+      {% if children.length %}
+        <h2>Log<a class="header-link" href="https://granary.io/url?input=html&output=atom&url=https://yousefamar.com{{ page.url | url }}" target="_blank"><i class="fa-solid fa-rss"></i></a></h2>
+      {% endif %}
+      {% for child in children %}
+        <div class="h-entry">
+          <h2><span class="p-name">{{ child.data.title }}</span><a class="header-link u-url" href="{{ child.url | url }}" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></h2>
+          <time class="hidden dt-published" datetime="{{child.data.date | isoDate}}">{{child.data.date | isoDate}}</time>
+          {% if child.data.content %}
+            <div class="e-content">
+              {{ child.templateContent | safe }}
+            </div>
+          {% endif %}
+          <div class="article-details">
             {{ child.data.date | formatDate }} &bull; {% for tag in child.data.tags %}<a href="/memo/log/{{tag}}/">#{{tag}}</a> {% endfor %}
           </div>
         </div>
       {% endfor %}
-  </section>
+    </section>
   {% elif index %}
     {% set children = collections.all | eleventyNavigation | extractChildren(eleventyNavigation.key) %}
     {% for child in children %}

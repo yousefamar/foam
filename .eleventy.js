@@ -163,6 +163,10 @@ module.exports = (eleventyConfig) => {
     return collection.filter(p => p.url && p.url.startsWith(parentUrl) && p.url !== parentUrl);
   });
 
+  eleventyConfig.addFilter("project", (collection, projectSlug) => {
+    return collection.filter(p => p.data.project && p.data.project === projectSlug);
+  });
+
   eleventyConfig.addPlugin(eleventyReadingTime);
 
   eleventyConfig.addFilter("formatDate", (date) => {
