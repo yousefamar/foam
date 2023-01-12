@@ -76,6 +76,14 @@ body.iframe {
   background-color: var(--background-body);
 }
 
+.e-content pre {
+  background: var(--background-body);
+}
+
+.e-content pre code::-webkit-scrollbar-track {
+  background-color: var(--background);
+}
+
 .markdown-body iframe:not(.embedded-note) {
   display: block;
 }
@@ -139,6 +147,11 @@ input[type=submit].cta {
   background: var(--background);
   color: var(--text-main);
   border-radius: 0;
+}
+
+.e-content :not(pre)>code {
+  background: var(--background-body);
+  color: var(--text-main);
 }
 
 .article-details {
