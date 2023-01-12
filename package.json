@@ -1,6 +1,8 @@
 {
   "devDependencies": {
     "@11ty/eleventy-navigation": "^0.3.2",
+    "@code-blocks/eleventy-plugin": "^0.1.8",
+    "@code-blocks/graphviz": "^0.1.8",
     "d3": "^7.4.4",
     "eleventy-plugin-reading-time": "^0.0.1",
     "luxon": "^2.3.0",

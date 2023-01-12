@@ -17,6 +17,9 @@ const mdItFootnote = require("markdown-it-footnote");
 const eleventyNavigation = require("@11ty/eleventy-navigation");
 const eleventyReadingTime = require('eleventy-plugin-reading-time');
 
+const codeblocks = require('@code-blocks/eleventy-plugin')
+const graphvis = require('@code-blocks/graphviz')
+
 const slugify = require("slugify");
 const { DateTime } = require("luxon");
 
@@ -118,6 +121,8 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addPassthroughCopy("root/*.txt");
 
   eleventyConfig.addPlugin(eleventyNavigation);
+
+  eleventyConfig.addPlugin(codeblocks([graphvis]));
 
   eleventyConfig.addFilter("inspect", (content) => `<pre>${inspect(content)}</pre>`);
 
