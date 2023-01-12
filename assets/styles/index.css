@@ -15,6 +15,7 @@
   --code: #000;
   --button-hover: #a9b0b3;
   --content-width: min(calc(100vw - 2rem), 800px);
+  --form-placeholder: #77779a;
 }
 
 html {
@@ -104,6 +105,12 @@ h4,
 h5,
 blockquote {
   font-family: 'Roboto', sans-serif;
+}
+
+input[type=submit].cta {
+  background-color: var(--links);
+  color: var(--background);
+  font-weight: bold;
 }
 
 .text-muted {
