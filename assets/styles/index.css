@@ -13,6 +13,7 @@
   --focus: #a9b0b3;
   --border: #a9b0b3;
   --code: #000;
+  --button-base: #282836;
   --button-hover: #a9b0b3;
   --content-width: min(calc(100vw - 2rem), 800px);
   --form-placeholder: #77779a;
@@ -32,6 +33,37 @@ body {
   margin: 0;
 }
 
+button {
+  font-weight: bold;
+}
+
+button:hover {
+  color: var(--button-base);
+}
+
+button.control {
+  margin-right: 0;
+  padding: 10px;
+  width: 39px;
+  height: 39px;
+}
+
+.markdown-body>.show-while-editing {
+  display: none;
+}
+
+body.editing>.markdown-body>.show-while-editing {
+  display: block;
+}
+
+body.editing>.markdown-body>*:not(.show-while-editing) {
+  display: none;
+}
+
+body.editing>.markdown-body>collab-textarea>textarea {
+  height: calc(100vh - 9em - 24px - 45px);
+}
+
 .hidden {
   display: none;
 }
@@ -45,7 +77,8 @@ body.iframe {
   font-size: 16px;
 }
 
-.markdown-body>* {
+.markdown-body>*,
+collab-textarea>textarea {
   box-sizing: border-box;
   max-width: var(--content-width);
   margin-right: auto;

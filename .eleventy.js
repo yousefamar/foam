@@ -182,6 +182,15 @@ module.exports = (eleventyConfig) => {
     return new Date(date).toISOString();
   });
 
+  eleventyConfig.addFilter("getInputContent", (collection, page) => {
+    // TODO: make O(1) for large collections instead of O(n)
+    return collection.find(p => p.template.inputPath === page.inputPath)?.template.inputContent;
+  });
+
+  eleventyConfig.addFilter("base64", (input) => {
+    return Buffer.from(input).toString('base64');
+  });
+
   return {
     dir: {
       input: rootDir,

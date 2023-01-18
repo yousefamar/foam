@@ -10,6 +10,9 @@
     <script src="https://kit.fontawesome.com/a1b5a2aa60.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/prism.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    {% if acl %}
+    <script src="https://cdn.jsdelivr.net/npm/collab-textarea@1.0.3/dist/index.js" type="module"></script>
+    {% endif %}
   </head>
   <body>
     {{ content | safe }}

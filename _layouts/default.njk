@@ -37,6 +37,65 @@ layout: base
     </div>
   {% endif %}
   {{ content | safe }}
+  {% if acl %}
+  <script id="inputContent" type="text/plain">{{ collections.all | getInputContent(page) | base64 }}</script>
+  <div class="show-while-editing" style="margin-top: 24px">
+    <div style="display: flex; gap: 6px;">
+      <div style="flex-grow: 1; position: relative; vertical-align: center; display: flex">
+        <i class="fa-solid fa-user" style="position: absolute; height: 15px; width: 15px; padding: 12px; pointer-events: none"></i>
+        <input type="text" id="username" placeholder="Your name" style="margin-right: 0; padding-left: 39px; flex-grow: 1" />
+      </div>
+      <button id="saveButton" class="control">
+        <span><i class="fa-solid fa-floppy-disk"></i></span>
+        <img src="/memo/assets/images/spinner.svg" class="hidden" width="19" height="19" />
+      </button>
+      <button id="discardButton" class="control">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+  </div>
+  <collab-textarea class="show-while-editing" style="height: 100%"></collab-textarea>
+  <script type="module">
+    const inputContent = atob(document.getElementById('inputContent').innerText);
+    const collabTextarea = document.querySelector('collab-textarea');
+    collabTextarea.value = inputContent;
+    const username = document.getElementById('username');
+    username.value = collabTextarea.username;
+    username.addEventListener('change', () => {
+      collabTextarea.username = username.value;
+      console.log('hi', username.value, collabTextarea.username)
+    });
+    const saveButton = document.getElementById('saveButton');
+    saveButton.addEventListener('click', async () => {
+      document.getElementById('saveButton').disabled = true;
+      document.querySelector('#saveButton span').classList.add('hidden');
+      document.querySelector('#saveButton img').classList.remove('hidden');
+      const content = collabTextarea.value;
+
+      const response = await fetch(window.location.href, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ content }),
+      });
+
+      const result = await response.json();
+      if (result.error) {
+        alert(result.error);
+        document.querySelector('#saveButton img').classList.add('hidden');
+        document.querySelector('#saveButton span').classList.remove('hidden');
+        document.getElementById('saveButton').disabled = false;
+        return;
+      }
+
+      window.location.reload();
+    });
+    const discardButton = document.getElementById('discardButton');
+    discardButton.addEventListener('click', () => {
+      //document.body.classList.remove('editing');
+      window.location.reload();
+    });
+  </script>
+  {% endif %}
   {% if feed %}
     <section class="h-feed">
       <h1 class="hidden p-name">Amar Memoranda > {{ title }} ({{collection}})</h1>
@@ -107,6 +166,9 @@ layout: base
   {% endif %}
 </div>
 <div class="footer">
+  {% if acl %}
+    <a href="javascript:document.body.classList.add('editing');">Edit</a> &bull; <a href="javascript:alert('Coming soon!');">History</a><br/>
+  {% endif %}
   {% if showLastModified and date %}
     Last modified on {{ page.date | formatDate }}<br/>
   {% endif %}
