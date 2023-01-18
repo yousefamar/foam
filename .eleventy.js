@@ -141,7 +141,9 @@ module.exports = (eleventyConfig) => {
   ), 0))
 
   eleventyConfig.addFilter("tree", (content, showAll = false) => {
-    const public = content.filter(t => t.data.listed || showAll);
+    // The reason we filter out wiki revisions here by filename, instead of modifying their frontmatter
+    // to have `listed: false` is to avoid changing the file modification date, at the cost of a potential footgun
+    const public = content.filter(t => (t.data.listed && !t.fileSlug.match(/rev-(\d+)/)) || showAll);
     // Using filepathStem instead of url for showing the non-public ones
     const prefix = pathPrefix.slice(0, pathPrefix.length - 1);
     return JSON.stringify(public.map(t => ({
