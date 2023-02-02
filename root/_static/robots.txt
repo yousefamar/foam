@@ -1,0 +1,4 @@
+Sitemap: https://yousefamar.com/sitemap.xml
+
+User-agent: *
+Disallow:
