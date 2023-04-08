@@ -1,21 +1,21 @@
 {
   "devDependencies": {
-    "@11ty/eleventy-navigation": "^0.3.2",
+    "@11ty/eleventy-navigation": "^0.3.5",
     "@code-blocks/eleventy-plugin": "^0.1.8",
     "@code-blocks/graphviz": "^0.1.8",
-    "d3": "^7.4.4",
+    "d3": "^7.8.4",
     "eleventy-plugin-reading-time": "^0.0.1",
-    "luxon": "^2.3.0",
-    "markdown-it": "^12.3.2",
-    "markdown-it-anchor": "^8.4.1",
+    "luxon": "^3.3.0",
+    "markdown-it": "^13.0.1",
+    "markdown-it-anchor": "^8.6.7",
     "markdown-it-footnote": "^3.0.3",
-    "markdown-it-link-attributes": "^4.0.0",
+    "markdown-it-link-attributes": "^4.0.1",
     "markdown-it-regexp": "^0.4.0",
-    "markdown-it-replace-link": "^1.1.0",
-    "slugify": "^1.6.5"
+    "markdown-it-replace-link": "^1.2.0",
+    "slugify": "^1.6.6"
   },
   "dependencies": {
-    "@11ty/eleventy": "^1.0.2",
+    "@11ty/eleventy": "^2.0.1",
     "express": "^4.18.2",
     "front-matter": "^4.0.2"
   }
