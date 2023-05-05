@@ -179,6 +179,15 @@ public: true
     <div class="vignette fullscreen" style="height: 100vh;"></div>
 
     <script>
+      window.hardwareAccelAvail = (() => {
+        try {
+          const canvas = document.createElement('canvas');
+          return !!(window.WebGLRenderingContext && (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')));
+        } catch (e) {
+          return false;
+        }
+      })();
+
       const generateDots = (depth) => {
         const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
         svg.setAttribute('width', '100%');
@@ -224,64 +233,76 @@ public: true
       }
 
       window.parallax = new Parallax(document.getElementById('scene'));
+      if (!window.hardwareAccelAvail)
+        window.parallax.disable();
     </script>
 
     <script type="module">
       import * as THREE from 'three';
 
-      const camera = new THREE.PerspectiveCamera( 70, 1, 0.01, 10 );
-      camera.position.z = 1;
+      // Check if webgl supported and enabled, and if not, append static image
+      if (!window.hardwareAccelAvail) {
+        const img = document.createElement('img');
+        img.src = '/memo/assets/images/me-nobg.png';
+        img.style.width = '150px';
+        img.style.height = '150px';
+        img.style.objectFit = 'contain';
+        document.getElementById('my-head').appendChild(img);
+      } else {
+        const camera = new THREE.PerspectiveCamera( 70, 1, 0.01, 10 );
+        camera.position.z = 1;
 
-      const scene = new THREE.Scene();
+        const scene = new THREE.Scene();
 
-      const geometry = new THREE.PlaneGeometry(0.4, 0.4, 451, 451);
-      const material = new THREE.MeshStandardMaterial({
-        side: THREE.DoubleSide,
-        transparent: true,
-        map: new THREE.TextureLoader().load('/memo/assets/images/me-nobg.png'),
-        displacementMap: new THREE.TextureLoader().load('/memo/assets/images/me-depth.png'),
-      });
+        const geometry = new THREE.PlaneGeometry(0.4, 0.4, 451, 451);
+        const material = new THREE.MeshStandardMaterial({
+          side: THREE.DoubleSide,
+          transparent: true,
+          map: new THREE.TextureLoader().load('/memo/assets/images/me-nobg.png'),
+          displacementMap: new THREE.TextureLoader().load('/memo/assets/images/me-depth.png'),
+        });
 
-      const mesh = new THREE.Mesh(geometry, material);
-      mesh.scale.set(1, 1, 0.1);
-      scene.add(mesh);
+        const mesh = new THREE.Mesh(geometry, material);
+        mesh.scale.set(1, 1, 0.1);
+        scene.add(mesh);
 
-      const light = new THREE.PointLight(0xffffff, 1, 100);
-      light.position.set(0, 0, 1);
-      scene.add(light);
+        const light = new THREE.PointLight(0xffffff, 1, 100);
+        light.position.set(0, 0, 1);
+        scene.add(light);
 
-      let startRotationX = null;
-      let startRotationY = null;
-      function animation(time) {
-        if (window.parallax.orientationSupport) {
-          if (startRotationX === null)
-            startRotationX = window.parallax.inputX;
-          if (startRotationY === null)
-            startRotationY = window.parallax.inputY;
-          mesh.rotation.x = -(window.parallax.inputX - startRotationX) * 0.25;
-          mesh.rotation.y = -(window.parallax.inputY - startRotationY) * 0.25;
-        } else {
-          mesh.rotation.x = window.parallax.inputY * 0.5;
-          mesh.rotation.y = window.parallax.inputX * 0.5;
-        }
-        renderer.render(scene, camera);
-      }
-
-      const renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
-      renderer.setSize(500, 500);
-      renderer.setAnimationLoop(animation);
-
-      renderer.domElement.addEventListener('click', async () => {
-        if (DeviceOrientationEvent?.requestPermission) {
-          const permissionState = await window.DeviceOrientationEvent.requestPermission();
-          if (permissionState === "granted") {
-            window.parallax.destroy();
-            window.parallax = new Parallax(document.getElementById('scene'));
+        let startRotationX = null;
+        let startRotationY = null;
+        function animation(time) {
+          if (window.parallax.orientationSupport) {
+            if (startRotationX === null)
+              startRotationX = window.parallax.inputX;
+            if (startRotationY === null)
+              startRotationY = window.parallax.inputY;
+            mesh.rotation.x = -(window.parallax.inputX - startRotationX) * 0.25;
+            mesh.rotation.y = -(window.parallax.inputY - startRotationY) * 0.25;
+          } else {
+            mesh.rotation.x = window.parallax.inputY * 0.5;
+            mesh.rotation.y = window.parallax.inputX * 0.5;
           }
+          renderer.render(scene, camera);
         }
-      });
 
-      document.getElementById('my-head').appendChild(renderer.domElement);
+        const renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
+        renderer.setSize(500, 500);
+        renderer.setAnimationLoop(animation);
+
+        renderer.domElement.addEventListener('click', async () => {
+          if (DeviceOrientationEvent?.requestPermission) {
+            const permissionState = await window.DeviceOrientationEvent.requestPermission();
+            if (permissionState === "granted") {
+              window.parallax.destroy();
+              window.parallax = new Parallax(document.getElementById('scene'));
+            }
+          }
+        });
+
+        document.getElementById('my-head').appendChild(renderer.domElement);
+      }
     </script>
 
   </body>
