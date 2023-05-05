@@ -184,13 +184,17 @@ module.exports = (eleventyConfig) => {
     return new Date(date).toISOString();
   });
 
-  eleventyConfig.addFilter("getInputContent", (collection, page) => {
+  eleventyConfig.addFilter("getInputContent", async (collection, page) => {
     // TODO: make O(1) for large collections instead of O(n)
     return collection.find(p => p.template.inputPath === page.inputPath)?.template.inputContent;
   });
 
-  eleventyConfig.addFilter("base64", (input) => {
-    return Buffer.from(input).toString('base64');
+  eleventyConfig.addFilter("base64", async (input) => {
+    return Buffer.from(await input).toString('base64');
+  });
+
+  eleventyConfig.addFilter("filterListed", (collection) => {
+    return collection.filter(p => (p.data.listed && !p.fileSlug.match(/rev-(\d+)/)) || (p.data.post && p.data.public));
   });
 
   return {
