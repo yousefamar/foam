@@ -23,8 +23,6 @@
   "files.watcherExclude": {
     "**/node_modules": true
   },
-  "git.enableSmartCommit": true,
-  "git.postCommitCommand": "sync",
   "markdown.preview.breaks": true,
   "search.useIgnoreFiles": false,
   // Turn off tsc task auto detection since we have the necessary tasks as npm scripts
