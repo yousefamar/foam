@@ -4,6 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }}</title>
+    {% if canonical %}
+    <link rel="canonical" href="{{ canonical | url }}" />
+    {% elif page.url %}
+    <link rel="canonical" href="{{ site.url | url }}{{ page.url | url }}" />
+    {% endif %}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/themes/prism-tomorrow.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.min.css"/>
     <link rel="stylesheet" href="/memo/assets/styles/index.css"/>
@@ -11,7 +16,7 @@
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/prism.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/plugins/autoloader/prism-autoloader.min.js"></script>
     {% if acl %}
-    <script src="https://cdn.jsdelivr.net/npm/collab-textarea@1.0.3/dist/index.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/collab-textarea@1.0.4/dist/index.js" type="module"></script>
     {% endif %}
   </head>
   <body>
