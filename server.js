@@ -5,8 +5,22 @@ const express = require('express');
 const Eleventy = require('@11ty/eleventy');
 const fm = require('front-matter');
 const app = express();
+const multer = require('multer');
+const path = require('path');
 const port = process.env.PORT || 8080;
 const rootDir = process.env.ROOT_DIR || '/home/amar/doc/brain/root/';
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './assets/images/testimonials/incoming/');
+  },
+  filename: function (req, file, cb) {
+    const filename = file.fieldname + '-' + Date.now() + path.extname(file.originalname);
+    console.log('File', file.originalname, 'written to disk as', filename);
+    cb(null, filename);
+  },
+})
+const upload = multer({ storage: storage })
 
 async function runEleventy() {
   return new Promise((resolve, reject) => {
@@ -82,6 +96,35 @@ app.patch('/*', async (req, res) => {
     return res.status(400).json({ success: false, error: error.message });
   }
   res.json({ success: true });
+});
+
+app.post('/memo/notes/my/testimonials/leave/', upload.single('avatar'), async (req, res) => {
+  const name = req.body.name;
+  const testimonial = req.body.testimonial.replace(/\r\n/g, '\n');
+  const workTitle = req.body.workTitle;
+  const personalLink = req.body.personalLink;
+
+  console.log('Incoming testimonial!');
+  console.log('---------------------');
+  console.log('Name:', name);
+  if (req.file)
+    console.log('Avatar:', req.file.originalname);
+  console.log('Work Title:', workTitle);
+  console.log('Personal/Social Link:', personalLink);
+  console.log('Testimonial:', testimonial);
+
+  const data = {
+    name,
+    title: workTitle,
+    url: personalLink,
+    date: new Date().toISOString(),
+    avatar: req.file ? req.file.originalname : null,
+    text: testimonial,
+  };
+
+  fs.writeFileSync(`./_data/incoming-testimonials/${Date.now()}.json`, JSON.stringify(data));
+
+  res.redirect('/memo/notes/my/testimonials/success/');
 });
 
 app.get('/rebuild', async (req, res) => {
