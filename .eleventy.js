@@ -141,7 +141,7 @@ module.exports = (eleventyConfig) => {
   });
 
   eleventyConfig.addFilter("dataCharCount", data => data.reduce((acc, cur) => (
-    acc + cur.description.replace(/(<([^>]+)>)/gi, '').length
+    acc + (cur.description || cur.text).replace(/(<([^>]+)>)/gi, '').length
   ), 0))
 
   eleventyConfig.addFilter("tree", (content, showAll = false) => {
@@ -172,6 +172,10 @@ module.exports = (eleventyConfig) => {
 
   eleventyConfig.addFilter("children", (collection, parentUrl) => {
     return collection.filter(p => p.url && p.url.startsWith(parentUrl) && p.url !== parentUrl);
+  });
+
+  eleventyConfig.addFilter("publicPosts", (collection) => {
+    return collection.filter(p => (p.data.post && p.data.public));
   });
 
   eleventyConfig.addFilter("project", (collection, projectSlug) => {
