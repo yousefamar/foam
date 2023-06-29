@@ -1,0 +1,74 @@
+<script src="https://unpkg.com/colcade@0/colcade.js"></script>
+<style>
+:root {
+  --content-width: min(calc(100vw - 2rem), 1000px);
+}
+.grid {
+  width: var(--content-width);
+}
+.grid-col {
+  float: left;
+  max-width: 100%; 
+}
+.grid-col:not(:first-child) { margin-left: 1rem; }
+.grid-col--2, .grid-col--3 { display: none }
+@media (min-width: 768px) {
+  .grid-col { max-width: calc((var(--content-width) / 2) - 1rem); }
+  .grid-col--2 { display: block; }
+}
+@media (min-width: 1000px) {
+  .grid-col { max-width: calc((var(--content-width) / 3) - 1rem); }
+  .grid-col--2, .grid-col--3 { display: block; }
+}
+.info {
+  height: 64px;
+}
+.info img {
+  float: left;
+  width: 64px;
+  height: 64px;
+  margin-right: 1rem;
+  border-radius: 50%;
+}
+.info h4 {
+  margin: 0;
+}
+.header-link {
+  margin-left: 0.5rem;
+}
+</style>
+<section class="h-feed grid" data-colcade="columns: .grid-col, items: .grid-item">
+<div class="grid-col grid-col--1"></div>
+<div class="grid-col grid-col--2"></div>
+<div class="grid-col grid-col--3"></div>
+{% for testimonial in testimonials %}
+<div class="h-entry grid-item">
+<div class="info">
+<img class="u-photo" src="{{ testimonial.avatar }}" alt="Avatar of {{ testimonial.name }}" />
+<h4><span class="p-name">{{ testimonial.name }}</span>{% if testimonial.url %}<a class="header-link u-url" href="{{ testimonial.url | url }}" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>{% endif %}</h4>
+<div class="article-details">
+{{ testimonial.title }}
+</div>
+</div>
+<time class="hidden dt-published" datetime="{{testimonial.year}}">{{testimonial.year}}</time>
+<div class="e-content">
+<p>
+{{ testimonial.text | safe }}
+</p>
+</div>
+</div>
+{% endfor %}
+<h1 class="hidden p-name">Yousef Amar's Testimonials</h1>
+<noscript class="img">
+<img class="hidden u-photo" src="/memo/assets/images/me.png" alt="Yousef Amar" />
+</noscript>
+<a class="hidden p-author h-card" href="{{ authorUrl | url }}">{{ author }}</a>
+</section>
+<script>
+{# var msnry = new Masonry( '.grid', {
+  itemSelector: '.grid-item',
+  columnWidth: 100,
+  fitWidth: true,
+  transitionDuration: 0
+}); #}
+</script>
