@@ -98,7 +98,7 @@ app.patch('/*', async (req, res) => {
   res.json({ success: true });
 });
 
-app.post('/memo/notes/my/testimonials/leave/', upload.single('avatar'), async (req, res) => {
+app.post('/notes/my/testimonials/leave/', upload.single('avatar'), async (req, res) => {
   const name = req.body.name;
   const testimonial = req.body.testimonial.replace(/\r\n/g, '\n');
   const workTitle = req.body.workTitle;
