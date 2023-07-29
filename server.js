@@ -1,4 +1,5 @@
 const fs = require('fs');
+const tls = require('tls');
 const { join } = require('path');
 const { exec } = require('child_process');
 const express = require('express');
@@ -144,9 +145,62 @@ app.get('/rebuild', async (req, res) => {
   res.json({ success: true });
 });
 
+// Gemini
+const options = {
+  key: fs.readFileSync('/home/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/yousefamar.com/yousefamar.com.key'),
+  cert: fs.readFileSync('/home/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/yousefamar.com/yousefamar.com.crt'),
+};
+
+function handleGeminiRequest(request) {
+  const lines = request.split('\r\n');
+  if (!lines.length) {
+    return '59\r\n';
+  }
+
+  const requestLine = lines[0];
+  if (!requestLine.startsWith('gemini://')) {
+    return '59\r\n';
+  }
+
+  // TODO: proper routing
+  if (requestLine === 'gemini://yousefamar.com/') {
+    const text = fs.readFileSync('./root/index.gmi', 'utf8');
+    return '20 text/gemini\r\n' + text;
+  }
+
+  return '51\r\n';
+}
+
+const server = tls.createServer(options, (socket) => {
+  console.log('Gemini client connected');
+
+  socket.on('data', (data) => {
+    const request = data.toString();
+    const response = handleGeminiRequest(request);
+    if (!socket.destroyed) {
+      socket.write(response);
+      socket.end();
+    }
+  });
+
+  socket.on('end', () => {
+    console.log('Gemini client disconnected');
+  });
+
+  socket.on('error', (err) => {
+    console.error('Gemini socket error:', err);
+  });
+
+  socket.setEncoding('utf8');
+});
+
 (async function () {
   try {
-    await new Promise(resolve => app.listen(port, resolve));
+    await Promise.all([
+      new Promise(resolve => app.listen(port, resolve)),
+      new Promise(resolve => server.listen(1965, resolve)),
+    ]);
+
     console.log(`Server started on port ${port}`);
   } catch (error) {
     console.error(error);
