@@ -1,0 +1,436 @@
+---
+title: Fractional CTO service by Dr Yousef Amar
+layout: ""
+public: true
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fractional CTO service offered by Dr Yousef Amar">
+    <title>{{ title }}</title>
+
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#20293F',
+            }
+          }
+        },
+      }
+    </script>
+    {# <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.min.css"/>
+    <link rel="stylesheet" href="/memo/assets/styles/index.css"/> #}
+    <script src="https://kit.fontawesome.com/a1b5a2aa60.js" crossorigin="anonymous"></script>
+
+    <style>
+      input[type="checkbox"]:checked + label .toggle-open {
+        display: none;
+      }
+      input[type="checkbox"]:checked + label .toggle-close {
+        display: inline;
+      }
+      input[type="checkbox"]:checked ~ dd {
+        display: block;
+      }
+    </style>
+  <body>
+
+
+<div class="bg-white">
+  <main>
+    <!-- Hero section -->
+    <div class="relative isolate overflow-hidden bg-gray-900 pb-16 pt-14 sm:pb-20 h-screen">
+      <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80 h-full" aria-hidden="true">
+        <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+      </div>
+
+      <div class="mx-auto max-w-7xl px-6 lg:px-8 flex flex-col justify-between h-full">
+        <div class="mx-auto max-w-2xl flex flex-grow items-center">
+          <div class="text-center">
+            <h1 class="text-4xl font-bold tracking-tight text-white sm:text-6xl">Fractional CTO</h1>
+            <p class="mt-6 text-lg leading-8 text-gray-300">Dr Yousef Amar</p>
+            <div class="mt-10 flex items-center justify-center gap-x-6">
+              <a href="#" class="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400" data-cal-link="yousefamar/discovery" data-cal-config='{"layout":"month_view"}'>Book a free discovery call</a>
+              {# <a href="#" class="text-sm font-semibold leading-6 text-white">Live demo <span aria-hidden="true">→</span></a> #}
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Logo cloud -->
+      <div class="mx-auto grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-4 sm:gap-x-10 md:mx-0 md:max-w-none md:grid-cols-5">
+        {% for p in press %}
+          {% if loop.index == 1 %}
+          <a href="{{ p.href }}" target="_blank" class="col-span-4 md:col-span-1">
+          {% else %}
+          <a href="{{ p.href }}" target="_blank" class="col-span-2 md:col-span-1">
+          {% endif %}
+            <img class="max-h-12 w-full object-contain object-contain" src="{{ p.image.thumb | url }}" alt="{{ p.image.alt }}" width="158" height="48" />
+          </a>
+        {% endfor %}
+      </div>
+      </div>
+
+
+      <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]" aria-hidden="true">
+        <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+      </div>
+    </div>
+
+    <!-- Feature section -->
+    <div class="mt-32">
+      <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="mx-auto max-w-2xl sm:text-center">
+          <h2 class="text-base font-semibold leading-7 text-indigo-600">About</h2>
+          <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Your technical</br>co-founder-as-a-service</p>
+          <p class="mt-6 text-lg leading-8 text-gray-600">Hi! 👋 I'm <a href="https://yousefamar.com" class="text-indigo-600" target="_blank">Dr Yousef Amar</a>. I've been building tech products for 12+ years and helped grow multi-million dollar companies across many industries. I consult hourly for business not that don't need / can't find a full-time CTO. If we work together, your technical challenges disappear entirely.</p>
+        </div>
+      </div>
+      {% macro feature(heading, body, icon) %}
+      <div class="relative pl-9">
+        <dt class="inline font-semibold text-gray-900">
+          <i class="absolute left-1 top-1 h-5 w-5 text-indigo-600 fa-solid {{ icon }}"></i>
+          {{ heading }}
+        </dt>
+        <dd class="inline">{{ body }}</dd>
+      </div>
+      {% endmacro %}
+      <div class="mx-auto mt-16 max-w-7xl px-6 sm:mt-20 md:mt-24 lg:px-8">
+        <dl class="mx-auto grid max-w-2xl grid-cols-1 gap-x-6 gap-y-10 text-base leading-7 text-gray-600 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-x-8 lg:gap-y-16">
+          {{ feature('Strategy', "Learn from a career's worth of experience; do not waste your time and money building the wrong product. Let's validate your proposition together before we write any code. I can talk to your customers and build your roadmap.", 'fa-list-check') }}
+          {{ feature('MVP', "Your web or mobile app will be live in a matter of weeks. Having done this dozens of times, I've built a toolbelt of resources and processes that will allow us to deploy in record time and be future-proof. Gone are the days of app store rejections and server downtime.", 'fa-rocket') }}
+          {{ feature('Growth', "What's a product without users? I will help you build a proper funnel and collect all the data you need to optimise this. I will source your first users and set up your acquisition channels. Make informed decisions from day 1; no more driving blind.", 'fa-seedling') }}
+          {{ feature('Hiring', 'I will hire your engineering team to match your needs. My wide network means you no longer need to compete with Big Tech for the best candidates, and after having conducted hundreds of interviews, my process for separating the wheat from the chaff is all but surgical.', 'fa-people-group') }}
+          {{ feature('Leadership', "I run a tight ship of based on modern agile practices combined with pragmatism gained over the years. I uplift developers to rise above their station and become world-class. Even developers that I've fired in the past will attest to you how our teams ran like clockwork and how great it feels to be part of a productive group of professionals.", 'fa-sailboat') }}
+          {{ feature('Scale', "Code is a liability; we'll keep the technical debt at bay. I will set up your infrastructure in such a way that we're ready for viral spikes and the take-off to millions of users. I know how to strike the balance between speed to market and maintainability.", 'fa-chart-line') }}
+        </dl>
+      </div>
+    </div>
+
+    <div class="mt-16 flex items-center justify-center gap-x-6">
+      <a href="#" class="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400" data-cal-link="yousefamar/discovery" data-cal-config='{"layout":"month_view"}'>Book a free discovery call</a>
+    </div>
+
+    <!-- Testimonials section -->
+    <div class="bg-white mt-32">
+      <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="mx-auto max-w-xl text-center">
+          <h2 class="text-lg font-semibold leading-8 tracking-tight text-indigo-600">Testimonials</h2>
+          <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Don&#039;t just take my word for it</p>
+        </div>
+        <div class="mx-auto mt-16 flow-root max-w-2xl sm:mt-20 lg:mx-0 lg:max-w-none">
+          <div class="-mt-8 sm:-mx-4 sm:columns-2 sm:text-[0] lg:columns-3">
+
+            {% for testimonial in testimonials %}
+            {% if 'fractional-cto' in testimonial.relevance %}
+            <div class="pt-8 sm:inline-block sm:w-full sm:px-4">
+              <figure class="rounded-2xl bg-gray-50 p-8 text-sm leading-6">
+                <blockquote class="text-gray-900">
+                  <p>{{ testimonial.shortText or testimonial.text }}</p>
+                </blockquote>
+                <figcaption class="mt-6 flex items-center gap-x-4">
+                  <img class="h-10 w-10 rounded-full bg-gray-50" src="{{ testimonial.avatar }}" alt="">
+                  <div>
+                    <div class="font-semibold text-gray-900">{{ testimonial.name }}</div>
+                    <div class="text-gray-600">{{ testimonial.title }}</div>
+                  </div>
+                </figcaption>
+              </figure>
+            </div>
+            {% endif %}
+            {% endfor %}
+            <div class="pt-8 sm:inline-block sm:w-full sm:px-4">
+              <figure class="rounded-2xl bg-gray-50 p-8 text-sm leading-6">
+                <blockquote class="text-gray-900">
+                  <p>See more testimonials <a href="https://yousefamar.com/memo/notes/my/testimonials/" class="text-indigo-600" target="_blank">here</a>!</p>
+                </blockquote>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-16 flex items-center justify-center gap-x-6">
+      <a href="#" class="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400" data-cal-link="yousefamar/discovery" data-cal-config='{"layout":"month_view"}'>Book a free discovery call</a>
+    </div>
+
+    <!-- Pricing section -->
+    <div class="relative isolate mt-32 bg-white px-6 lg:px-8">
+      {# <div class="absolute inset-x-0 -top-3 -z-10 transform-gpu overflow-hidden px-36 blur-3xl" aria-hidden="true">
+        <div class="mx-auto aspect-[1155/678] w-[72.1875rem] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+      </div> #}
+      <div class="mx-auto max-w-2xl text-center lg:max-w-4xl">
+        <h2 class="text-base font-semibold leading-7 text-indigo-600">Pricing</h2>
+        <p class="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">Rates that empower your startup</p>
+      </div>
+      <p class="mx-auto mt-6 max-w-2xl text-center text-lg leading-8 text-gray-600">Use this calculator to get a feel for how I price, but take it with a grain of salt. The base rate here may change, depending on how booked out I am &#40;less availability = higher rates&#41; and rates may vary based on team and proposition.</p>
+
+      <div class="mx-auto max-w-2xl mt-16 flex flex-col gap-6">
+
+        <div class="grid grid-cols-1 gap-2 md:grid-cols-3">
+          <div class="relative flex items-center justify-center md:justify-start">
+            <p class="inline font-semibold text-gray-900">
+              <i class="h-5 w-5 text-indigo-600 fa-solid fa-clock"></i>
+              Hours per week
+            </p>
+          </div>
+          <div class="flex items-center md:col-span-2">
+            <!-- numerical amount -->
+            <span class="text-lg text-gray-900 mr-4" id="hours">2</span>
+            <input type="range" value="2" class="w-full h-2 rounded-lg appearance-none cursor-pointer isolate inline-flex md:justify-self-end justify-center bg-gray-200 accent-indigo-600" min="1" max="10" step="1">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 gap-2 md:grid-cols-3">
+          <div class="relative flex items-center justify-center md:justify-start">
+            <p class="inline font-semibold text-gray-900">
+              <i class="h-5 w-5 text-indigo-600 fa-solid fa-stairs"></i>
+              Startup stage
+            </p>
+          </div>
+          <span class="isolate inline-flex md:justify-self-end justify-center md:col-span-2 startup-buttons">
+            <button type="button" class="relative inline-flex items-center rounded-l-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 focus:z-10">Idea</button>
+            <button type="button" class="relative -ml-px inline-flex items-center bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 focus:z-10">Pre-seed</button>
+            <button type="button" class="relative -ml-px inline-flex items-center bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 focus:z-10">Seed</button>
+            <button type="button" class="relative -ml-px inline-flex items-center bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 focus:z-10">Series A</button>
+            <button type="button" class="relative -ml-px inline-flex items-center rounded-r-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 focus:z-10">Beyond</button>
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 gap-2 md:grid-cols-3">
+          <div class="relative flex items-center justify-center md:justify-start">
+            <p class="inline font-semibold text-gray-900">
+              <i class="h-5 w-5 text-indigo-600 fa-solid fa-gears"></i>
+              Technical complexity
+            </p>
+          </div>
+          <span class="isolate inline-flex md:justify-self-end justify-center md:col-span-2 tech-buttons">
+            <button type="button" class="relative inline-flex items-center rounded-l-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 focus:z-10">No tech</button>
+            <button type="button" class="relative -ml-px inline-flex items-center bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 focus:z-10">Shallow tech</button>
+            <button type="button" class="relative -ml-px inline-flex items-center rounded-r-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 focus:z-10">Deep tech</button>
+          </span>
+        </div>
+
+        <div class="relative flex items-start">
+          <div class="flex h-6 items-center">
+            <input id="comments" aria-describedby="comments-description" name="comments" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
+          </div>
+          <div class="ml-3 text-sm leading-6">
+            <label for="comments" class="font-medium text-gray-900 font-semibold">One or more of the founders are from an underprivileged background</label>
+          </div>
+        </div>
+
+        <div class="flex flex-col items-center">
+          <div id="price-notice" class="rounded-md bg-blue-50 p-4 w-full hidden">
+            <div class="flex">
+                <div class="flex-shrink-0">
+                  <svg class="h-5 w-5 text-blue-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a.75.75 0 000 1.5h.253a.25.25 0 01.244.304l-.459 2.066A1.75 1.75 0 0010.747 15H11a.75.75 0 000-1.5h-.253a.25.25 0 01-.244-.304l.459-2.066A1.75 1.75 0 009.253 9H9z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+              <div class="ml-3 flex-1 md:flex md:justify-between">
+                <p id="price-notice-text" class="text-sm text-blue-700"></p>
+              </div>
+            </div>
+          </div>
+          <p class="mt-6 flex items-baseline gap-x-1">
+            <span class="text-4xl font-bold tracking-tight text-gray-900">≈ £</span>
+            <span class="text-4xl font-bold tracking-tight text-gray-900" id="price"></span>
+            <span class="text-sm font-semibold leading-6 text-gray-600">/week</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-16 flex items-center justify-center gap-x-6">
+      <a href="#" class="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400" data-cal-link="yousefamar/discovery" data-cal-config='{"layout":"month_view"}'>Book a free discovery call</a>
+    </div>
+
+    <!-- FAQ section -->
+    <div class="mx-auto mt-32 max-w-7xl px-6 lg:px-8">
+      <div class="mx-auto max-w-4xl divide-y divide-gray-900/10">
+        <div class="mx-auto max-w-2xl text-center lg:max-w-4xl">
+          <h2 class="text-base font-semibold leading-7 text-indigo-600">Frequently asked questions</h2>
+        </div>
+        <dl class="mt-10 space-y-6 divide-y divide-gray-900/10">
+          {% macro question(id, question, answer) %}
+          <div class="pt-6">
+            <div>
+              <input type="checkbox" id="faq-{{ id }}-toggle" class="hidden">
+              <label for="faq-{{ id }}-toggle" class="flex w-full items-start justify-between text-left text-gray-900 cursor-pointer">
+                <span class="text-base font-semibold leading-7">{{ question }}</span>
+                <span class="ml-6 flex h-7 items-center">
+                  <svg class="h-6 w-6 toggle-open" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path>
+                  </svg>
+                  <svg class="hidden h-6 w-6 toggle-close" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M18 12H6"></path>
+                  </svg>
+                </span>
+              </label>
+              <dd class="mt-2 pr-12 hidden">
+                <p class="text-base leading-7 text-gray-600">{{ answer | safe }}</p>
+              </dd>
+            </div>
+          </div>
+          {% endmacro %}
+
+          {{ question(0, "Can we work together for equity?", "Short answer: no. Long answer: in very, very rare cases. You might instead prefer to approach me as <a href=\"https://fi.co/fast\" target=\"_blank\" class=\"text-indigo-600\">an advisor</a>.") }}
+          {{ question(1, "I am a technical founder myself; can you mentor me?", "Yes, I do mentoring as well, but you're on the wrong page for that. Please see <a href=\"https://amar.io/meet\" class=\"text-indigo-600\" target=\"_blank\">here</a> for more information.") }}
+          {{ question(2, "Can you help with the non-technical side of the business too?", "Certainly, but you'll definitely get more bang for your buck if I help you with what I specialise in.") }}
+          {{ question(3, "How do I know what stage my startup is?", "This is mostly related to funding, but let's have a call and I'll tell you. You can also refer to <a href=\"https://fi.co/benchmarks\" class=\"text-indigo-600\" target=\"_blank\">these handy tables</a> to get an idea of what stage you're at if your startup is not venture-backed.") }}
+          {{ question(4, "How do I know if my tech counts as \"deep tech\"?", "If you're not sure, it probably doesn't. If your defensibility comes from software/hardware patents, you're commercialising PhD research, or building novel hardware, that counts as deep tech in my book. Using AI does not count as deep tech, but training your own models does, especially if the success of your business hinges on these models.") }}
+          {{ question(5, "I have an amazing crypto/blockchain proposition!", "Not interested, sorry!") }}
+          {{ question(6, "What's the best thing about Switzerland?", "I don't know, but the flag is a big plus! 🇨🇭") }}
+
+          <!-- More questions... -->
+        </dl>
+      </div>
+    </div>
+
+    <div class="mt-16 flex items-center justify-center gap-x-6">
+      <a href="#" class="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400" data-cal-link="yousefamar/discovery" data-cal-config='{"layout":"month_view"}'>Book a free discovery call</a>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-32 bg-gray-900" aria-labelledby="footer-heading">
+    <h2 id="footer-heading" class="sr-only">Footer</h2>
+    <div class="mx-auto max-w-7xl px-6 pb-8 lg:px-8">
+      <div class="mt-16 pt-8 sm:mt-20 md:flex md:items-center md:justify-between lg:mt-24">
+        <div class="flex space-x-6 md:order-2 justify-center">
+          <a href="http://x.com/yousefamar" class="text-gray-500 hover:text-gray-400">
+            <span class="sr-only">X/Twitter</span>
+            <i class="h-5 w-5 fa-brands fa-x-twitter"></i>
+          </a>
+          <a href="https://linkedin.com/in/yousefamar" class="text-gray-500 hover:text-gray-400">
+            <span class="sr-only">LinkedIn</span>
+            <i class="h-5 w-5 fa-brands fa-linkedin"></i>
+          </a>
+          <a href="https://github.com/yousefamar" class="text-gray-500 hover:text-gray-400">
+            <span class="sr-only">GitHub</span>
+            <i class="h-5 w-5 fa-brands fa-github"></i>
+          </a>
+          <a href="https://yousefamar.com" class="text-gray-500 hover:text-gray-400">
+            <span class="sr-only">Website</span>
+            <i class="h-5 w-5 fa-solid fa-globe"></i>
+          </a>
+        </div>
+        <p class="mt-8 text-xs leading-5 text-gray-400 md:order-1 md:mt-0 text-center">Copyright &copy; <script>document.write(new Date().getFullYear())</script> Yousef Amar</p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+{# 
+    <div class="container">
+      <h2>Testimonials</h2>
+      {% include "testimonials.njk" %}
+    </div> #}
+
+
+    {# <video autoplay muted playsinline style="width: 100%; height: 100vh;">
+      <source 
+        src="/memo/assets/videos/me-ta.mov" 
+        type='video/mp4; codecs="hvc1"'>
+      <source 
+        src="/memo/assets/videos/me-ta.webm" 
+        type="video/webm">
+    </video> #}
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const priceEl = document.querySelector("#price");
+      const hoursEl = document.querySelector("#hours");
+      const priceNoticeEl = document.querySelector("#price-notice");
+      const priceNoticeTextEl = document.querySelector("#price-notice-text");
+
+      function calculateRate() {
+        const hoursPerWeek = parseInt(document.querySelector('input[type="range"]').value);
+        let startupStage = 0;
+        let techComplexity = 0;
+        let underprivileged = document.querySelector('input[type="checkbox"]').checked ? 1 : 0;
+
+        document.querySelectorAll(".startup-buttons button").forEach((button, index) => {
+          if (button.classList.contains("bg-indigo-600")) {
+            startupStage = index + 1;
+          }
+        });
+
+        document.querySelectorAll(".tech-buttons button").forEach((button, index) => {
+          if (button.classList.contains("bg-indigo-600")) {
+            techComplexity = index + 1;
+          }
+        });
+
+        let rate = 0
+          + (hoursPerWeek * 5)
+          + (startupStage * startupStage * startupStage * 5)
+          + (techComplexity * techComplexity * techComplexity * 10);
+        if (startupStage > 3)
+          rate *= 2;
+        if (underprivileged)
+          rate /= 5;
+
+        rate = Math.max(rate, 40);
+        rate *= hoursPerWeek;
+
+        priceEl.innerText = rate;
+
+        if (hoursPerWeek > 4) {
+          priceNoticeTextEl.innerText = "It's unlikely that you'll need more than 4 hours a week; I can do a LOT for you in less than that. Counterintuitively, my rate goes up with hours.";
+          priceNoticeEl.classList.remove("hidden");
+        } else if (startupStage < 2) {
+          priceNoticeTextEl.innerText = "It may be too early for us to work together. If your idea is unvalidated, I can help you validate, but I won't let you burn your money to have an unvalidated product built!";
+          priceNoticeEl.classList.remove("hidden");
+        } else if (underprivileged) {
+          priceNoticeTextEl.innerText = "I'm happy to work with underprivileged founders at a deeply discounted rate. I've been there and I know how hard it is to get started. Let's talk!";
+          priceNoticeEl.classList.remove("hidden");
+        } else {
+          priceNoticeEl.classList.add("hidden");
+        }
+      }
+
+      document.querySelector('input[type="range"]').addEventListener("input", function(e) {
+        hoursEl.innerText = e.target.value;
+        calculateRate();
+      });
+
+      const buttonGroups = ["startup-buttons", "tech-buttons"];
+      
+      buttonGroups.forEach((cls) => {
+        document.querySelectorAll(`.${cls} button`).forEach((button) => {
+          button.addEventListener("click", function(e) {
+            document.querySelectorAll(`.${cls} button`).forEach((btn) => {
+              btn.classList.remove("bg-indigo-600", "text-white");
+            });
+            e.currentTarget.classList.add("bg-indigo-600", "text-white");
+            calculateRate();
+          });
+        });
+      });
+
+      document.querySelector('input[type="checkbox"]').addEventListener("change", calculateRate);
+
+      document.querySelectorAll(".startup-buttons button")[1].classList.add("bg-indigo-600", "text-white");
+      document.querySelectorAll(".tech-buttons button")[1].classList.add("bg-indigo-600", "text-white");
+
+      calculateRate();
+    });
+
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; typeof namespace === "string" ? (cal.ns[namespace] = api) && p(api, ar) : p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+  Cal("init", {origin:"https://cal.com"}); 
+  Cal("ui", {"theme":"light","styles":{"branding":{"brandColor":"#4f46e5"}},"hideEventTypeDetails":false,"layout":"month_view"});
+  </script>
+
+
+  </body>
+</html>
