@@ -1,5 +1,9 @@
 [
   {
+    "relevance": [
+      "fractional-cto",
+      "mentorship"
+    ],
     "name": "Oliver Walerys",
     "title": "Co-founder at GovernGPT",
     "url": "https://www.linkedin.com/in/walerys/",
@@ -8,6 +12,10 @@
     "text": "Yousef's advice changed the trajectory of my founder career. I'm continually amazed at how a single conversation with the right person can have such impact - Yousef is that right person."
   },
   {
+    "relevance": [
+      "fractional-cto",
+      "mentorship"
+    ],
     "name": "Elliott Hartland",
     "title": "Digital Marketing Manager",
     "url": "https://www.linkedin.com/in/elliott-h-96857393/",
@@ -16,6 +24,10 @@
     "text": "Yousef is an exceptional and knowledgable developer, we have worked together on multiple projects bringing complex ideas to life with his tech knowledge. I can't thank or recommend Yousef enough!"
   },
   {
+    "relevance": [
+      "fractional-cto",
+      "mentorship"
+    ],
     "name": "Alexandra Bonnet",
     "title": "Founder & CEO at Pistachio",
     "url": "https://www.linkedin.com/in/alexandra-bonnet-23b99979/",
@@ -24,22 +36,36 @@
     "text": "Yousef has been an incredible support in the early stages of validation and company building. He's generous with his time and shared helpful advice around tech products and market insights. Highly responsive and inquisitive, he's a pleasure to work with."
   },
   {
+    "relevance": [
+      "fractional-cto",
+      "mentorship"
+    ],
     "name": "Dr Usman Khalid",
     "title": "CEO @ SMBF, CEO @ Sawa Global",
-    "url": "",
+    "url": "https://www.linkedin.com/in/420712181/",
     "date": "2023-07-06T23:00:14.369Z",
     "avatar": "/memo/assets/images/testimonials/avatars/usman-khalid.jpg",
-    "text": "I've had the pleasure of working with Yousef on a number of different projects including a digital donation/communication solution for places of worship, which uses geofence technology, as well as an online B2B Network and business directory. \n\nAside from being hands down the best software developer I've worked with, I've always admired how Yousef is able to utilise a huge library of products, resources and deep tech solutions to create the path of least resistance in solving complex problems. \n\nAs well as this, in's rare to find someone who is both passionate about making an impact, without any financial motivation, but also able to approach this with a highly logical and systematic mindset, ensuring his skills are utilised in the most effective way. \n\nYousef has been a pleasure to work with, bringing great energy and humour, and I look forward to benefitting from his expertise and passion for many years to come! "
+    "text": "I've had the pleasure of working with Yousef on a number of different projects including a digital donation/communication solution for places of worship, which uses geofence technology, as well as an online B2B Network and business directory. \n\nAside from being hands down the best software developer I've worked with, I've always admired how Yousef is able to utilise a huge library of products, resources and deep tech solutions to create the path of least resistance in solving complex problems. \n\nAs well as this, in's rare to find someone who is both passionate about making an impact, without any financial motivation, but also able to approach this with a highly logical and systematic mindset, ensuring his skills are utilised in the most effective way. \n\nYousef has been a pleasure to work with, bringing great energy and humour, and I look forward to benefitting from his expertise and passion for many years to come! ",
+    "shortText": "[…] Aside from being hands down the best software developer I've worked with, I've always admired how Yousef is able to utilise a huge library of products, resources and deep tech solutions to create the path of least resistance in solving complex problems. […] "
   },
   {
+    "relevance": [
+      "fractional-cto",
+      "mentorship"
+    ],
     "name": "Chiyen Venegas",
     "title": "Software Engineer at Koloni",
     "url": "https://marandino.dev/",
     "date": "2023-08-21T17:43:12.092Z",
     "avatar": "/memo/assets/images/testimonials/avatars/chiyen-venegas.jpg",
-    "text": "Having worked alongside Yousef for almost three years, I can wholeheartedly vouch for his exceptional qualities. As our CTO, he was not only a master at recognizing promising ideas and embracing new technologies, but funny enough he has a term (wikipedia link included) for every situation.\n\nIn the tech realm, Yousef is unparalleled. His foresight and step-by-step approach to implementation always keep him ahead of project requirements. His contributions consistently go beyond expectations, making him an invaluable asset to any team.\n\nIn short, Yousef is the leader and tech wizard every team needs."
+    "text": "Having worked alongside Yousef for almost three years, I can wholeheartedly vouch for his exceptional qualities. As our CTO, he was not only a master at recognizing promising ideas and embracing new technologies, but funny enough he has a term (wikipedia link included) for every situation.\n\nIn the tech realm, Yousef is unparalleled. His foresight and step-by-step approach to implementation always keep him ahead of project requirements. His contributions consistently go beyond expectations, making him an invaluable asset to any team.\n\nIn short, Yousef is the leader and tech wizard every team needs.",
+    "shortText": "[…] In the tech realm, Yousef is unparalleled. His foresight and step-by-step approach to implementation always keep him ahead of project requirements. His contributions consistently go beyond expectations, making him an invaluable asset to any team.\n\nIn short, Yousef is the leader and tech wizard every team needs."
   },
   {
+    "relevance": [
+      "fractional-cto",
+      "mentorship"
+    ],
     "name": "Surya Rajendhran",
     "title": "Senior Engineer at Purple Dot",
     "url": "https://www.suryarajendhran.com",
@@ -48,6 +74,9 @@
     "text": "Yousef is a a great technical leader and one of the most analytical people I've worked with. He's great at finding the shortest path to a solution for Goliath-like problems."
   },
   {
+    "relevance": [
+      "mentorship"
+    ],
     "name": "Robert Regan",
     "title": "Associate Systems Engineer at Corso Systems",
     "url": "https://robregan.dev",
@@ -56,14 +85,22 @@
     "text": "You have helped me so much with the mock interviews and all the advice you have given me."
   },
   {
+    "relevance": [
+      "fractional-cto",
+      "mentorship"
+    ],
     "name": "Dr Mohammed Asif",
     "title": "COO Sawa",
     "url": "https://www.linkedin.com/in/mohammed-asif-161a8118a/",
     "date": "2023-06-18T16:07:30.982Z",
     "avatar": "/memo/assets/images/testimonials/avatars/mohammed-asif.jpeg",
-    "text": "I have worked with Yousef on Sawa (a digital donation and tech platform for masjids in the UK) for nearly 2 years. I don't know what more I can say than to tell you that I hit the jackpot with him as a cofounder. He is uniquely talented in everything tech and also an incredible mind to brainstorm and work through real problems with. His commitment to our project has made it possible for us to provide an innovative solution to a difficult problem and I am very proud that he is a part of our team and to call him a friend."
+    "text": "I have worked with Yousef on Sawa (a digital donation and tech platform for masjids in the UK) for nearly 2 years. I don't know what more I can say than to tell you that I hit the jackpot with him as a cofounder. He is uniquely talented in everything tech and also an incredible mind to brainstorm and work through real problems with. His commitment to our project has made it possible for us to provide an innovative solution to a difficult problem and I am very proud that he is a part of our team and to call him a friend.",
+    "shortText": "[…] I don't know what more I can say than to tell you that I hit the jackpot with him as a cofounder. He is uniquely talented in everything tech and also an incredible mind to brainstorm and work through real problems with. […] I am very proud that he is a part of our team and to call him a friend."
   },
   {
+    "relevance": [
+      "mentorship"
+    ],
     "name": "Uzochukwu Okafor",
     "title": "Freelance Creative Web Developer",
     "url": "https://www.linkedin.com/in/uzochukwuokafor",
@@ -72,6 +109,9 @@
     "text": "Yousef is that mentor everyone wants who's patient, open minded, kind and clever. Yousef was attentive and asked the right questions to get a sense of what I needed out of the mentorship session I'd with him. He took his time to go through my CV and pointed out things I could do to improve the result I was already getting. After making the changes, Yousef asked that I send it to him and he still took another look at it and make some adjustments. Yousef shared with me a great number of resources and he introduced me to websites which will aid me in my job search and increase my chances of getting interviews. He carefully walked me through how I can write a good cover letter. I'd highly recommend Yousef to anyone."
   },
   {
+    "relevance": [
+      "mentorship"
+    ],
     "name": "Anonymous",
     "title": "Cyber Analyst",
     "url": "",
@@ -80,6 +120,9 @@
     "text": "Yousef was my mentor around a year and a half ago when I was on route to completing my degree in cybersecurity. I wanted to connect with others from an ethnic minority background who are also in cyber but was hesitant, lacked experience and wasn't sure how to go about it.\n\nAfter initiating this idea to Yousef, he helped me create a channel which grew from 7 members to around 70+ people who are all actively helping one another in their areas.\n\nThank you Yousef for helping me have this idea landed, giving me the courage to publicise it and helping our community connect with one another more easily!"
   },
   {
+    "relevance": [
+      "mentorship"
+    ],
     "name": "Fernando Sanchez-Roman Teran",
     "title": "Laboratory, Safety & Hygiene Manager",
     "url": "https://www.linkedin.com/in/fersanromter/",
@@ -88,6 +131,9 @@
     "text": "I have known Yousef for several years now, since our days at high school, and have been in touch ever since.\n\nYousef is an experienced tech entrepreneur who deeply understands his work and gets things done efficiently, thoroughly, and correctly in accordance with best practices. Drawing from his vast work and volunteering experience as well as his large skillset, Yousef has an immediate grasp of the scope of any task, and is quick to identify potential complications so they can be promptly addressed.\n\nYousef is a natural mentor who is generous with his time and expertise, and can be relied on by his colleagues and friends to provide valuable insight and guidance. I recommend Yousef to anyone who values a principled and honest team player."
   },
   {
+    "relevance": [
+      "mentorship"
+    ],
     "name": "Aftab Hasan",
     "title": "Deep Learning and Computer Vision Nanodegree Graduate",
     "url": "https://ahkhalwai.github.io/",
@@ -96,6 +142,9 @@
     "text": "I was lucky to talk to him on Computer Vision subject, MashaALLAH he is down to earth and I am super happy with that :)"
   },
   {
+    "relevance": [
+      "mentorship"
+    ],
     "name": "Syed Sabbir Sunny",
     "title": "Software Engineering Lead at Tiger Analytics",
     "url": "https://www.linkedin.com/in/syed-sabbir-sunny-b2649b82/",
@@ -104,6 +153,9 @@
     "text": "I came across Amar's path through an interview in krew.live where he used to be the CTO. He is someone with immense knowledge and empathy for people around him. He is a phd, which affirms for his knowledge. I also liked how helpful he is. He used to help on certain things if I asked through mail even after I left Krew. He is a great mentor for sure alongside being a great person."
   },
   {
+    "relevance": [
+      "mentorship"
+    ],
     "name": "Sorin Stanescu",
     "title": "R&D Manager at LIG Nanowise",
     "url": "https://www.linkedin.com/in/sorinlaur/",
@@ -112,14 +164,22 @@
     "text": "You are really a cool guy, very knowledgeable. I was looking a couple of times at your website and I am amazed by your expertise and about your projects. You never say no to people who ask for your advises. Please keep going! You are an ocean of knowledge"
   },
   {
+    "relevance": [
+      "fractional-cto",
+      "mentorship"
+    ],
     "name": "Ioan Lanis",
     "title": "Software Engineer",
     "url": "https://www.linkedin.com/in/ioan-l-7a71281ba/",
     "date": "2023-06-19T11:07:30.820Z",
     "avatar": "/memo/assets/images/testimonials/avatars/ioan-lanis.jpeg",
-    "text": "Yousef is a detail-oriented person who tirelessly seeks optimal solutions, even for minor tasks. His commitment to excellence, ability to inspire, and clear communication are unparalleled.\n\nIn tough situations, he remains steady, showcasing not just great software skills, but also impressive leadership and strategic thinking. His deep curiosity helps him convert complex situations into opportunities.\n\nYousef's value extends far beyond his professional skills. As a person, he embodies admirable qualities that make him stand out. In fact, when I compare individuals, it's Yousef who I use as a standard of excellence. It's been a pleasure and a privilege to know him."
+    "text": "Yousef is a detail-oriented person who tirelessly seeks optimal solutions, even for minor tasks. His commitment to excellence, ability to inspire, and clear communication are unparalleled.\n\nIn tough situations, he remains steady, showcasing not just great software skills, but also impressive leadership and strategic thinking. His deep curiosity helps him convert complex situations into opportunities.\n\nYousef's value extends far beyond his professional skills. As a person, he embodies admirable qualities that make him stand out. In fact, when I compare individuals, it's Yousef who I use as a standard of excellence. It's been a pleasure and a privilege to know him.",
+    "shortText": "[…] Yousef's value extends far beyond his professional skills. As a person, he embodies admirable qualities that make him stand out. In fact, when I compare individuals, it's Yousef who I use as a standard of excellence. It's been a pleasure and a privilege to know him."
   },
   {
+    "relevance": [
+      "mentorship"
+    ],
     "name": "Abobakr Aljawfi",
     "title": "Founder AAA Solutions, Antenna Engineer",
     "url": "https://www.linkedin.com/in/abobakr-aljawfi-155b488b/",
