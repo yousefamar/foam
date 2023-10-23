@@ -104,9 +104,9 @@ layout: base
       </noscript>
       <a class="hidden p-author h-card" href="{{ authorUrl | url }}">{{ author }}</a>
       {% if collection == 'all' %}
-        {% set children = collections[collection] | children(page.url) | reverse %}
+        {% set children = collections[collection] | children(page.url) | publicPosts | reverse %}
       {% else %}
-        {% set children = collections[collection] | reverse %}
+        {% set children = collections[collection] | publicPosts | reverse %}
       {% endif %}
       {% for child in children %}
         <div class="h-entry">
