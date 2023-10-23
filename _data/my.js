@@ -244,9 +244,26 @@ module.exports = {
 	experience: [
 		{
 			role: "Co-founder / CTO",
-			organisation: "Krew Live Ltd",
+			//organisation: "Krew Live Ltd",
+			organisation: "krew.build",
 			period: "Apr 2020 – Present",
-			description: `<a href="https://krew.live" target="_blank">Krew</a> combines community and fitness. We have classes for any device and AI-powered leaderboards if your device has a camera! Easily share highlights and invite your friends to join you in hundreds of live and on-demand classes. We've been featured as #1 product of the day and week on <a href="https://www.producthunt.com/posts/krew" target="_blank">ProductHunt</a> and we raised a total of $1.8MM at an 8-figure valuation in less than a year by our <a href="https://www.businessinsider.com/krew-pitch-deck-fitness-peloton-seed-round-2021-9" target="_blank">seed round</a>.`
+			//description: `<a href="https://krew.live" target="_blank">Krew</a> combines community and fitness. We have classes for any device and AI-powered leaderboards if your device has a camera! Easily share highlights and invite your friends to join you in hundreds of live and on-demand classes. We've been featured as #1 product of the day and week on <a href="https://www.producthunt.com/posts/krew" target="_blank">ProductHunt</a> and we raised a total of $1.8MM at an 8-figure valuation in less than a year by our <a href="https://www.businessinsider.com/krew-pitch-deck-fitness-peloton-seed-round-2021-9" target="_blank">seed round</a>.`
+			description: `<a href="https://krew.build" target="_blank">Krew</a> is an AI studio specialising in AI-related strategy and implementation. We have built deep tech products across healthcare, fitness, bizops for desktop and mobile usage. Our world-class team has been featured on publications such as <a href="https://www.businessinsider.com/krew-pitch-deck-fitness-peloton-seed-round-2021-9" target="_blank">Business Insider</a> and our products were ranked #1 product of the day and week on <a href="https://www.producthunt.com/posts/krew" target="_blank">ProductHunt</a>.`
+		}, {
+			role: "Fractional CTO",
+			organisation: "Cura Systems Ltd",
+			period: "Jul 2023 – Present",
+			description: `AI secretary for clinicians, deployed in a week to two top private practices (London Clinic, Cleveland Clinic)`
+		}, {
+			role: "Fractional CTO",
+			organisation: "Support Muslim Business Forum Ltd",
+			period: "Jul 2022 – Present",
+			description: `A large UK-based business network, setting up a LinkedIn-like platform with 200+ active users`
+		}, {
+			role: "Fractional CTO",
+			organisation: "Sawa Global Ltd",
+			period: "Nov 2021 – Present",
+			description: `Non-profit mosque app, built the app used by 180+ mosques across the UK and their communities`
 		}, {
 			role: "Entrepreneur (LD14)",
 			organisation: "Entrepreneur First",
@@ -380,7 +397,7 @@ Decided to transfer course from Electronic Engineering with Business Management 
 	volunteering: [
 		{
 			role: "Tech and Entrepreneruship Mentor",
-			description: `Yousef tries to give back by providing mentorship and practical support to budding entrepreneurs and developers, through <a href="https://muslamicmakers.com" target="_blank">Muslamic Makers</a>, <a href="https://adplist.org" target="_blank">ADPList</a>, and <a href="https://underdogdevs.org" target="_blank">Underdog Devs</a>.`
+			description: `Yousef tries to give back by providing mentorship and practical support to budding entrepreneurs and developers, through <a href="https://levelupo.com/" target="_blank">Levelupo</a>, <a href="https://adplist.org" target="_blank">ADPList</a>, and <a href="https://underdogdevs.org" target="_blank">Underdog Devs</a>.`
 		}, {
 			role: "Sustainability Ambassador",
 			description: `Yousef volunteered as Welcome Team member and later Sustainability Ambassador for <a href="https://mycauseuk.com/" target="_blank">My Cause UK</a> to raise money for <a href="https://www.thecalmzone.net/" target="_blank">CALM</a>.`
@@ -419,29 +436,339 @@ Decided to transfer course from Electronic Engineering with Business Management 
 
 	projects: [
 		{
-			name: "4<sup>th</sup> Year MEng Final Year Project",
+			name: "Krew Live",
+			video: {
+				href: "/assets/videos/krew.mp4",
+				type: "video/mp4"
+			},
+			description: "AI-powered live and on-demand fitness classes. $1.8MM pre-seed raised at 8-figure valuation.",
+			links: [{
+				href: "https://krew.live",
+				label: "Web"
+			}, {
+				href: "https://get.krew.live/android",
+				label: "Android"
+			}, {
+				href: "https://get.krew.live/ios",
+				label: "iOS"
+			}],
+			icons: [{
+				image: {
+					thumb: "/assets/images/accolades/product-hunt.png",
+					alt: "Product Hunt Product of the Week"
+				},
+				href: "https://www.producthunt.com/products/krew/awards"
+			}, {
+				image: {
+					thumb: "/assets/images/accolades/business-insider.png",
+					alt: "Business Insider"
+				},
+				href: "https://www.businessinsider.com/krew-pitch-deck-fitness-peloton-seed-round-2021-9"
+			}, {
+				image: {
+					thumb: "/assets/images/accolades/entrepreneur-first.png",
+					alt: "Entrepreneur First"
+				},
+				href: "https://www.joinef.com/companies/krew/"
+			}, {
+				image: {
+					thumb: "/assets/images/accolades/london-business-school.png",
+					alt: "London Business School Incubator"
+				},
+				href: "https://starthub.london.edu/krew-cuts-a-1-6m-seed-funding-deal/"
+			}, {
+				image: {
+					thumb: "/assets/images/accolades/sporttechie.png",
+					alt: "SportTechie"
+				},
+				href: "https://www.sportsbusinessjournal.com/Daily/Issues/2021/09/29/Technology/digital-workout-provider-krew-closes-seed-round-will-implement-ai.aspx"
+			}]
+		}, {
+			name: "Cura Assist",
+			video: {
+				href: "/assets/videos/cura-compressed.mp4",
+				type: "video/mp4"
+			},
+			description: "Capture and transcribe medical consultations, AI turns these into medical notes and letters.",
+			links: [{
+				href: "https://curasystems.co.uk",
+				label: "Web"
+			}, {
+				href: "https://play.google.com/store/apps/details?id=uk.co.curasystems.assist",
+				label: "Android"
+			}, {
+				href: "https://apps.apple.com/us/app/cura-assist/id6463037904",
+				label: "iOS"
+			}],
+			icons: [{
+				image: {
+					thumb: "/assets/images/accolades/world-family-medicine-journal.png",
+					alt: "World Family Medicine Journal"
+				},
+				href: "http://www.mejfm.com/"
+			}, {
+				image: {
+					thumb: "/assets/images/accolades/london-clinic.png",
+					alt: "The London Clinic"
+				},
+				href: "https://www.thelondonclinic.co.uk/"
+			}, {
+				image: {
+					thumb: "/assets/images/accolades/cleveland-clinic.png",
+					alt: "Cleveland Clinic"
+				},
+				href: "https://clevelandcliniclondon.uk/"
+			}],
+		}, {
+			name: "Sawa",
 			image: {
-				thumb: "res/images/projects/fourth-year.png",
+				thumb: "/assets/images/banners/sawa-banner-fonts-baked.svg",
+				alt: "Sawa banner"
+			},
+			description: "2000+ UK mosques with notifications, accurate prayer times, digital donations, and more, completely free.",
+			links: [{
+				href: "https://sawa.global",
+				label: "Web"
+			}, {
+				href: "https://get.sawa.global/android",
+				label: "Android"
+			}, {
+				href: "https://get.sawa.global/ios",
+				label: "iOS"
+			}],
+			icons: [{
+				image: {
+					thumb: "/assets/images/accolades/islam-channel.png",
+					alt: "Islam Channel"
+				},
+				href: "https://amar.io/islamchannel.mp4"
+			}, {
+				image: {
+					thumb: "/assets/images/accolades/mosque-expo.png",
+					alt: "Mosque Expo"
+				},
+				href: "https://mosqueexpo.com/"
+			}, {
+				image: {
+					thumb: "/assets/images/accolades/nbc.png",
+					alt: "National Burial Council"
+				},
+				href: "https://nbc.org.uk/"
+			}],
+		}, {
+			name: "PhD thesis",
+			video: {
+				href: "/assets/videos/phd-compressed.mp4",
+				type: "video/mp4"
+			},
+			description: "P2P update dissemination in browser-based networked virtual environments. Derived libraries are open source and available at <a href=\"https://libfabric.com\" target=\"_blank\">libfabric.com</a>.",
+			links: [{
+				href: "https://yousefamar.com/memo/notes/my/phd/",
+				label: "Info"
+			}, {
+				href: "https://amar.io/thesis.pdf",
+				label: "PDF"
+			}, {
+				href: "https://yousefamar.com/memo/notes/my/publications/",
+				label: "Publications"
+			}, {
+				href: "https://yousefamar.com/memo/notes/my/awards/",
+				label: "Awards"
+			}],
+			icons: [{
+				image: {
+					thumb: "/assets/images/accolades/qmul-logo-white.png",
+					alt: "Queen Mary University of London"
+				},
+				href: "https://www.qmul.ac.uk/"
+			}, {
+				image: {
+					thumb: "/assets/images/accolades/unige.png",
+					alt: "Università di Genova"
+				},
+				href: "https://unige.it/"
+			}, {
+				image: {
+					thumb: "/assets/images/accolades/imperial.png",
+					alt: "Imperial College London"
+				},
+				href: "https://www.imperial.ac.uk/"
+			}],
+		}, {
+			name: "Shelfiecat",
+			video: {
+				href: "/assets/videos/shelfiecat-compressed.mp4",
+				type: "video/mp4"
+			},
+			description: "Your virtual library. Import your books from Goodreads and never use Goodreads again!",
+			links: [{
+				href: "https://shelfiecat.com",
+				label: "Web"
+			}, {
+				href: "https://shelfie.cat/amar",
+				label: "Profile"
+			}],
+		}, {
+			name: "tinks.ai",
+			video: {
+				href: "/assets/videos/tinks.mp4",
+				type: "video/mp4"
+			},
+			description: "A deepfake TikTok chatbot answering your questions via GPT-3.",
+			links: [{
+				href: "http://tinks.ai",
+				label: "Web"
+			}, {
+				href: "https://tiktok.com/@tinks.ai",
+				label: "TikTok"
+			}],
+		}, {
+			name: "deen.ai",
+			image: {
+				thumb: "/assets/images/banners/deen.jpg",
+				alt: "Deen.ai banner"
+			},
+			description: "Islamic ChatGPT. Also reachable through WhatsApp.",
+			links: [{
+				href: "https://deen.ai",
+				label: "Web"
+			}, {
+				href: "https://wa.me/message/IZSJDPPLP552G1",
+				label: "WhatsApp"
+			}, {
+				href: "https://yousefamar.com/memo/projects/deen-ai/",
+				label: "Info"
+			}],
+		}, {
+			name: "Grandtutors",
+			video: {
+				href: "/assets/videos/student-projects-shortest-nosound-compressed-spedup.mp4",
+				type: "video/mp4"
+			},
+			description: "Took what I learned from my time as a school teacher and made a business out of it, until covid.",
+			links: [{
+				href: "https://yousefamar.github.io/grandtutors.org/",
+				label: "Web"
+			}, {
+				href: "https://yousefamar.com/memo/projects/grandtutors/",
+				label: "Info"
+				// }, {
+				// 	href: "https://scratch.mit.edu/users/dramar/",
+				// 	label: "Scratch"
+			}, {
+				href: "https://py.amar.io/",
+				label: "Material"
+			}],
+		}, {
+			name: "Optimal load balancing",
+			image: {
+				thumb: "/assets/images/banners/load-balancing-padded.jpg",
+				alt: "Load balancing system diagram"
+			},
+			description: "Near-optimal job distribution decisions in distributed messaging systems under specific constraints.",
+			links: [{
+				href: "https://yousefamar.com/memo/assets/papers/US20190129771A1.pdf",
+				label: "Patent"
+			}],
+		}, {
+			name: "Databox",
+			image: {
+				thumb: "/assets/images/banners/databox-padded.jpg",
+				alt: "Databox architecture diagram"
+			},
+			description: "Designed an built first versions of a privacy-preserving personal data analytics platform which then went on to raise £1.5M in EPSRC funding.",
+			links: [{
+				href: "https://www.imperial.ac.uk/systems-algorithms-design-lab/research/databox-project/",
+				label: "Info",
+			}, {
+				href: "https://github.com/me-box/databox/",
+				label: "Code",
+			}],
+		}, {
+			name: "Multimodal 3D reconstruction",
+			image: {
+				thumb: "/assets/images/banners/dense-padded.jpg",
+				alt: "3D reconstruction of a view from a car"
+			},
+			description: "Exploiting complementarity between different depth-sensing modalities for incremental dense scene reconstruction.",
+			links: [{
+				href: "https://yousefamar.com/memo/assets/papers/ondra2015iros.pdf",
+				label: "Paper"
+			}],
+			// }, {
+			// 	name: "Autonomous drone",
+			// 	image: {
+			// 		thumb: "/assets/images/third-year.png",
+			// 		alt: "Quadcopter-mounted teddy bear"
+			// 	},
+			// 	description: "Building a quadcopter that can autonomously transport a payload from the roof of a university building to an arbitrary target.",
+			// 	links: [{
+			// 		href: "",
+			// 		label: "Dissertation"
+			// 	}],
+		}, {
+			name: "UAV 3D mapping",
+			image: {
+				thumb: "/assets/images/fourth-year.png",
 				alt: "Shipwreck 3D scan"
 			},
 			description: "Design and implementation of a low-cost UAV sensor system for constructing object and topographical 3D models in real-time.",
-			link: {
-				href: "javascript:alert('Coming soon!')",
-				label: "Report"
-			}
+			links: [{
+				href: "https://amar.io/meng.pdf",
+				label: "Dissertation"
+			}],
 		}, {
-			name: "3<sup>rd</sup> Year MEng Group Project",
-			image: {
-				thumb: "res/images/projects/third-year.png",
-				alt: "Quadcopter-mounted teddy bear"
+			name: "camwi.re",
+			logo: {
+				thumb: "/assets/images/icons/camwire.svg",
+				alt: "camwi.re logo"
 			},
-			description: "Building a quadcopter that can autonomously transport a payload from the roof of the EECE building to an arbitrary target.",
-			link: {
-				href: "javascript:alert('Coming soon!')",
-				label: "Report"
-			}
+			description: "\"The Pastebin of video chat\"; my first foray into WebRTC.",
+			links: [{
+				href: "https://camwi.re",
+				label: "Web",
+			}, {
+				href: "https://github.com/yousefamar/camwi.re",
+				label: "Code"
+			}],
+		}, {
+			name: "filewi.re",
+			logo: {
+				thumb: "/assets/images/icons/filewire.svg",
+				alt: "filewi.re logo"
+			},
+			description: "WebTorrent client with peers, chunks, and bandwidth visualised with D3.",
+			links: [{
+				href: "https://filewi.re",
+				label: "Web",
+			}, {
+				href: "https://github.com/yousefamar/filewi.re",
+				label: "Code"
+			}],
+		}, {
+			name: "drawi.re",
+			logo: {
+				thumb: "/assets/images/icons/drawire.svg",
+				alt: "drawi.re logo"
+			},
+			description: "Instant collaborative canvas, starting point for <a href=\"https://cowi.re\">cowi.re</a>.",
+			links: [{
+				href: "https://drawi.re",
+				label: "Web",
+			}, {
+				href: "https://github.com/yousefamar/drawi.re",
+				label: "Code"
+			}],
+		}, {
+			name: "&bull; &bull; &bull;",
+			description: `Smaller scattered projects:<ul style="padding-inline-start: 1.5em; margin-block-start: 0.5em; margin-block-end: 0;"><li><a href="https://github.com/yousefamar" target="_blank">200+ GitHub repos</a></li><li><a href="https://yousefamar.com/memo/" target="_blank">Devlogs</a></li><li><a href="https://yousefamar.github.io/graph.html" target="_blank">Old project graph</a></li></ul>`,
 		}
 	],
+
+	//Smart home
+	//Communicator
+	//Amarbot
+	//bonsai
 
 	skills: [
 		"English (fluent)",

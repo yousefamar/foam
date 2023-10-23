@@ -9,7 +9,7 @@ public: true
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Personal webpage of Dr Yousef Amar &ndash; CTO / Co-founder Krew.">
+    <meta name="description" content="Personal webpage of Dr Yousef Amar &ndash; Fractional CTO and co-founder of Krew, Sawa, Cura.">
     <script type="application/ld+json">
       {
         "@context": "http://schema.org",
@@ -19,7 +19,7 @@ public: true
           "addressLocality": "London",
           "addressRegion": "UK",
           "postalCode": "NW2",
-          "streetAddress": "West Kensington"
+          "streetAddress": "Willesden Green"
         },
         "colleague": [
           "http://www.eecs.qmul.ac.uk/~tysong/",
@@ -27,11 +27,14 @@ public: true
           "https://www.ruichuan.org/",
           "https://iakkus.github.io/",
           "https://people.mpi-sws.org/~paditya/",
-          "https://www.linkedin.com/in/josemartinquesada/"
+          "https://www.linkedin.com/in/josemartinquesada/",
+          "https://www.linkedin.com/in/420712181/",
+          "https://www.linkedin.com/in/dr-rodwan-husein-194415278/",
+          "https://www.linkedin.com/in/mohammed-asif-161a8118a/"
         ],
         "email": "mailto:yousef@amar.io",
         "image": "res/image/headshot.jpg",
-        "jobTitle": "CTO / Co-founder Krew",
+        "jobTitle": "Fractional CTO",
         "name": "Yousef Amar",
         "alumniOf": "University of Birmingham",
         "birthPlace": "Cairo, Egypt",
@@ -61,8 +64,15 @@ public: true
     <link rel="microsub" href="https://aperture.p3k.io/microsub/790">
 
     <style>
-      html, body {
-        height: 100%;
+      html{
+        scroll-behavior: smooth;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        clear: both;
+      }
+      .hero {
+        height: 100vh;
+        height: 100svh;
       }
       #scene {
         overflow: hidden;
@@ -92,11 +102,45 @@ public: true
         text-align: center;
         white-space: nowrap;
       }
-      .icon-links {
+      .section {
+        max-width: var(--content-width);
+        margin-right: auto;
+        margin-left: auto;
+      }
+      .section-heading {
+        color: var(--text-bright);
+        font-size: 1.5em;
+        margin-top: 4rem;
+        margin-bottom: 2rem;
+        font-weight: bold;
+        text-align: center;
+        white-space: nowrap;
+      }
+      .section-body p {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+      }
+      .project-grid {
+        margin-top: 4rem;
+        margin-bottom: 4rem;
+      }
+      .hero-links {
         margin-top: 13rem;
         pointer-events: all;
-        font-size: 2.5em;
+        font-size: 1em;
         text-align: center;
+        white-space: nowrap;
+        line-height: 2;
+      }
+      .hero-links a {
+        white-space: nowrap;
+      }
+      .values {
+        text-align: center;
+        font-size: 0.5em;
+        color: var(--text-muted);
+        margin-bottom: 2rem;
+        white-space: nowrap;
       }
       a[href^=mailto\:]:before {
         content: "";
@@ -108,6 +152,21 @@ public: true
         pointer-events: none;
         background: radial-gradient(transparent 50%, rgba(0, 0, 0, 0.6));
       }
+      .down-caret {
+        position: absolute;
+        top: 0;
+        height: 100vh;
+        height: 100svh;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        pointer-events: none;
+      }
+      .down-caret i {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+      }
       @media (min-width: 550px) {
         .title {
           font-size: 4em;
@@ -115,9 +174,9 @@ public: true
         .subtitle {
           font-size: 1.5em;
         }
-        .icon-links {
-          margin-top: 18rem;
-          font-size: 3em;
+        .hero-links {
+          margin-top: 15rem;
+          font-size: 1em;
         }
       }
     </style>
@@ -144,166 +203,203 @@ public: true
       <a class="u-url u-uid url uid url fn n" href="https://yousefamar.com"></a>
       <a class="u-email" href="mailto:yousef@amar.io" rel="me">yousef@amar.io</a><br>
       <a class="p-tel" href="tel:+447845443890">+44 7845 443890</a>
-      <span class="p-job-title p-role">CTO</span>
+      <span class="p-job-title p-role">Fractional CTO</span>
       <a class="p-org" href="http://krew.live/" target="blank">Krew Live Ltd</a>
     </div>
 
-    <div id="scene" class="fullscreen">
-      <div class="fullscreen" data-depth="-0.01">
-        <div class="fullscreen center">
-          <div id="my-head" style="margin-bottom: 15em; pointer-events: all;"></div>
+    <div class="hero">
+      <div id="scene" class="fullscreen">
+        <div class="fullscreen" data-depth="-0.01">
+          <div class="fullscreen center">
+            <div id="my-head" style="margin-bottom: 15em; pointer-events: all;"></div>
+          </div>
         </div>
-      </div>
-      <div class="fullscreen" data-depth="-0.01">
-        <div class="fullscreen center">
-          <div class="title">Dr Yousef Amar</div>
+        <div class="fullscreen" data-depth="-0.01">
+          <div class="fullscreen center">
+            <h1 class="title">Dr Yousef Amar</h1>
+          </div>
         </div>
-      </div>
-      <div class="fullscreen" data-depth="0">
-        <div class="fullscreen center">
-          <div class="subtitle" style="margin-top: 5em;">CTO / Co-founder <a style="pointer-events: all;" href="https://krew.live" target="_top">Krew</a></div>
+        <div class="fullscreen" data-depth="0">
+          <div class="fullscreen center">
+            <h2 class="subtitle" style="margin-top: 5em;">Fractional CTO</h2>
+          </div>
         </div>
-      </div>
-      <div class="fullscreen" data-depth="0">
-        <div class="fullscreen center">
-          <div class="icon-links">
-            <a href="https://yousefamar.github.io/" target="_blank"><i class="fa-solid fa-address-card"></i></a>
-            <a href="mailto:yousef@amar.io?Subject=Hello%2C%20Yousef!" target="_blank"><i class="fa-solid fa-envelope"></i></a>
-            <a href="https://amar.io/meet/" target="_blank"><i class="fa-solid fa-calendar"></i></a>
-            <a href="/memo/" target="_blank"><i class="fa-solid fa-database"></i></a>
-            <a href="/memo/log/" target="_blank"><i class="fa-solid fa-rss"></i></a>
+        <div class="fullscreen" data-depth="0">
+          <div class="fullscreen center">
+            <div class="hero-links">
+              <a href="#about" target="_blank"><i class="fa-solid fa-address-card"></i> About</a>&nbsp;&nbsp;&bull;&nbsp;
+              <a href="/memo/notes/my/contact/" target="_blank"><i class="fa-solid fa-envelope"></i> Contact</a><wbr>&nbsp;&nbsp;&bull;&nbsp;
+              <a href="/memo/" target="_blank"><i class="fa-solid fa-database"></i> Notes</a>&nbsp;&nbsp;&bull;&nbsp;
+              <a href="/memo/log/" target="_blank"><i class="fa-solid fa-rss"></i> Feed</a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="vignette fullscreen" style="height: 100vh;"></div>
+      <div class="vignette fullscreen" style="height: 100vh; height: 100svh;"></div>
 
-    <script>
-      window.hardwareAccelAvail = (() => {
-        try {
-          const canvas = document.createElement('canvas');
-          return !!(window.WebGLRenderingContext && (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')));
-        } catch (e) {
-          return false;
-        }
-      })();
+      <div class="down-caret fullscreen"><i class="fa-solid fa-chevron-down"></i></div>
 
-      const generateDots = (depth) => {
-        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-        svg.setAttribute('width', '100%');
-        svg.setAttribute('height', '100%');
-        svg.setAttribute('viewBox', '0 0 10000 10000');
-        svg.setAttribute('preserveAspectRatio', 'xMidYMid slice');
-        for (let i = 0; i < 100; ++i) {
-          const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-          const normalDist = (mean, std) => {
-            let u = 0, v = 0;
-            while (u === 0) u = Math.random();
-            while (v === 0) v = Math.random();
-            return mean + std * Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
-          };
-
-          const theta = Math.random() * 2 * Math.PI;
-          const x = (normalDist(0.9, 0.3) * Math.cos(theta) + 1) * 0.5 * 100;
-          const y = (normalDist(0.9, 0.3) * Math.sin(theta) + 1) * 0.5 * 100;
-
-
-          circle.setAttribute('cx', x + '%');
-          circle.setAttribute('cy', y + '%');
-          circle.setAttribute('r', (1 + depth * 4) + 'px');
-          circle.setAttribute('fill', '#fff');
-          // set opacity
-          circle.setAttribute('opacity', depth * 0.1);
-          svg.appendChild(circle);
-        }
-        return svg;
-      };
-
-      for (let i = 0; i < 5; ++i) {
-        const outerDiv = document.createElement('div');
-        outerDiv.setAttribute('class', 'fullscreen');
-        outerDiv.setAttribute('data-depth', 0.1 + i * 0.1);
-
-        const innerDiv = document.createElement('div');
-        innerDiv.setAttribute('class', 'fullscreen center');
-        const dots = generateDots(i + 1);
-        innerDiv.appendChild(dots);
-        outerDiv.appendChild(innerDiv);
-        document.getElementById('scene').insertBefore(outerDiv, document.getElementById('scene').firstChild);
-      }
-
-      window.parallax = new Parallax(document.getElementById('scene'));
-      if (!window.hardwareAccelAvail)
-        window.parallax.disable();
-    </script>
-
-    <script type="module">
-      import * as THREE from 'three';
-
-      // Check if webgl supported and enabled, and if not, append static image
-      if (!window.hardwareAccelAvail) {
-        const img = document.createElement('img');
-        img.src = '/memo/assets/images/me-nobg.png';
-        img.style.width = '150px';
-        img.style.height = '150px';
-        img.style.objectFit = 'contain';
-        document.getElementById('my-head').appendChild(img);
-      } else {
-        const camera = new THREE.PerspectiveCamera( 70, 1, 0.01, 10 );
-        camera.position.z = 1;
-
-        const scene = new THREE.Scene();
-
-        const geometry = new THREE.PlaneGeometry(0.4, 0.4, 451, 451);
-        const material = new THREE.MeshStandardMaterial({
-          side: THREE.DoubleSide,
-          transparent: true,
-          map: new THREE.TextureLoader().load('/memo/assets/images/me-nobg.png'),
-          displacementMap: new THREE.TextureLoader().load('/memo/assets/images/me-depth.png'),
-        });
-
-        const mesh = new THREE.Mesh(geometry, material);
-        mesh.scale.set(1, 1, 0.1);
-        scene.add(mesh);
-
-        const light = new THREE.PointLight(0xffffff, 1, 100);
-        light.position.set(0, 0, 1);
-        scene.add(light);
-
-        let startRotationX = null;
-        let startRotationY = null;
-        function animation(time) {
-          if (window.parallax.orientationSupport) {
-            if (startRotationX === null)
-              startRotationX = window.parallax.inputX;
-            if (startRotationY === null)
-              startRotationY = window.parallax.inputY;
-            mesh.rotation.x = -(window.parallax.inputX - startRotationX) * 0.25;
-            mesh.rotation.y = -(window.parallax.inputY - startRotationY) * 0.25;
-          } else {
-            mesh.rotation.x = window.parallax.inputY * 0.5;
-            mesh.rotation.y = window.parallax.inputX * 0.5;
+      <script>
+        window.hardwareAccelAvail = (() => {
+          try {
+            const canvas = document.createElement('canvas');
+            return !!(window.WebGLRenderingContext && (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')));
+          } catch (e) {
+            return false;
           }
-          renderer.render(scene, camera);
+        })();
+
+        const generateDots = (depth) => {
+          const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+          svg.setAttribute('width', '100%');
+          svg.setAttribute('height', '100%');
+          svg.setAttribute('viewBox', '0 0 10000 10000');
+          svg.setAttribute('preserveAspectRatio', 'xMidYMid slice');
+          for (let i = 0; i < 100; ++i) {
+            const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            const normalDist = (mean, std) => {
+              let u = 0, v = 0;
+              while (u === 0) u = Math.random();
+              while (v === 0) v = Math.random();
+              return mean + std * Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+            };
+
+            const theta = Math.random() * 2 * Math.PI;
+            const x = (normalDist(0.9, 0.3) * Math.cos(theta) + 1) * 0.5 * 100;
+            const y = (normalDist(0.9, 0.3) * Math.sin(theta) + 1) * 0.5 * 100;
+
+
+            circle.setAttribute('cx', x + '%');
+            circle.setAttribute('cy', y + '%');
+            circle.setAttribute('r', (1 + depth * 4) + 'px');
+            circle.setAttribute('fill', '#fff');
+            // set opacity
+            circle.setAttribute('opacity', depth * 0.1);
+            svg.appendChild(circle);
+          }
+          return svg;
+        };
+
+        for (let i = 0; i < 5; ++i) {
+          const outerDiv = document.createElement('div');
+          outerDiv.setAttribute('class', 'fullscreen');
+          outerDiv.setAttribute('data-depth', 0.1 + i * 0.1);
+
+          const innerDiv = document.createElement('div');
+          innerDiv.setAttribute('class', 'fullscreen center');
+          const dots = generateDots(i + 1);
+          innerDiv.appendChild(dots);
+          outerDiv.appendChild(innerDiv);
+          document.getElementById('scene').insertBefore(outerDiv, document.getElementById('scene').firstChild);
         }
 
-        const renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
-        renderer.setSize(500, 500);
-        renderer.setAnimationLoop(animation);
+        window.parallax = new Parallax(document.getElementById('scene'));
+        if (!window.hardwareAccelAvail)
+          window.parallax.disable();
+      </script>
 
-        renderer.domElement.addEventListener('click', async () => {
-          if (DeviceOrientationEvent?.requestPermission) {
-            const permissionState = await window.DeviceOrientationEvent.requestPermission();
-            if (permissionState === "granted") {
-              window.parallax.destroy();
-              window.parallax = new Parallax(document.getElementById('scene'));
+      <script type="module">
+        import * as THREE from 'three';
+
+        // Check if webgl supported and enabled, and if not, append static image
+        if (!window.hardwareAccelAvail) {
+          const img = document.createElement('img');
+          img.src = '/memo/assets/images/me-nobg.png';
+          img.style.width = '150px';
+          img.style.height = '150px';
+          img.style.objectFit = 'contain';
+          document.getElementById('my-head').appendChild(img);
+        } else {
+          const camera = new THREE.PerspectiveCamera( 70, 1, 0.01, 10 );
+          camera.position.z = 1;
+
+          const scene = new THREE.Scene();
+
+          const geometry = new THREE.PlaneGeometry(0.4, 0.4, 451, 451);
+          const material = new THREE.MeshStandardMaterial({
+            side: THREE.DoubleSide,
+            transparent: true,
+            map: new THREE.TextureLoader().load('/memo/assets/images/me-nobg.png'),
+            displacementMap: new THREE.TextureLoader().load('/memo/assets/images/me-depth.png'),
+          });
+
+          const mesh = new THREE.Mesh(geometry, material);
+          mesh.scale.set(1, 1, 0.1);
+          scene.add(mesh);
+
+          const light = new THREE.PointLight(0xffffff, 1, 100);
+          light.position.set(0, 0, 1);
+          scene.add(light);
+
+          let startRotationX = null;
+          let startRotationY = null;
+          function animation(time) {
+            if (window.parallax.orientationSupport) {
+              if (startRotationX === null)
+                startRotationX = window.parallax.inputX;
+              if (startRotationY === null)
+                startRotationY = window.parallax.inputY;
+              mesh.rotation.x = -(window.parallax.inputX - startRotationX) * 0.25;
+              mesh.rotation.y = -(window.parallax.inputY - startRotationY) * 0.25;
+            } else {
+              mesh.rotation.x = window.parallax.inputY * 0.5;
+              mesh.rotation.y = window.parallax.inputX * 0.5;
             }
+            renderer.render(scene, camera);
           }
-        });
 
-        document.getElementById('my-head').appendChild(renderer.domElement);
-      }
-    </script>
+          const renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
+          renderer.setSize(500, 500);
+          renderer.setAnimationLoop(animation);
 
+          renderer.domElement.addEventListener('click', async () => {
+            if (DeviceOrientationEvent?.requestPermission) {
+              const permissionState = await window.DeviceOrientationEvent.requestPermission();
+              if (permissionState === "granted") {
+                window.parallax.destroy();
+                window.parallax = new Parallax(document.getElementById('scene'));
+              }
+            }
+          });
+
+          document.getElementById('my-head').appendChild(renderer.domElement);
+        }
+      </script>
+    </div>
+
+    <div id="about" class="section">
+      <h2 class="section-heading">Who?</h2>
+      <div class="section-body">
+        <div class="values">
+          <span style="font-size: 1.5em; font-weight: bold;">Independence</span>&bull;
+          <span style="font-size: 1.5em; font-weight: bold;">Integrity</span>&bull;
+          <span style="font-size: 1.5em; font-weight: bold;">Impact</span>
+        </div>
+
+        <p>
+          I am a <b>consultant</b> and <b>tech entrepreneur</b> specialising in <b>machine learning</b>, <b>automation</b>, and <b>distributed systems</b>.
+        </p>
+        <p>
+          I believe that resilient systems, whether technical or socio-economic, are the key to a more equitable world. Independence leads to freedom, freedom leads to empowerment, and empowerment leads to equity.
+        </p>
+        <p>
+          Over 13+ years, I have crossed paths with <a href="/memo/notes/my/testimonials" target="_blank">many people</a> across many sectors, published/filed <a href="/memo/notes/my/publications/" target="_blank">tier 1 papers and patents</a>, and won <a href="/memo/notes/my/awards/" target="_blank">prestigious awards</a>. You can learn more about me through these links:
+        </p>
+        <ul>
+          <li><a href="/memo/notes/my/testimonials" target="_blank">Testimonials</a></li>
+          <li><a href="/memo/notes/my/experience/" target="_blank">Experience</a></li>
+          <li><a href="/memo/notes/my/awards/" target="_blank">Awards</a></li>
+          <li><a href="/memo/notes/my/publications/" target="_blank">Publications</a></li>
+          <li><a href="/memo/notes/my/education/" target="_blank">Education</a></li>
+        </ul>  
+        <p>
+          Here's a selection of things I've worked on:
+        </p>
+
+        <div class="project-grid">
+          {% include "projects.njk" %}
+        </div>
+      </div>
+    </div>
   </body>
 </html>
