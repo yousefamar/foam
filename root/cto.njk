@@ -89,7 +89,7 @@ public: true
         <div class="mx-auto max-w-2xl sm:text-center">
           <h2 class="text-base font-semibold leading-7 text-indigo-600">About</h2>
           <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Your technical</br>co-founder-as-a-service</p>
-          <p class="mt-6 text-lg leading-8 text-gray-600">Hi! 👋 I'm <a href="https://yousefamar.com" class="text-indigo-600" target="_blank">Dr Yousef Amar</a>. I've been building tech products for 12+ years and helped grow multi-million dollar companies across many industries. I consult hourly for business not that don't need / can't find a full-time CTO. If we work together, your technical challenges disappear entirely.</p>
+          <p class="mt-6 text-lg leading-8 text-gray-600">Hi! 👋 I'm <a href="https://yousefamar.com" class="text-indigo-600" target="_blank">Yousef</a>. I've been building tech products for 12+ years and helped grow multi-million dollar companies across many industries. I consult hourly for business not that don't need / can't find a full-time CTO. If we work together, your technical challenges go the way of the dinosaur. 🦖</p>
         </div>
       </div>
       {% macro feature(heading, body, icon) %}
@@ -103,12 +103,12 @@ public: true
       {% endmacro %}
       <div class="mx-auto mt-16 max-w-7xl px-6 sm:mt-20 md:mt-24 lg:px-8">
         <dl class="mx-auto grid max-w-2xl grid-cols-1 gap-x-6 gap-y-10 text-base leading-7 text-gray-600 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-x-8 lg:gap-y-16">
-          {{ feature('Strategy', "Learn from a career's worth of experience; do not waste your time and money building the wrong product. Let's validate your proposition together before we write any code. I can talk to your customers and build your roadmap.", 'fa-list-check') }}
-          {{ feature('MVP', "Your web or mobile app will be live in a matter of weeks. Having done this dozens of times, I've built a toolbelt of resources and processes that will allow us to deploy in record time and be future-proof. Gone are the days of app store rejections and server downtime.", 'fa-rocket') }}
-          {{ feature('Growth', "What's a product without users? I will help you build a proper funnel and collect all the data you need to optimise this. I will source your first users and set up your acquisition channels. Make informed decisions from day 1; no more driving blind.", 'fa-seedling') }}
-          {{ feature('Hiring', 'I will hire your engineering team to match your needs. My wide network means you no longer need to compete with Big Tech for the best candidates, and after having conducted hundreds of interviews, my process for separating the wheat from the chaff is all but surgical.', 'fa-people-group') }}
-          {{ feature('Leadership', "I run a tight ship of based on modern agile practices combined with pragmatism gained over the years. I uplift developers to rise above their station and become world-class. Even developers that I've fired in the past will attest to you how our teams ran like clockwork and how great it feels to be part of a productive group of professionals.", 'fa-sailboat') }}
-          {{ feature('Scale', "Code is a liability; we'll keep the technical debt at bay. I will set up your infrastructure in such a way that we're ready for viral spikes and the take-off to millions of users. I know how to strike the balance between speed to market and maintainability.", 'fa-chart-line') }}
+          {{ feature('Strategy', "Don't waste your time and money building the wrong product. Let's validate before we build.", 'fa-list-check') }}
+          {{ feature('MVP', "You will be live in a matter of weeks. Avoid app store rejections and server downtime.", 'fa-rocket') }}
+          {{ feature('Growth', "I will source your first users and set up your acquisition channels. Make customer-led decisions from day 1.", 'fa-seedling') }}
+          {{ feature('Hiring', "Let me source and interview so you out-hire Big Tech for the best talent. I separate the wheat from the chaff.", 'fa-people-group') }}
+          {{ feature('Leadership', "I uplift developers with modern agile practices that combine pragmatism with long-term vision.", 'fa-sailboat') }}
+          {{ feature('Scale', "I will set up your infrastructure to allow for rapid growth without incurring tech debt, balancing speed to market and maintainability.", 'fa-chart-line') }}
         </dl>
       </div>
     </div>
@@ -188,7 +188,7 @@ public: true
           </div>
         </div>
 
-        <div class="grid grid-cols-1 gap-2 md:grid-cols-3">
+        {# <div class="grid grid-cols-1 gap-2 md:grid-cols-3">
           <div class="relative flex items-center justify-center md:justify-start">
             <p class="inline font-semibold text-gray-900">
               <i class="h-5 w-5 text-indigo-600 fa-solid fa-stairs"></i>
@@ -202,7 +202,7 @@ public: true
             <button type="button" class="relative -ml-px inline-flex items-center bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 focus:z-10">Series A</button>
             <button type="button" class="relative -ml-px inline-flex items-center rounded-r-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 focus:z-10">Beyond</button>
           </span>
-        </div>
+        </div> #}
 
         <div class="grid grid-cols-1 gap-2 md:grid-cols-3">
           <div class="relative flex items-center justify-center md:justify-start">
@@ -220,10 +220,21 @@ public: true
 
         <div class="relative flex items-start">
           <div class="flex h-6 items-center">
-            <input id="comments" aria-describedby="comments-description" name="comments" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
+            <i class="h-5 w-5 text-indigo-600 fa-solid fa-lightbulb mr-1"></i>
+            <input id="stage" aria-describedby="stage-description" name="stage" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
           </div>
           <div class="ml-3 text-sm leading-6">
-            <label for="comments" class="font-medium text-gray-900 font-semibold">One or more of the founders are from an underprivileged background</label>
+            <label for="stage" class="font-medium text-gray-900 font-semibold">Startup is idea-stage or pre-seed</label>
+          </div>
+        </div>
+
+        <div class="relative flex items-start">
+          <div class="flex h-6 items-center">
+            <i class="h-5 w-5 text-indigo-600 fa-solid fa-hand-holding-heart mr-1"></i>
+            <input id="underprivileged" aria-describedby="underprivileged-description" name="underprivileged" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
+          </div>
+          <div class="ml-3 text-sm leading-6">
+            <label for="underprivileged" class="font-medium text-gray-900 font-semibold">One or more of the founders are from an underprivileged background</label>
           </div>
         </div>
 
@@ -357,13 +368,14 @@ public: true
         const hoursPerWeek = parseInt(document.querySelector('input[type="range"]').value);
         let startupStage = 0;
         let techComplexity = 0;
-        let underprivileged = document.querySelector('input[type="checkbox"]').checked ? 1 : 0;
+        let notFunded = document.getElementById('stage').checked ? 1 : 0;
+        let underprivileged = document.getElementById('underprivileged').checked ? 1 : 0;
 
-        document.querySelectorAll(".startup-buttons button").forEach((button, index) => {
-          if (button.classList.contains("bg-indigo-600")) {
-            startupStage = index + 1;
-          }
-        });
+        //document.querySelectorAll(".startup-buttons button").forEach((button, index) => {
+        //  if (button.classList.contains("bg-indigo-600")) {
+        //    startupStage = index + 1;
+        //  }
+        //});
 
         document.querySelectorAll(".tech-buttons button").forEach((button, index) => {
           if (button.classList.contains("bg-indigo-600")) {
@@ -373,10 +385,10 @@ public: true
 
         let rate = 0
           + (hoursPerWeek * 5)
-          + (startupStage * startupStage * startupStage * 5)
+          + 3*3*3*5//+ (startupStage * startupStage * startupStage * 5)
           + (techComplexity * techComplexity * techComplexity * 10);
-        if (startupStage > 3)
-          rate *= 2;
+        //if (startupStage > 3)
+        //  rate *= 2;
         if (underprivileged)
           rate /= 5;
 
@@ -385,11 +397,11 @@ public: true
 
         priceEl.innerText = rate;
 
-        if (hoursPerWeek > 4) {
-          priceNoticeTextEl.innerText = "It's unlikely that you'll need more than 4 hours a week; I can do a LOT for you in less than that. Counterintuitively, my rate goes up with hours.";
+        if (notFunded) {
+          priceNoticeTextEl.innerText = "It may be too early for us to build together. If your idea is unvalidated, I can help you validate, but I won't let you burn your money to have an unvalidated product built!";
           priceNoticeEl.classList.remove("hidden");
-        } else if (startupStage < 2) {
-          priceNoticeTextEl.innerText = "It may be too early for us to work together. If your idea is unvalidated, I can help you validate, but I won't let you burn your money to have an unvalidated product built!";
+        } else if (hoursPerWeek > 4) {
+          priceNoticeTextEl.innerText = "It's unlikely that you'll need more than 4 hours a week; I can do a LOT for you in less than that. Counterintuitively, my rate goes up with hours due to opportunity cost.";
           priceNoticeEl.classList.remove("hidden");
         } else if (underprivileged) {
           priceNoticeTextEl.innerText = "I'm happy to work with underprivileged founders at a deeply discounted rate. I've been there and I know how hard it is to get started. Let's talk!";
@@ -404,7 +416,8 @@ public: true
         calculateRate();
       });
 
-      const buttonGroups = ["startup-buttons", "tech-buttons"];
+      //const buttonGroups = ["startup-buttons", "tech-buttons"];
+      const buttonGroups = ["tech-buttons"];
       
       buttonGroups.forEach((cls) => {
         document.querySelectorAll(`.${cls} button`).forEach((button) => {
@@ -418,9 +431,11 @@ public: true
         });
       });
 
-      document.querySelector('input[type="checkbox"]').addEventListener("change", calculateRate);
+      document.querySelectorAll('input[type="checkbox"]').forEach(function(checkbox) {
+        checkbox.addEventListener("change", calculateRate);
+      });
 
-      document.querySelectorAll(".startup-buttons button")[1].classList.add("bg-indigo-600", "text-white");
+      //document.querySelectorAll(".startup-buttons button")[1].classList.add("bg-indigo-600", "text-white");
       document.querySelectorAll(".tech-buttons button")[1].classList.add("bg-indigo-600", "text-white");
 
       calculateRate();
