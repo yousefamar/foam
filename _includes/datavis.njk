@@ -82,9 +82,11 @@
   const tree    = createTree(data);
   const circles = createCircles(data);
 
+  const switchWrapper = document.getElementsByClassName('switch-wrapper')[0];
   const graphWrapper = document.getElementById('graph-wrapper');
   graphWrapper.classList.add('circles');
   graphWrapper.removeChild(graphWrapper.firstChild);
+  switchWrapper.style.visibility = 'visible';
   graphWrapper.appendChild(circles);
 
   const layoutToggle = document.getElementById('layoutToggle');

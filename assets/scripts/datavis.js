@@ -184,7 +184,7 @@ export function createCircles(data) {
     .attr("font-family", "sans-serif")
     .attr("font-size", 10)
     .style("width", "100%")
-    .style("height", "68vh")
+    .style("height", "60vh")
     .call(zoom);
 
   const g = svg.append("g");
