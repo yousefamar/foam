@@ -1,13 +1,17 @@
 {
-  "apps": [{
-    "name": "brain",
-    "script": "server.js",
-    "watch": [ "server.js" ],
-    "node_args": "--max-old-space-size=4096",
-    "env_production" : {
-      "NODE_ENV": "production",
-      "PORT": 8080,
-      "ROOT_DIR": "/home/syncthing/sync/brain/root/"
+  "apps": [
+    {
+      "name": "brain",
+      "script": "server.js",
+      "watch": [
+        "server.js"
+      ],
+      "node_args": "--max-old-space-size=4096",
+      "env_production": {
+        "NODE_ENV": "production",
+        "PORT": 8080,
+        "ROOT_DIR": "/home/amar/sync/brain/root/"
+      }
     }
-  }]
+  ]
 }
