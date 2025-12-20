@@ -5,8 +5,12 @@ import * as THREE from "three";
 // ============================================================================
 
 // Layout & Positioning
-const WEBGL_TITLE_MARGIN_TOP = "30rem";
-const WEBGL_SUBTITLE_TOP = "20rem";
+// Mobile (< 550px)
+const WEBGL_TITLE_MARGIN_TOP_MOBILE = "35dvh";
+const WEBGL_SUBTITLE_TOP_MOBILE = "calc(35dvh + 5rem)";
+// Desktop (>= 550px)
+const WEBGL_TITLE_MARGIN_TOP_DESKTOP = "60dvh";
+const WEBGL_SUBTITLE_TOP_DESKTOP = "calc(60dvh + 8rem)";
 const WEBGL_TITLE_DEPTH = "-0.25";
 const WEBGL_SUBTITLE_DEPTH = "-0.2";
 
@@ -150,25 +154,36 @@ export function initHeroScene() {
   const titleElement = heroSection?.querySelector(".title");
   const subtitleElement = heroSection?.querySelector(".subtitle");
 
-  if (titleElement) {
-    titleElement.style.marginTop = WEBGL_TITLE_MARGIN_TOP;
-    // Set data-depth on the parent div, not the h1 itself
-    const titleParent = titleElement.closest("[data-depth]");
-    if (titleParent) {
-      titleParent.setAttribute("data-depth", WEBGL_TITLE_DEPTH);
-    }
-  }
+  // Function to update positioning based on window width
+  const updatePositioning = () => {
+    const isDesktop = window.innerWidth >= 550;
 
-  if (subtitleElement) {
-    subtitleElement.style.marginTop = "0rem";
-    subtitleElement.style.position = "relative";
-    subtitleElement.style.top = WEBGL_SUBTITLE_TOP;
-    // Set data-depth on the parent div, not the h2 itself
-    const subtitleParent = subtitleElement.closest("[data-depth]");
-    if (subtitleParent) {
-      subtitleParent.setAttribute("data-depth", WEBGL_SUBTITLE_DEPTH);
+    if (titleElement) {
+      titleElement.style.marginTop = isDesktop ? WEBGL_TITLE_MARGIN_TOP_DESKTOP : WEBGL_TITLE_MARGIN_TOP_MOBILE;
+      // Set data-depth on the parent div, not the h1 itself
+      const titleParent = titleElement.closest("[data-depth]");
+      if (titleParent) {
+        titleParent.setAttribute("data-depth", WEBGL_TITLE_DEPTH);
+      }
     }
-  }
+
+    if (subtitleElement) {
+      subtitleElement.style.marginTop = isDesktop ? WEBGL_SUBTITLE_TOP_DESKTOP : WEBGL_SUBTITLE_TOP_MOBILE;
+      subtitleElement.style.position = "";
+      subtitleElement.style.top = "";
+      // Set data-depth on the parent div, not the h2 itself
+      const subtitleParent = subtitleElement.closest("[data-depth]");
+      if (subtitleParent) {
+        subtitleParent.setAttribute("data-depth", WEBGL_SUBTITLE_DEPTH);
+      }
+    }
+  };
+
+  // Apply initial positioning
+  updatePositioning();
+
+  // Update positioning on window resize
+  window.addEventListener('resize', updatePositioning);
 
   // Reinitialize parallax after changing data-depth attributes
   if (window.parallax && window.Parallax) {
