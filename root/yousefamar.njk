@@ -9,7 +9,7 @@ public: true
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Personal webpage of Dr Yousef Amar &ndash; CTO and co-founder of Artanis, Krew, Sawa, Cura.">
+    <meta name="description" content="Personal webpage of Dr Yousef Amar &ndash; CTO and co-founder of Artanis.">
     <script type="application/ld+json">
       {
         "@context": "http://schema.org",
@@ -30,7 +30,9 @@ public: true
           "https://www.linkedin.com/in/josemartinquesada/",
           "https://www.linkedin.com/in/420712181/",
           "https://www.linkedin.com/in/dr-rodwan-husein-194415278/",
-          "https://www.linkedin.com/in/mohammed-asif-161a8118a/"
+          "https://www.linkedin.com/in/mohammed-asif-161a8118a/",
+          "https://www.linkedin.com/in/sam-miller-5415b0124/",
+          "https://www.linkedin.com/in/olly-styles-090437132/"
         ],
         "email": "mailto:yousef@amar.io",
         "image": "https://yousefamar.com/memo/assets/images/me.png",
@@ -97,6 +99,7 @@ public: true
         font-variant: small-caps;
         text-align: center;
         white-space: nowrap;
+        text-shadow: 0 0 20px rgba(0, 0, 0, 0.9), 0 0 40px rgba(0, 0, 0, 0.7);
       }
       #my-head {
         width: max(250px, min(100vw, 100vh));
@@ -117,6 +120,7 @@ public: true
         font-size: 1em;
         text-align: center;
         white-space: nowrap;
+        text-shadow: 0 0 30px rgba(0, 0, 0, 1), 0 0 60px rgba(0, 0, 0, 0.9), 0 0 90px rgba(0, 0, 0, 0.7);
       }
       .section {
         max-width: var(--content-width);
@@ -331,70 +335,8 @@ public: true
       </script>
 
       <script type="module">
-        import * as THREE from 'three';
-
-        // Check if webgl supported and enabled, and if not, append static image
-        if (!window.hardwareAccelAvail) {
-          const img = document.createElement('img');
-          img.src = '/memo/assets/images/me-technomancer.png';
-          // Image will inherit size from #my-head container CSS
-          document.getElementById('my-head').appendChild(img);
-        } else {
-          const camera = new THREE.PerspectiveCamera( 50, 1, 0.01, 10 );
-          camera.position.z = 0.5;
-
-          const scene = new THREE.Scene();
-
-          const geometry = new THREE.PlaneGeometry(0.4, 0.4, 451, 451);
-          const material = new THREE.MeshStandardMaterial({
-            side: THREE.DoubleSide,
-            transparent: true,
-            map: new THREE.TextureLoader().load('/memo/assets/images/me-technomancer.png'),
-            displacementMap: new THREE.TextureLoader().load('/memo/assets/images/me-technomancer-depth.png'),
-          });
-
-          const mesh = new THREE.Mesh(geometry, material);
-          mesh.scale.set(1, 1, 0.1);
-          scene.add(mesh);
-
-          const light = new THREE.PointLight(0xffffff, 1, 100);
-          light.position.set(0, 0, 1);
-          scene.add(light);
-
-          let startRotationX = null;
-          let startRotationY = null;
-          function animation(time) {
-            if (window.parallax.orientationSupport) {
-              if (startRotationX === null)
-                startRotationX = window.parallax.inputX;
-              if (startRotationY === null)
-                startRotationY = window.parallax.inputY;
-              mesh.rotation.x = -(window.parallax.inputX - startRotationX) * 0.05;
-              mesh.rotation.y = -(window.parallax.inputY - startRotationY) * 0.05;
-            } else {
-              mesh.rotation.x = window.parallax.inputY * 0.1;
-              mesh.rotation.y = window.parallax.inputX * 0.1;
-            }
-            renderer.render(scene, camera);
-          }
-
-          const renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
-          renderer.setSize(2500, 2500);
-          renderer.setPixelRatio(1);
-          renderer.setAnimationLoop(animation);
-
-          renderer.domElement.addEventListener('click', async () => {
-            if (DeviceOrientationEvent?.requestPermission) {
-              const permissionState = await window.DeviceOrientationEvent.requestPermission();
-              if (permissionState === "granted") {
-                window.parallax.destroy();
-                window.parallax = new Parallax(document.getElementById('scene'));
-              }
-            }
-          });
-
-          document.getElementById('my-head').appendChild(renderer.domElement);
-        }
+        import { initHeroScene } from '/memo/assets/scripts/hero-scene.js';
+        initHeroScene();
       </script>
     </div>
 
