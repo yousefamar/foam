@@ -17,3 +17,8 @@ protected/
 .obsidian/
 .trash/
 *.canvas
+
+
+
+# Ignore Smart Environment folder
+.smart-env
