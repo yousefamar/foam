@@ -98,6 +98,20 @@ public: true
         text-align: center;
         white-space: nowrap;
       }
+      #my-head {
+        width: max(250px, min(100vw, 100vh));
+        height: max(250px, min(100vw, 100vh));
+        position: relative;
+      }
+      #my-head canvas {
+        width: 100% !important;
+        height: 100% !important;
+      }
+      #my-head img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
       .subtitle {
         color: var(--text-muted);
         font-size: 1em;
@@ -221,7 +235,7 @@ public: true
       <div id="scene" class="fullscreen">
         <div class="fullscreen" data-depth="-0.01">
           <div class="fullscreen center">
-            <div id="my-head" style="margin-bottom: 15em; pointer-events: all;"></div>
+            <div id="my-head" style="margin-bottom: 5em; pointer-events: all;"></div>
           </div>
         </div>
         <div class="fullscreen" data-depth="-0.01">
@@ -244,14 +258,14 @@ public: true
             </div>
           </div>
         </div>
-        <div class="fullscreen" data-depth="0">
+        <!--<div class="fullscreen" data-depth="0">
           <div class="fullscreen center">
             <button class="cta-button" onclick="window.location.href='/cto'">
               <i class="fa-solid fa-handshake" style="margin-right: 0.5em;"></i>
               Let's work together
             </button>
           </div>
-        </div>
+        </div>-->
       </div>
       <div class="vignette fullscreen" style="height: 100vh; height: 100svh;"></div>
 
@@ -322,14 +336,12 @@ public: true
         // Check if webgl supported and enabled, and if not, append static image
         if (!window.hardwareAccelAvail) {
           const img = document.createElement('img');
-          img.src = '/memo/assets/images/me-nobg.png';
-          img.style.width = '150px';
-          img.style.height = '150px';
-          img.style.objectFit = 'contain';
+          img.src = '/memo/assets/images/me-technomancer.png';
+          // Image will inherit size from #my-head container CSS
           document.getElementById('my-head').appendChild(img);
         } else {
-          const camera = new THREE.PerspectiveCamera( 70, 1, 0.01, 10 );
-          camera.position.z = 1;
+          const camera = new THREE.PerspectiveCamera( 50, 1, 0.01, 10 );
+          camera.position.z = 0.5;
 
           const scene = new THREE.Scene();
 
@@ -337,8 +349,8 @@ public: true
           const material = new THREE.MeshStandardMaterial({
             side: THREE.DoubleSide,
             transparent: true,
-            map: new THREE.TextureLoader().load('/memo/assets/images/me-nobg.png'),
-            displacementMap: new THREE.TextureLoader().load('/memo/assets/images/me-depth.png'),
+            map: new THREE.TextureLoader().load('/memo/assets/images/me-technomancer.png'),
+            displacementMap: new THREE.TextureLoader().load('/memo/assets/images/me-technomancer-depth.png'),
           });
 
           const mesh = new THREE.Mesh(geometry, material);
@@ -357,17 +369,18 @@ public: true
                 startRotationX = window.parallax.inputX;
               if (startRotationY === null)
                 startRotationY = window.parallax.inputY;
-              mesh.rotation.x = -(window.parallax.inputX - startRotationX) * 0.25;
-              mesh.rotation.y = -(window.parallax.inputY - startRotationY) * 0.25;
+              mesh.rotation.x = -(window.parallax.inputX - startRotationX) * 0.05;
+              mesh.rotation.y = -(window.parallax.inputY - startRotationY) * 0.05;
             } else {
-              mesh.rotation.x = window.parallax.inputY * 0.5;
-              mesh.rotation.y = window.parallax.inputX * 0.5;
+              mesh.rotation.x = window.parallax.inputY * 0.1;
+              mesh.rotation.y = window.parallax.inputX * 0.1;
             }
             renderer.render(scene, camera);
           }
 
           const renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
-          renderer.setSize(500, 500);
+          renderer.setSize(2500, 2500);
+          renderer.setPixelRatio(1);
           renderer.setAnimationLoop(animation);
 
           renderer.domElement.addEventListener('click', async () => {
@@ -395,13 +408,13 @@ public: true
         </div>
 
         <p>
-          I am a <b>consultant</b> and <b>tech entrepreneur</b> specialising in <b>machine learning</b>, <b>automation</b>, and <b>distributed systems</b>.
+          I am a <b>tech founder</b> specialising in <b>machine learning</b>, <b>automation</b>, and <b>distributed systems</b>.
         </p>
         <p>
           I believe that resilient systems, whether technical or socio-economic, are the key to a more equitable world. Independence leads to freedom, freedom leads to empowerment, and empowerment leads to equity.
         </p>
         <p>
-          Over 13+ years, I have crossed paths with <a href="/memo/notes/my/testimonials" target="_blank">many people</a> across many sectors, published/filed <a href="/memo/notes/my/publications/" target="_blank">tier 1 papers and patents</a>, and won <a href="/memo/notes/my/awards/" target="_blank">prestigious awards</a>. You can learn more about me through these links:
+          Over 15+ years, I have crossed paths with <a href="/memo/notes/my/testimonials" target="_blank">many people</a> across many sectors, published/filed <a href="/memo/notes/my/publications/" target="_blank">tier 1 papers and patents</a>, and won <a href="/memo/notes/my/awards/" target="_blank">prestigious awards</a>. You can learn more about me through these links:
         </p>
         <ul>
           <li><a href="/memo/notes/my/testimonials" target="_blank">Testimonials</a></li>
@@ -409,7 +422,7 @@ public: true
           <li><a href="/memo/notes/my/awards/" target="_blank">Awards</a></li>
           <li><a href="/memo/notes/my/publications/" target="_blank">Publications</a></li>
           <li><a href="/memo/notes/my/education/" target="_blank">Education</a></li>
-        </ul>  
+        </ul>
         <p>
           Here's a selection of things I've worked on:
         </p>
