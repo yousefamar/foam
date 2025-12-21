@@ -65,6 +65,7 @@ p.card-description {
 
 .card {
   min-width: 0;
+  max-width: 100%;
   background-color: var(--background);
   border-radius: var(--grid-radius);
   display: grid;
@@ -76,15 +77,16 @@ p.card-description {
   text-align: left;
   position: relative;
   width: 100%;
+  overflow: hidden;
 }
 
-{# .grid-container .card:first-child {
+.grid-container .card:first-child {
   grid-column: span 4;
-} #}
-.grid-container .card:first-child,
+}
 .grid-container .card:nth-child(2),
 .grid-container .card:nth-child(3),
-.grid-container .card:nth-child(4) {
+.grid-container .card:nth-child(4),
+.grid-container .card:nth-child(5) {
   grid-column: span 2;
 }
 
@@ -108,6 +110,7 @@ p.card-description {
   padding: 16px;
   display: flex;
   flex-direction: column;
+  min-width: 0;
 }
 
 .card .header {
@@ -121,6 +124,8 @@ p.card-description {
 .card .description {
   font-size: 0.9em;
   line-height: 1.3;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 .card .icons {
@@ -148,6 +153,58 @@ p.card-description {
   height: 1.5em;
 }
 
+/* Marquee container for first card */
+.card:first-child .marquee-container {
+  overflow: hidden;
+  width: 100%;
+  margin-top: 16px;
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.card:first-child .marquee-track {
+  display: flex;
+  align-items: center;
+}
+
+.card:first-child .marquee-content {
+  display: flex;
+  gap: 2em;
+  padding-right: 2em;
+  flex-shrink: 0;
+  align-items: center;
+  animation: marquee 30s linear infinite;
+}
+
+.card:first-child .marquee-content a {
+  flex-shrink: 0;
+  display: block;
+  line-height: 0;
+}
+
+.card:first-child .marquee-content img {
+  height: 1em;
+  display: block;
+  object-fit: contain;
+}
+
+@keyframes marquee {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-100%, 0, 0); }
+}
+
+/* Pause on hover for accessibility */
+.card:first-child .marquee-container:hover .marquee-content {
+  animation-play-state: paused;
+}
+
+/* Mobile: larger icons */
+@media (max-width: 768px) {
+  .card:first-child .marquee-content img {
+    height: 2em;
+  }
+}
+
 /* put bullet point after link unless it's the last one */
 .card .link-wrapper:not(:last-child)::after {
   content: "•";
@@ -172,29 +229,27 @@ p.card-description {
 }
 
 /* all cards except first */
-{# .card:first-child {
+.card:first-child:not(.no-media) {
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto;
   grid-template-areas: "image body";
 }
 
-.card:first-child .preview-image {
+.card:first-child:not(.no-media) .preview-image {
   aspect-ratio: auto;
   border-radius: var(--grid-radius) 0 0 var(--grid-radius);
-} #}
+}
 
 @media (max-width: 768px) {
   .grid-container {
     grid-template-columns: repeat(2, 1fr);
   }
-  
-  {# .grid-container .card:first-child,
-  .grid-container .card:nth-child(2),
-  .grid-container .card:nth-child(3) {
-    grid-column: span 2;
-  } #}
 
-  {# .card:first-child {
+  .grid-container .card:first-child {
+    grid-column: span 2;
+  }
+
+  .card:first-child {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
     grid-template-areas:
@@ -209,7 +264,7 @@ p.card-description {
 
   .card:first-child .icons img {
     height: 2em;
-  } #}
+  }
 }
 
 
@@ -217,7 +272,7 @@ p.card-description {
 
 <div class="grid-container">
 {% for card in my.projects %}
-  <div class="card">
+  <div class="card{% if not card.video and not card.image %} no-media{% endif %}">
     {% if card.video %}
     <video class="preview-image" autoplay muted loop playsinline style="background-color: black">
       <source src="{{ card.video.href | url }}" type="{{ card.video.type | default('video/mp4') }}">
@@ -237,6 +292,13 @@ p.card-description {
       {% endif %}
       <div class="description">{{ card.description | safe }}</div>
       {% if card.icons.length %}
+        {% if loop.first %}
+      <div class="marquee-container">
+        <div class="marquee-track">
+          <div class="marquee-content">{% for icon in card.icons %}<a href="{{ icon.href }}" target="_blank"><img src="{{ icon.image.thumb | url }}" alt="{{ icon.image.alt }}"></a>{% endfor %}</div><div class="marquee-content">{% for icon in card.icons %}<a href="{{ icon.href }}" target="_blank"><img src="{{ icon.image.thumb | url }}" alt="{{ icon.image.alt }}"></a>{% endfor %}</div>
+        </div>
+      </div>
+        {% else %}
       <div class="icons">
         {% for icon in card.icons %}
         <a href="{{ icon.href }}" target="_blank">
@@ -244,6 +306,7 @@ p.card-description {
         </a>
         {% endfor %}
       </div>
+        {% endif %}
       {% endif %}
     {# <div class="year">2023</div> #}
     </div>

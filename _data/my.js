@@ -436,6 +436,120 @@ Decided to transfer course from Electronic Engineering with Business Management 
 
 	projects: [
 		{
+  		name: "Artanis",
+      logo: {
+				thumb: "/assets/images/icons/artanis-mark.svg",
+				alt: "Artanis logo"
+			},
+  		description: "Stack trace for AI. Profitable from day 1 (now at a $1MM run rate) with many happy customers. $1.5MM in VC raised to hire a team of all AI PhDs.",
+  		links: [{
+  			href: "https://artanis.ai",
+  			label: "Web"
+  		}, {
+   			href: "https://buttondown.com/artanis",
+  			label: "Updates"
+  		}, {
+  			href: "https://artanis.substack.com",
+  			label: "Blog"
+  		}],
+  		icons: [{
+  			image: {
+  				thumb: "/assets/images/accolades/charterhouse.png",
+  				alt: "Charterhouse"
+  			},
+  			href: "https://www.charterhouse.co.uk/"
+  		}, {
+  			image: {
+  				thumb: "/assets/images/accolades/contextual.png",
+  				alt: "Contextual AI"
+  			},
+  			href: "https://contextual.ai/"
+  		}, {
+  			image: {
+  				thumb: "/assets/images/accolades/evoke.png",
+  				alt: "Evoke Medical Care"
+  			},
+  			href: "https://evokemedicalcare.com/"
+  		}, {
+  			image: {
+  				thumb: "/assets/images/accolades/fe-fundinfo.png",
+  				alt: "FE Fundinfo"
+  			},
+  			href: "https://fefundinfo.com/"
+  		}, {
+  			image: {
+  				thumb: "/assets/images/accolades/from-today.png",
+  				alt: "From Today"
+  			},
+  			href: "https://fromtoday.com/"
+  		}, {
+  			image: {
+  				thumb: "/assets/images/accolades/hg.png",
+  				alt: "HG Capital"
+  			},
+  			href: "https://hgcapital.com/"
+  		}, {
+  			image: {
+  				thumb: "/assets/images/accolades/jubel.png",
+  				alt: "Jubel"
+  			},
+  			href: "https://jubelbeer.com/"
+  		}, {
+  			image: {
+  				thumb: "/assets/images/accolades/kliq.png",
+  				alt: "Kliq"
+  			},
+  			href: "https://www.joinkliq.io/"
+  		}, {
+  			image: {
+  				thumb: "/assets/images/accolades/medsnapp.png",
+  				alt: "MedSnapp"
+  			},
+  			href: "https://www.medsnapp.com/"
+  		}, {
+  			image: {
+  				thumb: "/assets/images/accolades/mindsdb.png",
+  				alt: "MindsDB"
+  			},
+  			href: "https://mindsdb.com/"
+  		}, {
+  			image: {
+  				thumb: "/assets/images/accolades/move-gb.png",
+  				alt: "Move GB"
+  			},
+  			href: "https://www.movegb.com/"
+  		}, {
+  			image: {
+  				thumb: "/assets/images/accolades/odyssey.png",
+  				alt: "Odyssey"
+  			},
+  			href: "https://www.odysseydining.com/"
+  		}, {
+  			image: {
+  				thumb: "/assets/images/accolades/salesape.png",
+  				alt: "SalesApe"
+  			},
+  			href: "https://www.salesape.ai/"
+  		}, {
+  			image: {
+  				thumb: "/assets/images/accolades/sophos.png",
+  				alt: "Sophos"
+  			},
+  			href: "https://sophoseducation.ai/"
+  		}, {
+  			image: {
+  				thumb: "/assets/images/accolades/stylus.png",
+  				alt: "Stylus"
+  			},
+  			href: "https://stylus.education/"
+  		}, {
+  			image: {
+  				thumb: "/assets/images/accolades/telus.png",
+  				alt: "TELUS"
+  			},
+  			href: "https://www.telus.com/"
+  		}]
+  	}, {
 			name: "Krew Live",
 			video: {
 				href: "/assets/videos/krew.mp4",
