@@ -101,8 +101,8 @@ const TEXT_SPRITE_DISTANCE_THRESHOLD = 0.7;
 // Dust Particles
 const PARTICLE_COUNT_PER_ORB = 50;
 const PARTICLE_SIZE = 0.002;
-const PARTICLE_COLOR = 0x3366ff;
-const PARTICLE_OPACITY = 0.12;
+const PARTICLE_COLOR = 0x00dddd;
+const PARTICLE_OPACITY = 0.45;
 const PARTICLE_SPAWN_RADIUS = 0.025; // Spherical radius around each orb
 const PARTICLE_DRIFT_SPEED = 0.00008;
 const PARTICLE_LIFETIME_INCREMENT = 0.004;
@@ -111,7 +111,7 @@ const PARTICLE_FADE_SPEED = 5;
 // Lightning Arcs
 const ARC_COUNT = 6;
 const ARC_POINTS = 10;
-const ARC_COLOR = 0x0055dd;
+const ARC_COLOR = 0x00dddd;
 const ARC_OPACITY = 0.6;
 const ARC_LINE_WIDTH = 6;
 const ARC_ACTIVATION_PROBABILITY = 0.01;
@@ -577,10 +577,27 @@ export function initHeroScene() {
   const raycaster = new THREE.Raycaster();
   let hoveredOrb = null;
 
-  renderer.domElement.addEventListener("mousemove", (event) => {
+  // Helper function to extract normalized coordinates from mouse or touch event
+  const updateMouseCoordinates = (event) => {
     const rect = renderer.domElement.getBoundingClientRect();
-    mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-    mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+    let clientX, clientY;
+
+    // Handle touch events
+    if (event.touches && event.touches.length > 0) {
+      clientX = event.touches[0].clientX;
+      clientY = event.touches[0].clientY;
+    } else if (event.changedTouches && event.changedTouches.length > 0) {
+      // For touchend events
+      clientX = event.changedTouches[0].clientX;
+      clientY = event.changedTouches[0].clientY;
+    } else {
+      // Regular mouse event
+      clientX = event.clientX;
+      clientY = event.clientY;
+    }
+
+    mouse.x = ((clientX - rect.left) / rect.width) * 2 - 1;
+    mouse.y = -((clientY - rect.top) / rect.height) * 2 + 1;
 
     // Calculate 3D mouse position for orb interaction
     mouse3D.set(mouse.x, mouse.y, 0.5);
@@ -588,18 +605,38 @@ export function initHeroScene() {
     const dir = mouse3D.sub(camera.position).normalize();
     const distance = -camera.position.z / dir.z;
     mouse3D.copy(camera.position).add(dir.multiplyScalar(distance));
-  });
+  };
 
-  renderer.domElement.addEventListener("click", async (event) => {
-    if (DeviceOrientationEvent?.requestPermission) {
-      const permissionState =
-        await window.DeviceOrientationEvent.requestPermission();
-      if (permissionState === "granted") {
-        window.parallax.destroy();
-        window.parallax = new Parallax(document.getElementById("scene"));
-        return;
+  renderer.domElement.addEventListener("mousemove", updateMouseCoordinates);
+
+  // Also update on touch for mobile devices
+  renderer.domElement.addEventListener("touchstart", updateMouseCoordinates, { passive: true });
+  renderer.domElement.addEventListener("touchmove", updateMouseCoordinates, { passive: true });
+
+  // Request DeviceOrientation permission on iOS (separate from orb interaction)
+  let deviceOrientationRequested = false;
+  const requestDeviceOrientationPermission = async () => {
+    if (!deviceOrientationRequested && DeviceOrientationEvent?.requestPermission) {
+      deviceOrientationRequested = true;
+      try {
+        const permissionState = await window.DeviceOrientationEvent.requestPermission();
+        if (permissionState === "granted" && window.parallax) {
+          window.parallax.destroy();
+          window.parallax = new window.Parallax(document.getElementById("scene"));
+        }
+      } catch (error) {
+        console.warn("DeviceOrientation permission denied or error:", error);
       }
     }
+  };
+
+  renderer.domElement.addEventListener("click", async (event) => {
+    // Update mouse coordinates from the click event itself
+    updateMouseCoordinates(event);
+
+    // Request orientation permission on first interaction (iOS)
+    // This happens in parallel and doesn't block orb interaction
+    requestDeviceOrientationPermission();
 
     // Check for orb or label clicks
     raycaster.setFromCamera(mouse, camera);
