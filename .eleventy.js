@@ -50,11 +50,11 @@ const mdItWikiLinksObsidian = mdItRegex(
 
     // Image
     if (match[0].startsWith('!') && /\.(png|jpg|jpeg|gif|bmp|svg)$/.test(label))
-      return `<img src="${pathPrefix + assetsDir + '/images/' + path}"></img>`;
+      return `<img src="${pathPrefix + assetsDir + '/images/' + path}" loading="lazy" decoding="async">`;
 
     // Video
     if (match[0].startsWith('!') && /\.(mp4|webm)$/.test(match[2]))
-      return `<video ${match[4]?.slice(1) === 'controls' ? 'controls' : 'autoplay loop'} playsinline muted src="${pathPrefix + assetsDir + '/videos/' + path}"></video>`;
+      return `<video ${match[4]?.slice(1) === 'controls' ? 'controls preload="metadata"' : 'autoplay loop'} playsinline muted src="${pathPrefix + assetsDir + '/videos/' + path}"></video>`;
 
     // Audio
     if (match[0].startsWith('!') && /\.(mp3|wav|ogg)$/.test(match[2]))
