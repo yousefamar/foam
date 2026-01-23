@@ -17,6 +17,10 @@ protected/
 .obsidian/
 .trash/
 *.canvas
+*.base
+*.txt
+venv/
+*.pyc
 
 
 
