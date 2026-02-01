@@ -548,6 +548,12 @@ Decided to transfer course from Electronic Engineering with Business Management 
   				alt: "TELUS"
   			},
   			href: "https://www.telus.com/"
+  		}, {
+  			image: {
+  				thumb: "/assets/images/accolades/rulebase.svg",
+  				alt: "Rulebase"
+  			},
+  			href: "https://rulebase.co/"
   		}]
   	}, {
 			name: "Krew Live",
