@@ -99,11 +99,70 @@ app.patch('/*', async (req, res) => {
   res.json({ success: true });
 });
 
+// Rate limiting for testimonial submissions
+const testimonialRateLimit = new Map();
+const RATE_LIMIT_WINDOW = 60 * 60 * 1000; // 1 hour
+const RATE_LIMIT_MAX = 3; // max submissions per IP per window
+
+function isRateLimited(ip) {
+  const now = Date.now();
+  const entry = testimonialRateLimit.get(ip);
+  if (!entry || now - entry.firstRequest > RATE_LIMIT_WINDOW) {
+    testimonialRateLimit.set(ip, { firstRequest: now, count: 1 });
+    return false;
+  }
+  entry.count++;
+  return entry.count > RATE_LIMIT_MAX;
+}
+
+// Clean up old rate limit entries every hour
+setInterval(() => {
+  const now = Date.now();
+  for (const [ip, entry] of testimonialRateLimit) {
+    if (now - entry.firstRequest > RATE_LIMIT_WINDOW) testimonialRateLimit.delete(ip);
+  }
+}, RATE_LIMIT_WINDOW);
+
+function validateTestimonialField(value, maxLength) {
+  if (typeof value !== 'string') return false;
+  if (value.length > maxLength) return false;
+  // Reject common injection patterns
+  if (/(\bSELECT\b|\bUNION\b|\bDROP\b|\bINSERT\b|PG_SLEEP|DBMS_PIPE|<script|onerror=|nslookup\b|gethostbyname|\.bxss\.)/i.test(value)) return false;
+  return true;
+}
+
 app.post('/notes/my/testimonials/leave/', upload.single('avatar'), async (req, res) => {
+  const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+  if (isRateLimited(ip)) {
+    return res.status(429).json({ success: false, error: 'Too many submissions. Please try again later.' });
+  }
+
   const name = req.body.name;
-  const testimonial = req.body.testimonial.replace(/\r\n/g, '\n');
+  const testimonial = req.body.testimonial?.replace(/\r\n/g, '\n');
   const workTitle = req.body.workTitle;
   const personalLink = req.body.personalLink;
+
+  // Validate all fields
+  if (!name || !testimonial) {
+    return res.status(400).json({ success: false, error: 'Name and testimonial are required.' });
+  }
+
+  if (!validateTestimonialField(name, 200) ||
+      !validateTestimonialField(testimonial, 5000) ||
+      (workTitle && !validateTestimonialField(workTitle, 200)) ||
+      (personalLink && !validateTestimonialField(personalLink, 500))) {
+    return res.status(400).json({ success: false, error: 'Invalid input.' });
+  }
+
+  // Validate avatar file type if uploaded
+  if (req.file) {
+    const allowedExts = ['.jpg', '.jpeg', '.png', '.gif', '.webp'];
+    const ext = path.extname(req.file.originalname).toLowerCase();
+    if (!allowedExts.includes(ext)) {
+      fs.unlinkSync(req.file.path);
+      return res.status(400).json({ success: false, error: 'Invalid avatar file type.' });
+    }
+  }
 
   console.log('Incoming testimonial!');
   console.log('---------------------');
