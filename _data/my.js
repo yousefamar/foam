@@ -611,7 +611,7 @@ Decided to transfer course from Electronic Engineering with Business Management 
 			},
 			description: "Capture and transcribe medical consultations, AI turns these into medical notes and letters.",
 			links: [{
-				href: "https://curasystems.co.uk",
+				href: "/archive/curasystems.co.uk/",
 				label: "Web"
 			}, {
 				href: "https://play.google.com/store/apps/details?id=uk.co.curasystems.assist",

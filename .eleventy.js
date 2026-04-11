@@ -123,6 +123,7 @@ module.exports = (eleventyConfig) => {
 
   eleventyConfig.addPassthroughCopy(assetsDir);
   eleventyConfig.addPassthroughCopy("_static");
+  eleventyConfig.addPassthroughCopy("archive");
 
   eleventyConfig.addPlugin(eleventyNavigation);
 
