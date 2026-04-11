@@ -19,6 +19,7 @@ protected/
 *.canvas
 *.base
 *.txt
+!_static/*.txt
 venv/
 *.pyc
 
