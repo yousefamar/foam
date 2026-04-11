@@ -563,7 +563,7 @@ Decided to transfer course from Electronic Engineering with Business Management 
 			},
 			description: "AI-powered live and on-demand fitness classes. $1.8MM pre-seed raised at 8-figure valuation.",
 			links: [{
-				href: "https://krew.live",
+				href: "/archive/krew.live/",
 				label: "Web"
 			}, {
 				href: "https://get.krew.live/android",
