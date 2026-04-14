@@ -144,7 +144,7 @@ module.exports = {
 				thumb: "/assets/images/awards/top-post-badge.svg",
 				alt: "ProductHunt Badges",
 			},
-			description: `<a href="https://krew.live" target="_blank">Krew</a> was featured on <a href="https://www.producthunt.com/posts/krew" target="_blank">ProductHunt</a> and was finalist for Product of the Year. It was an honour to stand out against so many amazing products and to join the ranks of the legends before us.`
+			description: `<a href="/archive/krew.live/" target="_blank">Krew</a> was featured on <a href="https://www.producthunt.com/posts/krew" target="_blank">ProductHunt</a> and was finalist for Product of the Year. It was an honour to stand out against so many amazing products and to join the ranks of the legends before us.`
 		}, {
 			name: "IEEE CoG Registration Grant",
 			year: "2019",
@@ -247,7 +247,7 @@ module.exports = {
 			//organisation: "Krew Live Ltd",
 			organisation: "krew.build",
 			period: "Apr 2020 – Present",
-			//description: `<a href="https://krew.live" target="_blank">Krew</a> combines community and fitness. We have classes for any device and AI-powered leaderboards if your device has a camera! Easily share highlights and invite your friends to join you in hundreds of live and on-demand classes. We've been featured as #1 product of the day and week on <a href="https://www.producthunt.com/posts/krew" target="_blank">ProductHunt</a> and we raised a total of $1.8MM at an 8-figure valuation in less than a year by our <a href="https://www.businessinsider.com/krew-pitch-deck-fitness-peloton-seed-round-2021-9" target="_blank">seed round</a>.`
+			//description: `<a href="/archive/krew.live/" target="_blank">Krew</a> combines community and fitness. We have classes for any device and AI-powered leaderboards if your device has a camera! Easily share highlights and invite your friends to join you in hundreds of live and on-demand classes. We've been featured as #1 product of the day and week on <a href="https://www.producthunt.com/posts/krew" target="_blank">ProductHunt</a> and we raised a total of $1.8MM at an 8-figure valuation in less than a year by our <a href="https://www.businessinsider.com/krew-pitch-deck-fitness-peloton-seed-round-2021-9" target="_blank">seed round</a>.`
 			description: `<a href="https://krew.build" target="_blank">Krew</a> is an AI studio specialising in AI-related strategy and implementation. We have built deep tech products across healthcare, fitness, bizops for desktop and mobile usage. Our world-class team has been featured on publications such as <a href="https://www.businessinsider.com/krew-pitch-deck-fitness-peloton-seed-round-2021-9" target="_blank">Business Insider</a> and our products were ranked #1 product of the day and week on <a href="https://www.producthunt.com/posts/krew" target="_blank">ProductHunt</a>.`
 		}, {
 			role: "Fractional CTO",
@@ -671,13 +671,13 @@ Decided to transfer course from Electronic Engineering with Business Management 
 			},
 			description: "2000+ UK mosques with notifications, accurate prayer times, digital donations, and more, completely free.",
 			links: [{
-				href: "https://sawa.global",
+				href: "/archive/sawa.global/",
 				label: "Web"
 			}, {
-				href: "https://get.sawa.global/android",
+				href: "https://play.google.com/store/apps/details?id=is.sawa",
 				label: "Android"
 			}, {
-				href: "https://get.sawa.global/ios",
+				href: "https://apps.apple.com/app/sawa-global/id1615440179",
 				label: "iOS"
 			}],
 			icons: [{
