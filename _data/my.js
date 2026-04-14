@@ -454,6 +454,12 @@ Decided to transfer course from Electronic Engineering with Business Management 
   		}],
   		icons: [{
   			image: {
+  				thumb: "/assets/images/accolades/ada-ventures.png",
+  				alt: "Ada Ventures"
+  			},
+  			href: "https://www.adaventures.com/"
+  		}, {
+  			image: {
   				thumb: "/assets/images/accolades/charterhouse.png",
   				alt: "Charterhouse"
   			},
@@ -476,6 +482,12 @@ Decided to transfer course from Electronic Engineering with Business Management 
   				alt: "FE Fundinfo"
   			},
   			href: "https://fefundinfo.com/"
+  		}, {
+  			image: {
+  				thumb: "/assets/images/accolades/finway.svg",
+  				alt: "finway"
+  			},
+  			href: "https://finway.de/en/"
   		}, {
   			image: {
   				thumb: "/assets/images/accolades/from-today.png",
@@ -526,10 +538,22 @@ Decided to transfer course from Electronic Engineering with Business Management 
   			href: "https://www.odysseydining.com/"
   		}, {
   			image: {
+  				thumb: "/assets/images/accolades/portia.svg",
+  				alt: "Portia"
+  			},
+  			href: "https://www.portialabs.ai/"
+  		}, {
+  			image: {
   				thumb: "/assets/images/accolades/salesape.png",
   				alt: "SalesApe"
   			},
   			href: "https://www.salesape.ai/"
+  		}, {
+  			image: {
+  				thumb: "/assets/images/accolades/sidebench.png",
+  				alt: "Sidebench"
+  			},
+  			href: "https://sidebench.com/"
   		}, {
   			image: {
   				thumb: "/assets/images/accolades/sophos.png",
