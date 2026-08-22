@@ -32,7 +32,12 @@ const walkDir = (dir, callback) => {
   for (const file of fs.readdirSync(dir)) {
     if (file.startsWith('.') || file.startsWith('_') || ignoreFiles.includes(file))
       continue;
-    if (fs.statSync(dir + "/" + file).isDirectory())
+    // Guard broken symlinks / vanished entries: a dangling link (e.g. a
+    // dev-only symlink synced to the VPS whose target doesn't exist there)
+    // makes statSync throw ENOENT and kills the entire build. Skip it.
+    let stat;
+    try { stat = fs.statSync(dir + "/" + file); } catch { continue; }
+    if (stat.isDirectory())
       if (walkDir(dir + "/" + file, callback))
         return true;
     if (callback(pathJoin(dir, "/", file)))
@@ -68,6 +73,8 @@ const mdItWikiLinksObsidian = mdItRegex(
         walkDir(process.cwd(), file => {
           if (file.endsWith(`/${path}.md`)) {
             foundPath = file.replace(new RegExp(`^${process.cwd() + '/' + rootDir}\/`), '').replace(/\.md$/, '');
+            // Posts inside project dirs still publish at /log/<name>/ (see eleventyComputed permalink)
+            foundPath = foundPath.replace(/^projects\/[^/]+\/log\//, 'log/');
             foundPath = utils.escape(pathPrefix + foundPath + '/');
             return true;
           }
@@ -180,7 +187,9 @@ module.exports = (eleventyConfig) => {
   });
 
   eleventyConfig.addFilter("project", (collection, projectSlug) => {
-    return collection.filter(p => p.data.project && p.data.project === projectSlug);
+    // Guard on post+public+date: an unpublished draft carrying a `project:`
+    // field would otherwise leak into the devlog and crash isoDate (no date)
+    return collection.filter(p => p.data.project === projectSlug && p.data.post && p.data.public && p.data.date);
   });
 
   eleventyConfig.addPlugin(eleventyReadingTime);
