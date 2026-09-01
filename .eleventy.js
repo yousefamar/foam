@@ -132,6 +132,10 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addPassthroughCopy("_static");
   eleventyConfig.addPassthroughCopy("archive");
 
+  // rev-* revision snapshots are history, not pages — never build them.
+  // Filtering them from listings alone left them fetchable at their URLs.
+  eleventyConfig.ignores.add("**/rev-*.md");
+
   eleventyConfig.addPlugin(eleventyNavigation);
 
   eleventyConfig.addPlugin(codeblocks([graphvis]));
