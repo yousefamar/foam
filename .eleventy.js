@@ -27,6 +27,20 @@ const pathPrefix = "/memo/";
 const rootDir = "root";
 const assetsDir = "assets";
 
+// assets/ publishes by allow-list. Passthrough copies every file it is pointed
+// at whether or not any page links it, so a new subdir — or a new writer landing
+// files in images/ — stays private until listed here.
+const publicAssetDirs = ['audios', 'certificates', 'diagrams', 'images', 'infographics', 'lottie', 'misc', 'papers', 'scripts', 'styles', 'vendor', 'videos', 'workbooks'];
+// Console board-card screenshots and unreviewed testimonial uploads live under
+// images/ for the hub/server's sake; they are never site content.
+const privateImagePath = /^card-[^/]*$|^testimonials\/incoming(\/|$)/;
+// relPath is relative to assets/, e.g. "images/card-1.png"
+const isPublicAsset = (relPath) => {
+  const [dir, ...rest] = relPath.split('/');
+  if (!publicAssetDirs.includes(dir)) return false;
+  return !(dir === 'images' && privateImagePath.test(rest.join('/')));
+};
+
 const ignoreFiles = ['node_modules', 'package.json', 'package-lock.json', assetsDir];
 const walkDir = (dir, callback) => {
   for (const file of fs.readdirSync(dir)) {
@@ -128,9 +142,31 @@ module.exports = (eleventyConfig) => {
     .use(mdItAnchor, { slugify: s => slugify(s, { strict: true, lower: true }) })
     .use(mdItFootnote));
 
-  eleventyConfig.addPassthroughCopy(assetsDir);
+  for (const dir of publicAssetDirs)
+    eleventyConfig.addPassthroughCopy(`${assetsDir}/${dir}`, { filter: (p) => isPublicAsset(`${dir}/${p}`) });
   eleventyConfig.addPassthroughCopy("_static");
   eleventyConfig.addPassthroughCopy("archive");
+
+  // Passthrough never deletes: a file removed or excluded at the source keeps
+  // serving from _site until pruned by hand (DBS cert 06/2026, board screenshots
+  // 09/2026). Make the output mirror the allow-list instead.
+  eleventyConfig.on("eleventy.after", ({ dir, outputMode }) => {
+    if (outputMode !== "fs") return;
+    const prune = (absDir, rel) => {
+      for (const name of fs.readdirSync(absDir)) {
+        const abs = pathJoin(absDir, name);
+        const relPath = rel ? `${rel}/${name}` : name;
+        if (fs.lstatSync(abs).isDirectory()) {
+          prune(abs, relPath);
+          if (!fs.readdirSync(abs).length) fs.rmdirSync(abs);
+        } else if (!isPublicAsset(relPath) || !fs.existsSync(pathJoin(assetsDir, relPath))) {
+          fs.unlinkSync(abs);
+        }
+      }
+    };
+    const out = pathJoin(dir.output, assetsDir);
+    if (fs.existsSync(out)) prune(out, "");
+  });
 
   // rev-* revision snapshots are history, not pages — never build them.
   // Filtering them from listings alone left them fetchable at their URLs.
