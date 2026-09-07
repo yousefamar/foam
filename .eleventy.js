@@ -46,11 +46,15 @@ const walkDir = (dir, callback) => {
   for (const file of fs.readdirSync(dir)) {
     if (file.startsWith('.') || file.startsWith('_') || ignoreFiles.includes(file))
       continue;
-    // Guard broken symlinks / vanished entries: a dangling link (e.g. a
-    // dev-only symlink synced to the VPS whose target doesn't exist there)
-    // makes statSync throw ENOENT and kills the entire build. Skip it.
+    // Never follow symlinks: vault content is never behind one, and the
+    // projects/<slug>/repo links point at code checkouts — memo's points back
+    // at the vault itself, which made this walk recurse brain → memo/repo →
+    // brain … until the path-length limit (a 10-min 100 % CPU build on the
+    // VPS, 2026-09-07). lstat also covers dangling links (vanished entries
+    // still throw → skip).
     let stat;
-    try { stat = fs.statSync(dir + "/" + file); } catch { continue; }
+    try { stat = fs.lstatSync(dir + "/" + file); } catch { continue; }
+    if (stat.isSymbolicLink()) continue;
     if (stat.isDirectory())
       if (walkDir(dir + "/" + file, callback))
         return true;
