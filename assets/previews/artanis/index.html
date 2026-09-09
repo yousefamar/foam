@@ -202,7 +202,7 @@ h1 .accent { color: #9B4340; }
     if (!el) return;
     var mole = moles.find(function (o) { return o.el === el; });
     if (e.pointerType === 'mouse') hit(mole, e.clientX, e.clientY, false);
-    else touchArmed = mole;
+    else { if (malletShown) hideMallet(); touchArmed = mole; }
   });
   field.addEventListener('pointercancel', function () { touchArmed = null; });
   field.addEventListener('pointerup', function (e) {
@@ -211,7 +211,9 @@ h1 .accent { color: #9B4340; }
     if (e.target.closest('.hole') === mole.el) hit(mole, e.clientX, e.clientY, true);
   });
 
-  document.addEventListener('mousemove', function (e) {
+  // pointermove, not mousemove: touch browsers synthesise a mousemove after every tap
+  document.addEventListener('pointermove', function (e) {
+    if (e.pointerType !== 'mouse') return;
     var b = bounds(), r = field.getBoundingClientRect();
     var inZone = e.clientX >= r.left + b.minLeft && e.clientX <= r.left + b.maxLeft + b.H &&
                  e.clientY >= r.bottom - b.minBottom - b.range - b.H && e.clientY <= r.bottom - b.minBottom;
