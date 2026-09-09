@@ -37,6 +37,12 @@ h1 {
   font-size: clamp(14px, 9vh, 34px); line-height: 1.08; letter-spacing: -0.01em;
 }
 h1 span { color: #9B4340; }
+.copy p {
+  display: none; margin: 1.2vh 0 0; max-width: 34em;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: clamp(11px, 3.6vh, 16px); line-height: 1.45; color: #6B5744;
+}
+@media (min-height: 300px) { .copy p { display: block; } }
 
 .cloud { position: absolute; pointer-events: none; width: calc(1.6 * var(--m)); animation: drift 20s ease-in-out infinite; }
 .cloud.a { top: 7%; left: 5%; opacity: .4; }
@@ -85,6 +91,7 @@ h1 span { color: #9B4340; }
 <img class="cloud b" src="cloud3.webp" alt="">
 <div class="copy">
   <h1>Stop playing<br><span>whack-a-mole</span><br>with your AI</h1>
+  <p>Fix one thing, break another. Sound familiar?<br>Artanis keeps your AI aligned, for good.</p>
 </div>
 <div id="field" aria-hidden="true">
   <div class="earth"></div>

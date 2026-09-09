@@ -441,6 +441,7 @@ Decided to transfer course from Electronic Engineering with Business Management 
 				href: "/assets/previews/artanis/index.html",
 				title: "Artanis: stop playing whack-a-mole with your AI"
 			},
+      stacked: true,
   		description: "Solving AI alignment. Profitable from day 1, reaching a $1MM run rate with many happy customers. $1.5MM in VC raised to hire a team of all AI PhDs.",
   		links: [{
   			href: "https://artanis.ai",

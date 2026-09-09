@@ -246,6 +246,20 @@ p.card-description {
   border-radius: var(--grid-radius) 0 0 var(--grid-radius);
 }
 
+/* stacked: media above body at every width, like the mobile first card */
+.grid-container .card:first-child.stacked {
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "image"
+    "body";
+}
+
+.grid-container .card:first-child.stacked .preview-image {
+  aspect-ratio: 16/9;
+  border-radius: var(--grid-radius) var(--grid-radius) 0 0;
+}
+
 @media (max-width: 768px) {
   .grid-container {
     grid-template-columns: repeat(2, 1fr);
@@ -278,7 +292,7 @@ p.card-description {
 
 <div class="grid-container">
 {% for card in my.projects %}
-  <div class="card{% if not card.video and not card.image and not card.preview %} no-media{% endif %}">
+  <div class="card{% if not card.video and not card.image and not card.preview %} no-media{% endif %}{% if card.stacked %} stacked{% endif %}">
     {% if card.video %}
     <video class="preview-image" autoplay muted loop playsinline style="background-color: black">
       <source src="{{ card.video.href | url }}" type="{{ card.video.type | default('video/mp4') }}">
