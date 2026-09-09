@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Artanis — Stop playing whack-a-mole with your AI</title>
+<style>
+@font-face {
+  font-family: Fredoka;
+  font-weight: 600;
+  font-display: swap;
+  src: url(fredoka-600.woff2) format('woff2');
+}
+:root {
+  --m: clamp(26px, 16vh, 56px);
+  --field: calc(3.2 * var(--m));
+}
+html, body { margin: 0; height: 100%; overflow: hidden; }
+body {
+  position: relative;
+  background: linear-gradient(180deg, #C8E0EE 0%, #D4E6F0 40%, #D5E2D0 75%, #C5D6B8 100%);
+  font-family: Fredoka, 'DM Sans', system-ui, sans-serif;
+  -webkit-user-select: none; user-select: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+body.mallet-active, body.mallet-active * { cursor: none !important; }
+
+.copy {
+  position: absolute; inset: 0 0 var(--field) 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 0 6%; z-index: 2; pointer-events: none;
+}
+h1 {
+  margin: 0; font-weight: 600; color: #2D1810;
+  font-size: clamp(14px, 9vh, 34px); line-height: 1.08; letter-spacing: -0.01em;
+}
+h1 span { color: #9B4340; }
+
+.cloud { position: absolute; pointer-events: none; width: calc(1.6 * var(--m)); animation: drift 20s ease-in-out infinite; }
+.cloud.a { top: 7%; left: 5%; opacity: .4; }
+.cloud.b { top: 4%; right: 10%; opacity: .3; width: calc(2 * var(--m)); animation-duration: 28s; animation-delay: -5s; }
+@keyframes drift { 0% { transform: translateX(0); } 50% { transform: translateX(15px); } 100% { transform: translateX(0); } }
+@media (prefers-reduced-motion: reduce) { .cloud { animation: none; } }
+
+#field { position: absolute; left: 0; right: 0; bottom: 0; height: var(--field); }
+#field .earth { position: absolute; left: 0; right: 0; bottom: 0; height: calc(.64 * var(--m)); background: #341f0e; }
+#field .grass { position: absolute; inset: 0; background: url(grass-field.webp) repeat-x bottom / auto 100%; }
+
+.hole { position: absolute; width: calc(1.4 * var(--m)); height: calc(1.4 * var(--m)); pointer-events: none; }
+.hole.hittable { pointer-events: auto; }
+.clip { width: 100%; height: 100%; clip-path: circle(calc(.6 * var(--m)) at calc(.8 * var(--m)) calc(.7 * var(--m))); }
+.sprite {
+  width: var(--m); height: var(--m);
+  margin: calc(.1 * var(--m)) 0 0 calc(.1 * var(--m));
+  background: url(mole-spritesheet.webp) no-repeat 0 0 / calc(20 * var(--m)) var(--m);
+  opacity: 0; transition: opacity .08s ease;
+}
+.hole.mirrored .sprite { transform: scaleX(-1); }
+
+@keyframes emerge { from { background-position: 0 0; } to { background-position: calc(-8 * var(--m)) 0; } }
+@keyframes idle { from { background-position: calc(-6 * var(--m)) 0; } to { background-position: calc(-8 * var(--m)) 0; } }
+@keyframes hit { from { background-position: calc(-9 * var(--m)) 0; } to { background-position: calc(-11 * var(--m)) 0; } }
+@keyframes retreat-hit { from { background-position: calc(-11 * var(--m)) 0; } to { background-position: calc(-19 * var(--m)) 0; } }
+@keyframes retreat-normal { from { background-position: calc(-7 * var(--m)) 0; } to { background-position: 0 0; } }
+.sprite.emerge { animation: emerge .7s steps(8) forwards; }
+.sprite.idle { animation: idle .75s steps(2) infinite; }
+.sprite.hit { animation: hit .2s steps(2) forwards; }
+.sprite.retreat-hit { animation: retreat-hit .7s steps(8) forwards; }
+.sprite.retreat-normal { animation: retreat-normal .6s steps(7) forwards; }
+
+#mallet {
+  position: fixed; display: none; pointer-events: none; z-index: 9;
+  width: max(28px, calc(.9 * var(--m))); height: max(28px, calc(.9 * var(--m)));
+  background: url(mallet.webp) no-repeat center / contain;
+  transform-origin: 30% 78%; transition: transform .15s ease-out;
+}
+#mallet.swinging { transform: rotate(-90deg); transition: transform .01s linear; }
+</style>
+</head>
+<body>
+<div id="mallet"></div>
+<img class="cloud a" src="cloud1.webp" alt="">
+<img class="cloud b" src="cloud3.webp" alt="">
+<div class="copy">
+  <h1>Stop playing<br><span>whack-a-mole</span><br>with your AI</h1>
+</div>
+<div id="field" aria-hidden="true">
+  <div class="earth"></div>
+  <div class="grass"></div>
+  <div class="hole"><div class="clip"><div class="sprite"></div></div></div>
+  <div class="hole"><div class="clip"><div class="sprite"></div></div></div>
+  <div class="hole"><div class="clip"><div class="sprite"></div></div></div>
+  <div class="hole"><div class="clip"><div class="sprite"></div></div></div>
+  <div class="hole"><div class="clip"><div class="sprite"></div></div></div>
+  <div class="hole"><div class="clip"><div class="sprite"></div></div></div>
+</div>
+<script>
+(function () {
+  var field = document.getElementById('field');
+  var mallet = document.getElementById('mallet');
+  var moles = Array.prototype.map.call(document.querySelectorAll('.hole'), function (el) {
+    return { el: el, sprite: el.querySelector('.sprite'), state: 'hidden', timer: null, pending: false };
+  });
+  var m = 32, active = 0, visible = true, malletShown = false;
+
+  function measure() { m = moles[0].sprite.offsetWidth || m; }
+  function bounds() {
+    var H = 1.4 * m;
+    return { H: H, minLeft: .1 * m, maxLeft: field.offsetWidth - H - .2 * m, minBottom: .34 * field.offsetHeight, range: .2 * m };
+  }
+  function moleCount() { return Math.max(1, Math.min(6, Math.floor((field.offsetWidth - .3 * m) / (1.6 * m)))); }
+
+  function setAnim(mole, cls) {
+    var s = mole.sprite;
+    s.classList.remove('emerge', 'idle', 'hit', 'retreat-normal', 'retreat-hit');
+    void s.offsetWidth;
+    if (cls) s.classList.add(cls);
+  }
+
+  function place(mole) {
+    var b = bounds(), others = [], left, bottom, ok, tries = 0;
+    moles.forEach(function (o) {
+      if (o === mole || o.state === 'hidden') return;
+      others.push({ x: (parseFloat(o.el.style.left) || 0) + .6 * m, y: (parseFloat(o.el.style.bottom) || 0) + .6 * m });
+    });
+    do {
+      left = b.minLeft + Math.random() * Math.max(0, b.maxLeft - b.minLeft);
+      bottom = b.minBottom + Math.random() * b.range;
+      ok = others.every(function (o) { return Math.hypot(left + .6 * m - o.x, bottom + .6 * m - o.y) >= 1.25 * m; });
+    } while (!ok && ++tries < 30);
+    mole.el.style.left = left + 'px';
+    mole.el.style.bottom = bottom + 'px';
+    mole.el.classList.toggle('mirrored', Math.random() > .5);
+  }
+
+  function start(mole) {
+    if (!visible) { mole.pending = true; return; }
+    mole.pending = false;
+    place(mole);
+    mole.state = 'emerging';
+    mole.el.classList.add('hittable');
+    mole.sprite.style.opacity = '1';
+    setAnim(mole, 'emerge');
+    mole.timer = setTimeout(function () {
+      mole.state = 'idle';
+      setAnim(mole, 'idle');
+      mole.timer = setTimeout(function () { if (mole.state === 'idle') retreat(mole, false); }, 2000 + Math.random() * 3000);
+    }, 1000);
+  }
+
+  function retreat(mole, wasHit) {
+    mole.state = 'retreating';
+    if (!wasHit) mole.el.classList.remove('hittable');
+    setAnim(mole, wasHit ? 'retreat-hit' : 'retreat-normal');
+    mole.timer = setTimeout(function () {
+      mole.sprite.style.opacity = '0';
+      mole.timer = setTimeout(function () {
+        hide(mole);
+        mole.timer = setTimeout(function () { start(mole); }, 1500 + Math.random() * 3000);
+      }, 200);
+    }, wasHit ? 700 : 600);
+  }
+
+  function hide(mole) {
+    mole.state = 'hidden';
+    mole.el.classList.remove('hittable');
+    setAnim(mole, null);
+    mole.sprite.style.opacity = '0';
+    mole.sprite.style.backgroundPosition = '0 0';
+  }
+
+  var bonk = new Audio('bonk.wav');
+  bonk.preload = 'auto';
+
+  function hit(mole, x, y, touch) {
+    if (mole.state !== 'idle' && mole.state !== 'emerging') return;
+    clearTimeout(mole.timer);
+    mole.state = 'hit';
+    setAnim(mole, 'hit');
+    try { bonk.currentTime = 0; bonk.playbackRate = .9 + Math.random() * .2; bonk.play().catch(function () {}); } catch (e) {}
+    if (touch) {
+      mallet.style.left = (x + .25 * m) + 'px';
+      mallet.style.top = (y - .8 * m) + 'px';
+      mallet.style.display = 'block';
+    }
+    mallet.classList.add('swinging');
+    setTimeout(function () {
+      mallet.classList.remove('swinging');
+      if (touch) setTimeout(function () { if (!malletShown) mallet.style.display = 'none'; }, 150);
+      setTimeout(function () { mole.el.classList.remove('hittable'); }, 300);
+    }, 200);
+    mole.timer = setTimeout(function () { retreat(mole, true); }, 200);
+  }
+
+  var touchArmed = null;
+  field.addEventListener('pointerdown', function (e) {
+    var el = e.target.closest('.hole.hittable');
+    if (!el) return;
+    var mole = moles.find(function (o) { return o.el === el; });
+    if (e.pointerType === 'mouse') hit(mole, e.clientX, e.clientY, false);
+    else touchArmed = mole;
+  });
+  field.addEventListener('pointercancel', function () { touchArmed = null; });
+  field.addEventListener('pointerup', function (e) {
+    if (!touchArmed) return;
+    var mole = touchArmed; touchArmed = null;
+    if (e.target.closest('.hole') === mole.el) hit(mole, e.clientX, e.clientY, true);
+  });
+
+  document.addEventListener('mousemove', function (e) {
+    var b = bounds(), r = field.getBoundingClientRect();
+    var inZone = e.clientX >= r.left + b.minLeft && e.clientX <= r.left + b.maxLeft + b.H &&
+                 e.clientY >= r.bottom - b.minBottom - b.range - b.H && e.clientY <= r.bottom - b.minBottom;
+    if (inZone) {
+      mallet.style.left = (e.clientX - .3 * m) + 'px';
+      mallet.style.top = (e.clientY - .7 * m) + 'px';
+      if (!malletShown) { malletShown = true; mallet.style.display = 'block'; document.body.classList.add('mallet-active'); }
+    } else if (malletShown) hideMallet();
+  });
+  document.documentElement.addEventListener('mouseleave', function () { if (malletShown) hideMallet(); });
+  function hideMallet() { malletShown = false; mallet.style.display = 'none'; document.body.classList.remove('mallet-active'); }
+
+  function sync() {
+    measure();
+    var n = moleCount();
+    if (n > active) {
+      moles.slice(active, n).forEach(function (mole) {
+        if (mole.state === 'hidden' && !mole.timer) mole.timer = setTimeout(function () { start(mole); }, 500 + Math.random() * 3000);
+      });
+    } else if (n < active) {
+      moles.slice(n).forEach(function (mole) { clearTimeout(mole.timer); mole.timer = null; mole.pending = false; hide(mole); });
+    }
+    active = n;
+  }
+
+  if ('ResizeObserver' in window) new ResizeObserver(sync).observe(document.body);
+  else window.addEventListener('resize', sync);
+  sync();
+
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      visible = entries[0].isIntersecting;
+      if (visible) moles.forEach(function (mole) {
+        if (mole.pending) mole.timer = setTimeout(function () { start(mole); }, Math.random() * 2000);
+      });
+    }, { threshold: 0.05 }).observe(document.body);
+  }
+})();
+</script>
+</body>
+</html>

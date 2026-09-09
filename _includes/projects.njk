@@ -105,6 +105,12 @@ p.card-description {
   background-size: contain;
 }
 
+.card .preview-frame {
+  display: block;
+  border: 0;
+  background: #C8E0EE;
+}
+
 .card .body {
   grid-area: body;
   padding: 16px;
@@ -249,7 +255,7 @@ p.card-description {
     grid-column: span 2;
   }
 
-  .card:first-child {
+  .grid-container .card:first-child {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
     grid-template-areas:
@@ -257,7 +263,7 @@ p.card-description {
       "body";
   }
 
-  .card:first-child .preview-image {
+  .grid-container .card:first-child .preview-image {
     aspect-ratio: 16/9;
     border-radius: var(--grid-radius) var(--grid-radius) 0 0;
   }
@@ -272,11 +278,13 @@ p.card-description {
 
 <div class="grid-container">
 {% for card in my.projects %}
-  <div class="card{% if not card.video and not card.image %} no-media{% endif %}">
+  <div class="card{% if not card.video and not card.image and not card.preview %} no-media{% endif %}">
     {% if card.video %}
     <video class="preview-image" autoplay muted loop playsinline style="background-color: black">
       <source src="{{ card.video.href | url }}" type="{{ card.video.type | default('video/mp4') }}">
     </video>
+    {% elif card.preview %}
+    <iframe class="preview-image preview-frame" src="{{ card.preview.href | url }}" title="{{ card.preview.title }}" loading="lazy"></iframe>
     {% elif card.image %}
     <div class="preview-image" style="background-image: url('{{ card.image.thumb | url }}');"></div>
     {% endif %}

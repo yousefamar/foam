@@ -437,16 +437,16 @@ Decided to transfer course from Electronic Engineering with Business Management 
 	projects: [
 		{
   		name: "Artanis",
-      logo: {
-				thumb: "/assets/images/icons/artanis-mark.svg",
-				alt: "Artanis logo"
+      preview: {
+				href: "/assets/previews/artanis/index.html",
+				title: "Artanis: stop playing whack-a-mole with your AI"
 			},
-  		description: "Stack trace for AI. Profitable from day 1 (now at a $1MM run rate) with many happy customers. $1.5MM in VC raised to hire a team of all AI PhDs.",
+  		description: "Solving AI alignment. Profitable from day 1, reaching a $1MM run rate with many happy customers. $1.5MM in VC raised to hire a team of all AI PhDs.",
   		links: [{
   			href: "https://artanis.ai",
   			label: "Web"
   		}, {
-   			href: "https://buttondown.com/artanis",
+   			href: "https://artanis.ai/#blog",
   			label: "Updates"
   		}, {
   			href: "https://artanis.substack.com",

@@ -30,7 +30,7 @@ const assetsDir = "assets";
 // assets/ publishes by allow-list. Passthrough copies every file it is pointed
 // at whether or not any page links it, so a new subdir — or a new writer landing
 // files in images/ — stays private until listed here.
-const publicAssetDirs = ['audios', 'certificates', 'diagrams', 'images', 'infographics', 'lottie', 'misc', 'papers', 'scripts', 'styles', 'vendor', 'videos', 'workbooks'];
+const publicAssetDirs = ['audios', 'certificates', 'diagrams', 'images', 'infographics', 'lottie', 'misc', 'papers', 'previews', 'scripts', 'styles', 'vendor', 'videos', 'workbooks'];
 // Console board-card screenshots and unreviewed testimonial uploads live under
 // images/ for the hub/server's sake; they are never site content.
 const privateImagePath = /^card-[^/]*$|^testimonials\/incoming(\/|$)/;

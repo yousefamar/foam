@@ -11,6 +11,7 @@ assets/images/*
 !assets/styles/
 !assets/scripts/
 !assets/vendor/
+!assets/previews/
 !templates/*
 node_modules/
 protected/
