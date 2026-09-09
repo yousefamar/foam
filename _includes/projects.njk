@@ -260,6 +260,17 @@ p.card-description {
   border-radius: var(--grid-radius) var(--grid-radius) 0 0;
 }
 
+/* full-width media, but exactly as tall as a half-width 16:9 card's */
+@media (min-width: 769px) {
+  .grid-container {
+    container-type: inline-size;
+  }
+  .grid-container .card:first-child.stacked .preview-image {
+    aspect-ratio: 32/9;
+    height: calc((100cqw - 10px) * 9 / 32);
+  }
+}
+
 @media (max-width: 768px) {
   .grid-container {
     grid-template-columns: repeat(2, 1fr);
