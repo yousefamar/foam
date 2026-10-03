@@ -1,0 +1,12 @@
+{
+  "areas": [
+    { "slug": "life", "title": "Life" },
+    { "slug": "ai", "title": "AI" },
+    { "slug": "dev", "title": "Dev" },
+    { "slug": "writing", "title": "Writing" },
+    { "slug": "entrepreneurship", "title": "Entrepreneurship" },
+    { "slug": "hacks", "title": "Hacks" },
+    { "slug": "meta", "title": "Meta" }
+  ],
+  "reserved": ["projects"]
+}
