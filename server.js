@@ -21,7 +21,16 @@ const storage = multer.diskStorage({
     cb(null, filename);
   },
 })
-const upload = multer({ storage: storage })
+const ALLOWED_EXT = ['.jpg', '.jpeg', '.png', '.gif', '.webp'];
+const ALLOWED_MIME = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+const upload = multer({
+  storage: storage,
+  limits: { fileSize: 2 * 1024 * 1024, files: 1, fields: 20, fieldSize: 64 * 1024 },
+  fileFilter: (req, file, cb) => {
+    const ext = path.extname(file.originalname).toLowerCase();
+    cb(null, ALLOWED_EXT.includes(ext) && ALLOWED_MIME.includes(file.mimetype));
+  },
+})
 
 async function runEleventy() {
   return new Promise((resolve, reject) => {
@@ -33,6 +42,17 @@ async function runEleventy() {
       }
     });
   });
+}
+
+// Generous per-IP rate limit for PATCH writes: stops rev-*.md disk-fill abuse without
+// blocking legitimate collaborative editing.
+const patchRateLimit = new Map();
+function isPatchRateLimited(ip) {
+  const now = Date.now();
+  const e = patchRateLimit.get(ip);
+  if (!e || now - e.first > 60 * 60 * 1000) { patchRateLimit.set(ip, { first: now, count: 1 }); return false; }
+  e.count++;
+  return e.count > 30;
 }
 
 const writeUpdate = (path, newContent) => {
@@ -52,7 +72,7 @@ const writeUpdate = (path, newContent) => {
   const newFm = fm(newContent);
 
   // The error is the same as others to prevent leaking information about the existence of private files
-  if (!oldFm.attributes.public || !oldFm.attributes.acl.includes('\\*'))
+  if (!oldFm.attributes.public || !Array.isArray(oldFm.attributes.acl) || !oldFm.attributes.acl.includes('\\*'))
     throw new Error('Invalid path');
 
   if (JSON.stringify(oldFm.attributes) !== JSON.stringify(newFm.attributes))
@@ -68,22 +88,23 @@ const writeUpdate = (path, newContent) => {
 app.use(express.json());
 
 app.patch('/*', async (req, res) => {
-  let path = req.path;
+  if (isPatchRateLimited(req.headers['x-forwarded-for'] || req.socket.remoteAddress))
+    return res.status(429).json({ success: false, error: 'Too many requests' });
 
-  // New Caddy config only allows this on /memo/ anyway
-  // if (!path.startsWith('/memo/'))
-  //   return res.status(400).json({ success: false, error: 'Invalid path' });
-
-  // path = path.replace('/memo/', rootDir);
-  path = path.replace('/', rootDir);
+  // Resolve the target under rootDir and assert containment (no `../` traversal).
+  // NB: `path` here is the path module (do not shadow it as the old code did).
+  const rel = req.path.replace(/^\/+/, '');
+  const rootResolved = path.resolve(rootDir);
+  const targetDir = path.resolve(rootResolved, rel);
+  if (targetDir !== rootResolved && !targetDir.startsWith(rootResolved + path.sep))
+    return res.status(400).json({ success: false, error: 'Invalid path' });
 
   const { content } = req.body;
-
   if (!content)
     return res.status(400).json({ success: false, error: 'Missing content' });
 
   try {
-    writeUpdate(path, content);
+    writeUpdate(targetDir, content);
     console.log(new Date(), 'Eleventy build started');
     //await new Eleventy().write();
     try {
@@ -131,6 +152,15 @@ function validateTestimonialField(value, maxLength) {
   return true;
 }
 
+// Verify a saved upload really is an image by magic bytes (mimetype/ext are client-controlled)
+function isRealImage(p) {
+  const fd = fs.openSync(p, 'r'); const b = Buffer.alloc(12);
+  fs.readSync(fd, b, 0, 12, 0); fs.closeSync(fd);
+  const h = b.toString('hex');
+  return h.startsWith('ffd8ff') || h.startsWith('89504e47') || h.startsWith('474946383')
+      || (b.slice(0, 4).toString() === 'RIFF' && b.slice(8, 12).toString() === 'WEBP');
+}
+
 app.post('/notes/my/testimonials/leave/', upload.single('avatar'), async (req, res) => {
   const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
   if (isRateLimited(ip)) {
@@ -158,7 +188,7 @@ app.post('/notes/my/testimonials/leave/', upload.single('avatar'), async (req, r
   if (req.file) {
     const allowedExts = ['.jpg', '.jpeg', '.png', '.gif', '.webp'];
     const ext = path.extname(req.file.originalname).toLowerCase();
-    if (!allowedExts.includes(ext)) {
+    if (!allowedExts.includes(ext) || !isRealImage(req.file.path)) {
       fs.unlinkSync(req.file.path);
       return res.status(400).json({ success: false, error: 'Invalid avatar file type.' });
     }
@@ -178,7 +208,7 @@ app.post('/notes/my/testimonials/leave/', upload.single('avatar'), async (req, r
     title: workTitle,
     url: personalLink,
     date: new Date().toISOString(),
-    avatar: req.file ? req.file.originalname : null,
+    avatar: req.file ? req.file.filename : null,
     text: testimonial,
   };
 
