@@ -286,7 +286,7 @@ module.exports = {
 			description: `Teaching computing to approximately 240 children across years 1 to 5, utilising pedagogical and behavioural management skills.
 <h6>Certifications</h6>
 <ul>
-	<li><a href="/memo/assets/certificates/dbs.jpg" target="_blank">DBS Check</a></li>
+	<li>DBS Check (Enhanced)</li>
 	<li><a href="/memo/assets/certificates/safeguarding.pdf" target="_blank">NSPCC Safeguarding Certification</a></li>
 	<li><a href="/memo/assets/certificates/prevent.pdf" target="_blank">Prevent Certification</a></li>
 	<li>First Aid</li>
