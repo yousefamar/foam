@@ -28,3 +28,18 @@ venv/
 
 # Ignore Smart Environment folder
 .smart-env
+
+# This repo is PUBLIC (github.com/yousefamar/foam). Vault content is NOT versioned
+# here (*.md above; Syncthing + sources/ digests are the record) — only site code
+# is. Everything under root/ except the three tracked symlinks is private by
+# default, whatever its extension: project data, scratch, bookmarks, uploads.
+# Add an un-ignore line only for site code, never for content.
+root/*/
+!root/_data/
+!root/_includes/
+!root/_layouts/
+
+# Private build config and local tooling state
+.eleventyignore
+.claude/
+*.log
