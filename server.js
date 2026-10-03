@@ -44,6 +44,30 @@ async function runEleventy() {
   });
 }
 
+// Debounce/coalesce rebuilds so bursts of PATCH or /rebuild collapse into ONE eleventy run
+let rebuildTimer = null, rebuildPending = false, rebuilding = false, lastBuild = null;
+function scheduleRebuild() {
+  rebuildPending = true;
+  if (rebuildTimer) return;
+  rebuildTimer = setTimeout(async function run() {
+    rebuildTimer = null;
+    if (rebuilding) { rebuildTimer = setTimeout(run, 2000); return; }
+    rebuilding = true; rebuildPending = false;
+    const startedAt = new Date();
+    try {
+      console.log(startedAt, 'Eleventy build started'); await runEleventy(); console.log(new Date(), 'Eleventy build finished');
+      lastBuild = { ok: true, startedAt, finishedAt: new Date() };
+    } catch (e) {
+      console.error(e);
+      // exec's error.message is "Command failed: npx eleventy\n<stderr>"; keep only the 11ty problem lines
+      const problem = (e.message || '').split('\n').filter(l => /^\[11ty\]/.test(l) && !/^\[11ty\]\s+at /.test(l)).join('\n');
+      lastBuild = { ok: false, startedAt, finishedAt: new Date(), error: problem || String(e.message) };
+    }
+    rebuilding = false;
+    if (rebuildPending) scheduleRebuild();
+  }, 3000);
+}
+
 // Generous per-IP rate limit for PATCH writes: stops rev-*.md disk-fill abuse without
 // blocking legitimate collaborative editing.
 const patchRateLimit = new Map();
@@ -105,15 +129,7 @@ app.patch('/*', async (req, res) => {
 
   try {
     writeUpdate(targetDir, content);
-    console.log(new Date(), 'Eleventy build started');
-    //await new Eleventy().write();
-    try {
-      const output = await runEleventy();
-      console.log(output);
-    } catch (error) {
-      console.error(error);
-    }
-    console.log(new Date(), 'Eleventy build finished');
+    scheduleRebuild();
   } catch (error) {
     return res.status(400).json({ success: false, error: error.message });
   }
@@ -217,28 +233,25 @@ app.post('/notes/my/testimonials/leave/', upload.single('avatar'), async (req, r
   res.redirect('/memo/notes/my/testimonials/success/');
 });
 
-app.get('/rebuild', async (req, res) => {
-  try {
-    console.log(new Date(), 'Eleventy build started');
-    //await new Eleventy().write();
-    try {
-      const output = await runEleventy();
-      console.log(output);
-    } catch (error) {
-      console.error(error);
-    }
-    console.log(new Date(), 'Eleventy build finished');
-  } catch (error) {
-    return res.status(500).json({ success: false, error: error.message });
-  }
-  res.json({ success: true });
+app.get('/rebuild', (req, res) => {
+  scheduleRebuild();
+  res.json({ success: true, queued: true });
 });
 
-// Gemini
-const options = {
-  key: fs.readFileSync('/home/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/yousefamar.com/yousefamar.com.key'),
-  cert: fs.readFileSync('/home/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/yousefamar.com/yousefamar.com.crt'),
-};
+app.get('/rebuild/status', (req, res) => {
+  res.status(lastBuild && !lastBuild.ok ? 500 : 200).json({ rebuilding, lastBuild });
+});
+
+// Gemini — TLS cert is shared with Caddy; skip if unavailable (eg. pre-DNS-cutover)
+let geminiOptions = null;
+try {
+  geminiOptions = {
+    key: fs.readFileSync('/home/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/yousefamar.com/yousefamar.com.key'),
+    cert: fs.readFileSync('/home/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/yousefamar.com/yousefamar.com.crt'),
+  };
+} catch (e) {
+  console.warn('Gemini server disabled — could not read Caddy cert:', e.code || e.message);
+}
 
 function handleGeminiRequest(request) {
   const lines = request.split('\r\n');
@@ -260,7 +273,7 @@ function handleGeminiRequest(request) {
   return '51\r\n';
 }
 
-const server = tls.createServer(options, (socket) => {
+const server = geminiOptions ? tls.createServer(geminiOptions, (socket) => {
   console.log('Gemini client connected');
 
   socket.on('data', (data) => {
@@ -281,16 +294,15 @@ const server = tls.createServer(options, (socket) => {
   });
 
   socket.setEncoding('utf8');
-});
+}) : null;
 
 (async function () {
   try {
-    await Promise.all([
-      new Promise(resolve => app.listen(port, resolve)),
-      new Promise(resolve => server.listen(1965, resolve)),
-    ]);
+    const listeners = [new Promise(resolve => app.listen(port, resolve))];
+    if (server) listeners.push(new Promise(resolve => server.listen(1965, resolve)));
+    await Promise.all(listeners);
 
-    console.log(`Server started on port ${port}`);
+    console.log(`Server started on port ${port}${server ? ' (+ Gemini :1965)' : ' (Gemini disabled)'}`);
   } catch (error) {
     console.error(error);
   }
