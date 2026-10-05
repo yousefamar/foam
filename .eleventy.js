@@ -176,6 +176,15 @@ module.exports = (eleventyConfig) => {
   // Filtering them from listings alone left them fetchable at their URLs.
   eleventyConfig.ignores.add("**/rev-*.md");
 
+  // .gitignore says what GitHub may see (this repo is public and holds no vault
+  // content); .eleventyignore says what the site excludes. Eleventy conflates
+  // them and drops negative patterns, so `root/*/` — added 3 Oct 2026 to keep
+  // private content out of the repo — silently removed every template directly
+  // in root/ from the build (the memo homepage, /404.html, /sitemap/, /cto/,
+  // /yousefamar/). Caddy kept serving their last-written files, so nothing
+  // looked broken while the homepage was frozen for two days.
+  eleventyConfig.setUseGitIgnore(false);
+
   eleventyConfig.addPlugin(eleventyNavigation);
 
   eleventyConfig.addPlugin(codeblocks([graphvis]));
