@@ -176,6 +176,15 @@ module.exports = (eleventyConfig) => {
   // Filtering them from listings alone left them fetchable at their URLs.
   eleventyConfig.ignores.add("**/rev-*.md");
 
+  // Dot-directories are tool state, never pages: agent skills (.claude/),
+  // Obsidian config, Playwright scratch. Eleventy globs them, so one agent's
+  // SKILL.md with loose YAML front matter failed the whole build (26 Nov 2026).
+  eleventyConfig.ignores.add("**/.*/**");
+  // Agent instruction files at any depth (.eleventyignore only had projects/*/CLAUDE.md;
+  // projects/dojo/tutor/CLAUDE.md's `{{` failed the build next).
+  eleventyConfig.ignores.add("**/CLAUDE.md");
+  eleventyConfig.ignores.add("**/AGENTS.md");
+
   // .gitignore says what GitHub may see (this repo is public and holds no vault
   // content); .eleventyignore says what the site excludes. Eleventy conflates
   // them and drops negative patterns, so `root/*/` — added 3 Oct 2026 to keep
